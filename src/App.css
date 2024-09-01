@@ -32,6 +32,8 @@
   margin-top: 2rem;
   transition: transform 1s ease-in-out 0.2s;
   cursor:pointer;
+  color:aliceblue;
+  background-color:dodgerblue;
 }
 .content button:hover, .content button:focus{
   transform:scale(1.05);
@@ -44,6 +46,12 @@
   width:100%;
   margin:auto;
   font-size: 1rem;
+}
+.footer div div{
+  width:90%;
+  height:2px;
+  background-image:linear-gradient(to right, #282c34, dodgerblue, #282c34);
+  margin:auto;
 }
 /* @media (prefers-reduced-motion: no-preference) {
   .App-logo {

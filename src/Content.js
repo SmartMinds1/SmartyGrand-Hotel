@@ -17,7 +17,10 @@ const Content = () => {
     <main>
       <h3>Welcome {userName}!</h3>
       <h4>This is where your imaginations meets reality!</h4>
+
       <button onClick={moreInfor}>See more...</button>
+
+      <img src="" alt="" />
     </main>
   );
 };
