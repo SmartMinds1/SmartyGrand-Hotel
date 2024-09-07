@@ -1,6 +1,10 @@
 //creating the header function
-const Header = () => {
-  return <h1>Smarty Grand Hotel</h1>;
+//PROPS EXAMPLE
+
+const Header = ({ title }) => {
+  return <h1>{title}</h1>;
 };
+
+Header.defaultProps = { title: "Default title" };
 
 export default Header;

@@ -1,27 +1,30 @@
-import { useState } from "react";
-
+import { FaUsers } from "react-icons/fa";
 //creating the content function
-const Content = () => {
-  //learning about useState hook
-  //use is the initial value of a given variable then State is the is value after changes
-
-  //example
-  const newName = "Paul";
-  const [userName, setUserName] = useState("smartMinds");
-
-  const moreInfor = () => {
-    setUserName(newName); //This changes the initial value to a final state of a variable
-  };
+const Content = ({ newUser, setNewUser, handleSubmit }) => {
+  //learning about forms
 
   return (
-    <main>
-      <h3>Welcome {userName}!</h3>
-      <h4>This is where your imaginations meets reality!</h4>
-
-      <button onClick={moreInfor}>See more...</button>
-
-      <img src="" alt="" />
-    </main>
+    <div>
+      {" "}
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          autoComplete="on"
+          id="userName"
+          size={30}
+          placeholder="Your Name"
+          required
+          autoFocus
+          value={newUser}
+          onChange={(e) => setNewUser(e.target.value)}
+        />
+        <br />
+        <button type="submit">Submit</button>
+      </form>
+      <div>
+        <FaUsers role="button" /> Users
+      </div>
+    </div>
   );
 };
 

@@ -21,8 +21,11 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  height: 10rem;
+  height: fit-content;
   
+}
+.content img{
+  margin:1rem;
 }
 .content button{
   width:8rem;
@@ -30,6 +33,7 @@
   border:0;
   font-size: 1.1rem;
   margin-top: 2rem;
+  margin-bottom: 2rem;
   transition: transform 1s ease-in-out 0.2s;
   cursor:pointer;
   color:aliceblue;
@@ -40,6 +44,35 @@
 
 
 }
+/* These are the settings for the display table */
+
+.userTable{
+    border-collapse: collapse;
+    width: 50%;
+    margin:auto;
+}
+
+td, th{
+    text-align: justify;
+    padding: 15px;
+    border-bottom: 2px solid rgb(2, 92, 128);
+    font-size: 0.8rem;
+}
+.deleteBtn{
+    background-color: rgb(211, 230, 247);
+    border:none;
+    padding:0.3rem;
+    width:8rem;
+    border-radius: 0.3rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 0.2rem;
+}
+.deleteBtn:hover, .deleteBtn:focus{
+    background-color: rgb(255, 253, 125);
+
+}
+
 .footer{
   position:absolute;
   bottom:0;
