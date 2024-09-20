@@ -1,3 +1,5 @@
+//when one wants use one component inside another component one must first import it and then use it within that componet
+
 // Component to display the list of users
 const DisplayUsers = ({ users, deleteUser }) => {
   return (

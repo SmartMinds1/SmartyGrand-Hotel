@@ -1,6 +1,14 @@
 import { FaUsers } from "react-icons/fa";
+import Button from "./Button";
+
 //creating the content function
-const Content = ({ newUser, setNewUser, handleSubmit }) => {
+const Content = ({
+  newUser,
+  setNewUser,
+  handleSubmit,
+  reqType,
+  setReqType,
+}) => {
   //learning about forms
 
   return (
@@ -19,7 +27,7 @@ const Content = ({ newUser, setNewUser, handleSubmit }) => {
           onChange={(e) => setNewUser(e.target.value)}
         />
         <br />
-        <button type="submit">Submit</button>
+        <Button buttonText="Submit" reqType={reqType} setRegType={setReqType} />
       </form>
       <div>
         <FaUsers role="button" /> Users

@@ -27,7 +27,7 @@
 .content img{
   margin:1rem;
 }
-.content button{
+.mainButtons{
   width:8rem;
   padding:0.5rem;
   border:0;
@@ -39,7 +39,7 @@
   color:aliceblue;
   background-color:dodgerblue;
 }
-.content button:hover, .content button:focus{
+.mainButtons:hover, .mainButtons:focus{
   transform:scale(1.05);
 
 

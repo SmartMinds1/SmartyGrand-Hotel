@@ -4,16 +4,19 @@ import Header from "./Header";
 import SearchBox from "./SearchBox";
 import Content from "./Content";
 import DisplayUsers from "./DisplayUsers";
+import MoreInfor from "./moreInfor";
 import Footer from "./Footer";
 
 function App() {
   const [search, setSearch] = useState("");
+
   const [users, setUsers] = useState(() => {
     const savedUsers = localStorage.getItem("hotelUsers");
     return savedUsers ? JSON.parse(savedUsers) : [];
   });
   const [newUser, setNewUser] = useState("");
 
+  //The useEffect below will update the data to firstore each time when there's a change in users' state
   useEffect(() => {
     localStorage.setItem("hotelUsers", JSON.stringify(users));
   }, [users]);
@@ -42,14 +45,13 @@ function App() {
       <Header className="App-header" title="Smarty Grand Hotel" />
 
       <div className="content">
-        <SearchBox search={search} setSearch={setSearch} />
         <Content
           newUser={newUser}
           setNewUser={setNewUser}
           handleSubmit={handleSubmit}
         />
       </div>
-
+      <SearchBox search={search} setSearch={setSearch} />
       <div>
         <DisplayUsers
           users={users.filter((user) =>
@@ -57,6 +59,10 @@ function App() {
           )}
           deleteUser={deleteUser}
         />
+      </div>
+
+      <div>
+        <MoreInfor />
       </div>
 
       <div className="footer">
