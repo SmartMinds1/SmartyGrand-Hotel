@@ -1,24 +1,20 @@
-import { FaUsers } from "react-icons/fa";
 import Button from "./Button";
 
-//creating the content function
-const Content = ({
+const SignUp = ({
   newUser,
   setNewUser,
   userEmail,
   setUserEmail,
   userPassword,
   setUserPassword,
-  handleSubmit,
+  handleUserSignUp,
   reqType,
   setReqType,
 }) => {
-  //learning about forms
-
   return (
     <div>
       {" "}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleUserSignUp}>
         <input
           type="text"
           autoComplete="on"
@@ -59,17 +55,7 @@ const Content = ({
           name="signUp"
         />
       </form>
-      <div>
-        <FaUsers role="button" /> Users
-        <Button
-          buttonText="submit"
-          reqType={reqType}
-          setReqType={setReqType}
-          name="signIn"
-        />
-      </div>
     </div>
   );
 };
-
-export default Content;
+export default SignUp;

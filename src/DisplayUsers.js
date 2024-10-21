@@ -38,6 +38,22 @@ const DisplayUsers = ({ users, deleteUser }) => {
 
 export default DisplayUsers;
 
+/* on app      
+
+   const deleteUser = (id) => {
+    const newUsersList = users.filter((user) => user.id !== id);
+    setUsers(newUsersList);
+  }; 
+
+<div>
+<DisplayUsers
+  users={users.filter((user) =>
+    user.userFirstName.toLowerCase().includes(search.toLowerCase())
+  )}
+  deleteUser={deleteUser}
+/>
+</div> */
+
 /* import React, { useState } from "react";
 import DisplayUsers from "./DisplayUsers";
 
