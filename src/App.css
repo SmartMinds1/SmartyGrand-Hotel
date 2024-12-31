@@ -15,18 +15,7 @@
   height: 40vmin;
   pointer-events: none;
 }
-.content{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  height: fit-content;
-  
-}
-.content img{
-  margin:1rem;
-}
+
 .mainButtons{
   width:8rem;
   padding:0.5rem;
@@ -86,20 +75,7 @@ td, th{
   background-image:linear-gradient(to right, #282c34, dodgerblue, #282c34);
   margin:auto;
 }
-/* @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
 
 
 
