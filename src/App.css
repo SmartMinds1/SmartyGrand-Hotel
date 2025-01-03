@@ -5,7 +5,7 @@
 }
 .App {
   text-align: center;
-  background-color: #282c34;
+  background-color: rgb(17, 23, 37);
   min-height: 100vh;
   font-size: calc(10px + 2vmin);
   color: white;

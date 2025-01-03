@@ -4,4 +4,40 @@
     box-sizing: border-box;
   }
 
-  
+.btn{
+  background-color: rgb(255, 203, 172);
+  border-radius: 3px;
+  color: rgb(17, 23, 37);
+  display: inline-block;
+  margin: 0.5rem 1rem;
+  padding: 0.5rem 0;
+  transition: all 200ms ease-in-out;
+  margin-top: 1rem;
+  width: 8rem;
+  }
+
+
+
+  .btn:hover {
+    filter: brightness(0.85);
+  }
+
+
+  .btn:active {
+    filter: brightness(1);
+  }
+
+
+
+
+
+  .btn2{
+    width:7rem;
+    margin:auto;
+    padding:0.5rem;
+  text-align: center;
+  /* background-color: rgb(255, 231, 96); */
+  background-color: rgb(255, 203, 172);
+ /*  background-color: rgb(252, 190, 154); */
+  border:none;
+  }

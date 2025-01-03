@@ -12,6 +12,14 @@ function App() {
         <Header title="Smarty Grand Hotel" />
         <MyForm />
         <Button />
+
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
         <Footer />
       </div>
     </>
