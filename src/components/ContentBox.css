@@ -1,0 +1,33 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+  }
+
+.contentBox{
+    background-color: rgba(21, 28, 46, 0.6);
+    width:12rem;
+    height:15rem;
+    float:left;
+    margin:1rem;
+    margin-top: 2rem;
+  }
+  .FooterListDesign li{
+    color:rgb(211, 211, 255);
+    list-style-type: none;
+    font-size: 0.9rem;
+    text-align: left;
+    padding:0.2rem;
+    padding-left: 0.8rem;
+    transition: all 200ms ease-in-out;
+    cursor: pointer;
+   
+  }
+
+  .FooterListDesign li:hover{
+    filter: brightness(0.85);
+  }
+  .FooterListDesign li:active{
+    filter: brightness(1);
+  }
+  

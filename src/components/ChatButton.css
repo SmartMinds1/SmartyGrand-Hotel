@@ -1,0 +1,21 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+
+.chatBtn{
+    background-color: transparent;
+    width:8rem;
+    height: 2.5rem;
+    color:aliceblue;
+    font-size: 1rem;
+    border: 1px solid rgb(255, 203, 172);
+    border-radius: 1rem;
+    margin-top: 1rem;
+    transition: all 200ms ease-in-out;
+}
+
+.chatBtn:hover{
+        filter:brightness(0.7); 
+}

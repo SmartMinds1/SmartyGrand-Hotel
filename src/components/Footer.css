@@ -1,0 +1,67 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+  }
+  .FooterHr{
+    width:100%;
+    height:1px;
+    background-image: linear-gradient(to right,rgb(17, 23, 37), rgb(255, 203, 172), rgb(17, 23, 37));
+    margin: auto;
+    margin-top: 1rem;
+}
+
+  .Footer{
+   height: 23rem;
+   background-image: url(../assets/modernOneBed.png);
+   background-size: cover;
+   background-position: center; 
+   background-position-y:55%;
+
+   position: relative; 
+   margin-top: 10rem;
+   
+  }
+h1{
+  text-align: left;
+  padding-left: 0.8rem;
+  margin-bottom: 0.8rem;
+  
+}
+.contentBoxHr{
+  width:70%;
+  height:1px;
+  background-image: linear-gradient(to right, rgb(255, 203, 172),rgba(21, 28, 46, 0.6), rgba(21, 28, 46, 0.6), aliceblue, aliceblue);
+  margin: auto;
+  margin-bottom: 1rem;
+  float:left;
+  margin-left: 0.3rem;
+  opacity: 0.7;
+}
+.clear{
+  clear:both;
+}
+  .FooterItems{
+    background-image:linear-gradient(to bottom, rgb(17, 23, 37),rgba(17, 23, 37, 0.7));
+    height: 23rem;
+    position:relative;
+    
+  }
+
+  .socialIconsBar{
+    width:20rem;
+    height:2.5rem;
+    float:right;
+    margin-top: 1.rem;
+    margin-right: 1rem;
+  }
+
+  .FooterCopyrights{
+    text-align: center;
+    color:aliceblue;
+    position:absolute;
+    width:100%;
+    bottom:0;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+  }

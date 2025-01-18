@@ -1,0 +1,21 @@
+*{
+    padding: 0;
+    margin:0;
+    box-sizing: border-box;
+}
+
+/* textbox widh to be defined where its rendered */
+.TextBox{
+    background-image: linear-gradient(to top, #151c2e, rgba(17, 23, 37, 0.7) );
+    padding:1rem;
+  
+}
+
+.TextDesign p{
+    font-size: 1rem;
+    color:#f0f8ff;
+    filter:brightness(0.85);
+    text-align: left;
+    line-height: 1.8rem;
+   
+}

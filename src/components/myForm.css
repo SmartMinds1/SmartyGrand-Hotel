@@ -1,0 +1,48 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+  }
+
+ .formtable{
+     display:table;
+     padding:1rem;
+     margin:auto;
+  /*    margin-top:3rem; */
+     margin-bottom:1rem; 
+     width:20rem;
+    
+  }
+  
+  .Insidetable{
+      display:table-row;   
+    
+  }
+  
+  .Insidetable input{
+     /* background-image:linear-gradient(to top, rgb(21, 28, 46),rgb(17, 23, 37)); */
+     background-color: transparent;
+      display:table-cell;
+      padding:10px;
+      margin-top: 0.5rem;
+      border:0;
+      width:100%;
+      font-size:0.9rem;
+      cursor: pointer;
+      color:aliceblue;
+  }
+
+  .inputDivHr1{
+    width:100%;
+    height:1px;
+    background-image: linear-gradient(to left, aliceblue, rgb(17, 23, 37), aliceblue);
+    margin: auto;
+    
+  }
+  .inputDivHr2{
+    width:100%;
+    height:1px;
+    background-image: linear-gradient(to right, aliceblue, rgb(17, 23, 37), aliceblue);
+    margin: auto;
+    
+  }

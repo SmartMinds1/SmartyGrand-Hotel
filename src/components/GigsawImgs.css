@@ -1,0 +1,130 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+.clear{
+    clear: both;
+}
+.ImageDefaults{
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 2rem;
+}
+.ImageContainer{
+    margin:auto;
+    width:35%;
+    padding:0.5rem;
+    float:right;
+    margin: 2rem 5% 3rem 0;
+    height: 29.5rem;  
+    position:relative;
+}
+
+.ImageShadder{
+    background-color: rgba(0, 0, 0, 0.5);
+    width:60%;
+    height:10rem;
+    position:absolute;
+    left:20%;
+    top:30%; 
+}
+
+.ImageShadder h1{
+    text-align: center;
+    margin-top: 2rem;
+    font-weight:lighter;
+    font-size: 1.5rem;
+    animation: slide 1.2s ease-in-out 0.1s forwards;
+}
+
+.TwinBeds1{
+    background-image: url(../assets/TwinBeds1.jpg);
+    width:38%;
+    height:20rem;
+    float: left;
+    animation: slide1 1.2s ease-in-out 0.1s forwards;
+}
+
+.Swimming2{
+    background-image: url(../assets/Swimming2.jpg);
+    width:38%;
+    height:8rem;
+    transform: translateY(-11rem);
+    animation: moveIn2 1s ease-in-out 0.1s forwards;
+}
+
+.singleBedRoom1{
+    background-image: url(../assets/singleBedRoom1.jpg);
+    background-position-y: 90%;
+    width:61%;
+    height:10rem;
+    transform: translate(11.5rem, 2rem);
+    animation: moveIn1 1s ease-in-out 0.1s forwards;
+}
+
+.HotelBathroom{
+    background-image: url(../assets/HotelBathroom.jpg);
+    width:59.5%;
+    height:12rem;
+    float:right;
+    transform: translateY(-6rem);
+    animation: slide2 1.2s ease-in-out 0.1s forwards;
+}
+
+@keyframes slide1 {
+    from {
+        transform: translate(0, 100px);
+        opacity: 0;
+        filter: blur(33px);
+    }
+
+    to {
+        transform: translate(0);
+        opacity:1;
+        filter: blur(0);
+    }
+}
+@keyframes slide2 {
+    from {
+        transform: translate(0, 100px);
+        opacity: 0;
+        filter: blur(33px);
+    }
+
+    to {
+        transform: translate(0, -6rem);
+        opacity:1;
+        filter: blur(0);
+    }
+}
+
+@keyframes moveIn1 {
+    from {
+        transform: translate(15rem, 2rem);
+        opacity: 0;
+        filter: brightness(0);
+    }
+
+    to {
+        transform: translate(11.5rem, 2rem);
+        opacity:1;
+        filter: brightness(1)
+    }
+}
+@keyframes moveIn2 {
+    from {
+        transform: translate(-5rem, -11rem);
+        opacity: 0;
+        filter: brightness(0);
+    }
+
+    to {
+        transform: translate(0, -11rem);
+        opacity:1;
+        filter: brightness(1)
+    }
+}
+
+

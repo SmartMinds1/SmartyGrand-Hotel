@@ -1,0 +1,201 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+
+.contactIntroImg{
+    background-color:rgba(211, 211, 255, 0.5);
+ /*    border:3px solid rgb(255, 203, 172); */
+    border-radius: 50%;
+    width:30%;
+    height: 15rem;
+    float:left;
+    position:relative;
+    margin-top: 6rem;
+    margin-left: 15%;
+}
+
+.phoneImageShadder{
+    width:60%;
+    height:18rem;
+    background-color:rgba(0, 0, 0, 0.308);
+    position:absolute;
+    top:-6rem;
+    left: 14%;
+
+}
+.phoneImageShadder p{
+    color:aliceblue;
+    margin-top: 8rem;
+    font-size: 2rem;
+}
+.OfficeTelephone{
+   /*  filter: blur(3px); */
+   margin:auto;
+    margin-top: 3rem;
+    height:3rem;
+    transform: translateY(-10rem);
+    
+}
+
+.clear{
+    clear:both;
+}
+
+.contactIntro{
+    float:right;
+    width:40%;
+    height:25rem;
+    margin-right: 10%;
+}
+.contact_Us{
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: aliceblue;
+    text-align: left;
+    margin-bottom: 2rem;
+    margin-left: 10%;
+}
+
+.contactIntro h1{
+  /*   background-color: brown; */
+    font-size: 2.5rem;
+    font-weight: 300;
+}
+
+.contactMessage1{
+    margin: auto;
+    width:80%;
+
+}
+.contactCheckBox1{
+    /*   background-color: red; */
+      height:3rem;
+      margin-left:10%;
+      margin-top: 2rem;
+      width:30%;
+      margin-bottom: 1rem;
+      padding-left: 0.5rem;
+  }
+
+/* This is now the form section where we are going to obtain the user information */
+.contactForm{
+    padding:0.1rem;
+    margin-bottom:6rem;
+}
+
+.contactForm textArea{
+background-color: transparent;
+border:1.5px solid rgb(211, 211, 255);
+color:rgba(240, 248, 255, 0.85);
+border-radius: 1rem;
+padding:1rem;
+}
+
+
+.singInBtn{
+    margin:'2rem auto 4rem auto';
+}
+
+.callEmailChat  {
+    width:100%;
+    height: fit-content;
+    padding:1rem;
+    margin-top:1rem;
+   
+}
+
+.callEmailChat div{
+    display:inline-block;
+    margin-inline:5%;
+}
+.call_E_ChatDesign{
+    width: 15rem;
+    height: 18rem;
+    text-align: left;
+    
+}
+
+.emailBox{
+    /* background-color: blue; */
+    animation: email_slide 10s ease-in-out 0.1s infinite;
+   
+}
+.callBox{
+  /*   background-color: blueviolet; */
+    animation: call_slide 10s ease-in-out 0.1s infinite;
+ 
+}
+.chatBox{
+   /*  background-color: black; */
+    animation: chat_slide 10s ease-in-out 0.1s infinite;
+ 
+}
+
+ @keyframes email_slide {
+    0%{
+        transform: translateY(0);
+    }
+    25%{
+        transform: translateY(2rem);
+    }
+    50%{
+        transform: translateY(0);
+    }
+    75%{
+        transform: translateY(-2rem);
+    }
+    100%{ 
+        transform: translateY(0rem);
+    }
+ }
+
+ @keyframes call_slide {
+    0%{
+        transform: translateY(0);
+    }
+    25%{
+        transform: translateY(-2rem);
+    }
+    50%{
+        transform: translateY(0);
+    }
+    75%{
+        transform: translateY(2rem);
+    }
+    100%{ 
+        transform: translateY(0rem);
+    }
+ }
+
+ @keyframes chat_slide {
+    0%{
+        transform: translateY(0);
+    }
+    25%{
+        transform: translateY(2rem);
+    }
+    50%{
+        transform: translateY(0);
+    }
+    75%{
+        transform: translateY(-2rem);
+    }
+    100%{ 
+        transform: translateY(0rem);
+    }
+ }
+
+ 
+.finalContactComment{
+    width:60%;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 0.2rem;
+    margin:auto;
+    margin-top: 4rem;
+}
+
+

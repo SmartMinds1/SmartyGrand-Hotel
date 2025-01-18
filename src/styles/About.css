@@ -1,0 +1,103 @@
+*{
+    padding:0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.clear{
+    clear: both;
+}
+.aboutGigImages{
+    margin-right: 5%;
+    
+}
+.aboutIntro{
+    float:left;
+    width:40%;
+    height:25rem;
+    margin-left: 10%;
+  /*   background-color: blue; */
+}
+.abt_Us{
+/*  background-color: aqua; */
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: aliceblue;
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.aboutIntro h1{
+  /*   background-color: brown; */
+    font-size: 2.5rem;
+    font-weight: 300;
+}
+
+.aboutMessage1{
+    margin: auto;
+    width:80%;
+
+}
+
+/* This is the graph section */
+.hotelGraph{
+   float:left;
+   margin-left: 15%;
+
+}
+.graphCaption{
+    font-size: 1rem;
+    color:aliceblue;
+    filter:brightness(0.85)
+}
+
+/* This is the second body section of our about page */
+.aboutSection1{
+    float:right;
+    width:42%;
+    height: 13rem;
+    margin-right: 10%;
+    margin-bottom: 3rem;
+}
+.our_services{
+    margin-left: 10%;
+    font-size: 1.1rem;
+    color: aliceblue;
+    text-align: left;
+    margin-bottom: 2rem;
+    width:10%;
+}
+.our_services_intro{
+    color:aliceblue;
+    text-align: left;
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-left: 15%;
+    width:40%;
+    margin-bottom: 2rem;
+}
+
+.aboutSection2{
+    float:left;
+    width:38%;
+    height: fit-content;
+    margin-left: 20%;
+    margin-bottom: 4rem;
+}
+
+.aboutSection3{
+    float:right;
+    width:38%;
+    height: fit-content;
+    margin-right: 4%;
+    margin-bottom: 4rem;
+ 
+}
+.finalAboutComment{
+    width:50%;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 0.2rem;
+    margin:auto;
+    
+}

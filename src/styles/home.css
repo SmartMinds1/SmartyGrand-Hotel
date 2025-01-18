@@ -1,0 +1,233 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+  }
+  .bodyHr{
+    width:100%;
+    height:1px;
+    background-image: linear-gradient(to right,rgb(17, 23, 37), rgb(255, 203, 172), rgb(17, 23, 37));
+    margin: auto;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+  .Home {
+    text-align: center;
+    background-color: rgb(17, 23, 37);
+    min-height: 100vh;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+  .Home-logo {
+    height: 40vmin;
+    pointer-events: none;
+  }
+
+.homeCaptionImage{
+  width:100%;
+  height: 30rem;
+  margin:auto;
+  margin-bottom: 3rem;
+  background-image: url(../assets/modernHotelTable.png);
+  background-repeat: repeat-x;
+  background-position-x: 100%;
+  background-position-y: 50%;
+  /* background-color: #d3d3ff;
+  background-color: rgb(151, 98, 98); */
+/*   background-image: url(../assets/HotelMainEntrance.jpg); */
+
+}
+
+.homeCaptionShader{
+      width: 0;
+      height: 0;
+      border-bottom: 30rem solid rgba(21, 28, 46, 0.5);
+      border-right: 25rem solid transparent; 
+     /*  border-bottom: 5rem solid red; */
+      border-left: 40rem solid rgba(21, 28, 46);
+      background-color: transparent;
+      border-bottom-right-radius: 50%;
+      float:left;
+  /* background-image: linear-gradient(to right,rgba(17, 23, 37),rgb(17, 23, 37, 0.5),rgba(17, 23, 37, 0)); */
+
+}
+
+.homeCaptionRightShader{
+  width:20%;
+  height: 30rem;
+  background-image: linear-gradient(to right, #11172500,rgba(17, 23, 37, 0.5),rgb(17, 23, 37, 0.8),rgb(17, 23, 37));
+  float:right;
+}
+.homeCaptionRightShader h1{
+  color:#d3d3ff;
+  font-size: 5rem;
+  text-align: right;
+  margin-right: 10%;
+  margin-top: 1rem;
+  border-right: 1px solid ;
+  padding-right:3rem;
+  transform: translateX(-64rem);
+/*   background-color: red; */
+  width:20rem;
+  animation: homeHeadSlide 3s ease-in-out 0s forwards;
+
+}
+@keyframes homeHeadSlide  {
+  from{
+    width:0;
+    filter:brightness(0.5);
+    transform: translateX(-74rem);
+  }
+  to{
+  filter:brightness(1);
+    transform: translateX(-64rem);
+  }
+}
+
+.homeTitlespan{
+  color:#ffcbac;
+  font-weight: 100;
+}
+
+.homeCaptionRightShader p{
+  color:rgb(211, 211, 255);
+  font-weight: 100;
+  font-size: 1.9rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding:1rem;
+  margin:auto;
+  width:25rem;
+  transform: translateX(-56rem);
+  margin-top: 3rem; 
+}
+
+.WelcomeParagraph{
+  color:rgb(211, 211, 255);
+  letter-spacing: 0.3rem;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+/* ---------------This is the first section------------ */
+.homeSection1{
+  float:left;
+  width:40%;
+  height:25rem;
+  margin-left: 10%;
+}
+.why_Us{
+font-size: 1.1rem;
+font-weight: 500;
+color:rgb(211, 211, 255);
+text-align: left;
+margin-bottom: 2rem;
+}
+.h1Text{
+    font-size: 2.5rem;
+    font-weight: 300;
+}
+.homeMessage1{
+  margin: auto;
+  width:80%;
+}
+/* the styled images */
+.section1RightImage{
+ width:45%;
+ height:25rem;
+ float:right;
+}
+.mainDivStyle{
+  width: 13rem;
+  height:19rem;
+}
+.style1{
+  background-color:rgba(21, 28, 46);
+  animation: homesection1Anim 60s ease-in-out 0s infinite;
+}
+.style2{
+  background-color:rgb(42, 54, 85);
+  animation: homesection1Anim 60s ease-in-out 0s infinite;
+}
+.style3{
+  background-color:rgb(133, 151, 197);
+  background-image: url(../assets/modernHotelTable.png);
+  background-position-x: 25%;
+  background-size: cover;
+  animation: homesection1Anim 60s ease-in-out 0s infinite;
+}
+@keyframes homesection1Anim {
+  0%{
+    transform: translate(0);
+  }
+  25%{
+    transform: translate(2rem, 2rem);
+  }
+  50%{
+    transform: translate(0);
+  }
+  75%{
+    transform: translate(2rem, 2rem);
+  }
+  100%{
+    transform: translate(0);
+  }
+}
+
+/* ----------------------This is the second section-------------------------- */
+.homeSection2{
+    float:left;
+    width:40%;
+    height:25rem;
+    margin-left: 10%;
+  /*   background-color: blue; */
+  }
+
+
+/* This is the testimonials section */
+.clientTestimonials{
+ /*  background-color: red; */
+  width:45%;
+  height:fit-content;
+  float:right;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+  .formalDate{
+    font-size: 3rem;
+    float:left;
+    color:rgb(255, 255, 255);
+    margin-top: 15rem;
+
+}
+.clear{
+    clear: both;
+}
+
+
+.HomeImage{
+    width: 30%;
+    height: 20rem;
+    margin: auto;
+}
+figcaption{
+    font-size: 0.9rem;
+    color:#f0f8ff;
+    filter:brightness(0.85);
+    margin: auto;
+}
+
+  
+  
+  
+  
+  

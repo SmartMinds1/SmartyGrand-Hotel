@@ -1,0 +1,18 @@
+*{
+    box-sizing: border-box;
+    padding:0;
+    margin:0;
+}
+
+.checkedCircle{
+    color:rgb(255, 203, 172);
+    font-size: 2rem;
+    float:left;
+
+}
+
+.checkBoxText h1{
+    font-size: 1.1rem;
+    transform: translateY(0.25rem);
+    margin-left: 0.8rem;
+}

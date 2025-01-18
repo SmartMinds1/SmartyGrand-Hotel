@@ -1,0 +1,102 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+  
+}
+.Head{
+position: sticky;
+top:0;
+width:100%;
+height:5rem;
+/* margin-bottom: 3rem; */
+background-color: rgb(17, 23, 37);
+
+
+}
+
+.headerTitle{
+float:left;
+width:10rem;
+font-size: 1.5rem;
+margin-top: 1rem;
+}
+.headerTitle span{
+  color:#ffcbac;
+  font-weight: 300;
+}
+.navBar{
+height: 5rem;
+padding:0.3rem;
+background-image:linear-gradient(to top, rgb(21, 28, 46),rgb(17, 23, 37));
+}
+
+.navBar div{
+display:inline-block;
+}
+
+.navListDesign li{
+color:aliceblue;
+list-style-type: none;
+display:inline-block;
+font-size: 0.9rem;
+margin-inline: 3%;
+cursor: pointer;
+}
+
+.linkStyle{
+  text-decoration: none;
+  color:aliceblue;
+  transition: all 200ms ease-in-out;
+}
+.linkStyle:hover, .linkStyle:focus{
+color: rgb(255, 203, 172);
+
+}
+.navPages{
+width:50%;
+height:2rem;
+text-align: center;
+margin-top: 1rem;
+margin-left: 1%;
+
+}
+.navAcc{
+width:15%;
+height:2rem;
+float:right;
+text-align: right;
+margin-right: 0.5%;
+margin-top: 1rem;
+
+
+}
+.navAcc li{
+  transition: all 200ms ease-in-out;
+}
+.navAcc li:hover, .navAcc li:focus{
+  color: rgb(255, 203, 172);
+}
+.navProfile{
+background-image: url(../assets/favicon.ico);
+width:4rem;
+height: 4rem;
+padding:1rem;
+border-radius: 50%;
+float:right;
+
+}
+
+h1{
+  color:rgb(211, 211, 255);
+  font-size: 1.2rem;
+
+}
+
+.introhr{
+  width:80%;
+  height:1px;
+  background-image: linear-gradient(to right,rgb(17, 23, 37), rgb(255, 203, 172), rgb(17, 23, 37));
+  margin: auto;
+  margin-top: 1.7rem;
+}
