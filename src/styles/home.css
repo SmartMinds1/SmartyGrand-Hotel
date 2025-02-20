@@ -50,6 +50,7 @@
       float:left;
   /* background-image: linear-gradient(to right,rgba(17, 23, 37),rgb(17, 23, 37, 0.5),rgba(17, 23, 37, 0)); */
 
+ /*  backdrop-filter: blur(2px); */
 }
 
 .homeCaptionRightShader{
@@ -57,6 +58,7 @@
   height: 30rem;
   background-image: linear-gradient(to right, #11172500,rgba(17, 23, 37, 0.5),rgb(17, 23, 37, 0.8),rgb(17, 23, 37));
   float:right;
+  
 }
 .homeCaptionRightShader h1{
   color:#d3d3ff;
@@ -113,6 +115,7 @@
   width:40%;
   height:25rem;
   margin-left: 10%;
+  margin-bottom: 3rem;
 }
 .why_Us{
 font-size: 1.1rem;

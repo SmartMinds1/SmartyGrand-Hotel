@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React /* { useEffect, useState } */ from 'react';
 import "../styles/home.css";
 import MyForm from "../components/MyForm";
 import Button from "../components/Button";
 import { formatDate } from '../utils/formatDate';
 import TextBox from "../components/TextBox";
-import ContentBox from "../components/ContentBox";
+/* import ContentBox from "../components/ContentBox"; */
+import MessageMover from '../components/MessageMover';
+import StylishBox from "../components/StylishBox";
 
-
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+/* import { useNavigate } from 'react-router-dom';
+import axios from 'axios'; */
 
 /* import { useUser } from '../context/userContext'; */
 
@@ -22,7 +23,7 @@ function Home() {
     }; */
 
   /*   simple lOGIN TEST */
-    const [username, setUsername] = useState('');
+    /* const [username, setUsername] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -30,9 +31,9 @@ function Home() {
 
         if (!token) {
             navigate('/login');
-        } else {
+        } else { */
             // Decode or verify token (for simplicity, assume backend has a /verify route)
-            axios
+           /*  axios
                 .post('http://localhost:5000/verify', {}, { headers: { Authorization: `Bearer ${token}` } })
                 .then((response) => {
                     setUsername(response.data.username);
@@ -47,7 +48,7 @@ function Home() {
     const handleLogout = () => {
         localStorage.removeItem('token');
         navigate('/login');
-    };
+    }; */
 
 
 
@@ -88,10 +89,10 @@ function Home() {
         </div>
 
 {/* SIMPLE lOGIN TEST */}
-        <div>
+      {/*   <div>
             <h1>Welcome, {username}!</h1>
             <button onClick={handleLogout}>Logout</button>
-        </div>
+        </div> */}
 
 
 
@@ -105,13 +106,15 @@ function Home() {
           <div className="homeSection1">
                 <p className="why_Us">| Why Us</p>
                 <h1 className="h1Text">Where modern elegance meets serene nature!</h1>
-               <TextBox className="homeMessage1 TextDesign">
+                <StylishBox className="homeMessage1 TextDesign">
                     <p>Nestled amidst the bustling energy of the city, 
                        our hotel offers a serene escape where modern elegance
                        meets African charm. we pride ourselves on delivering an
                        unparalleled guest experience.
                     </p>
-               </TextBox>
+                    <div className="lightDesign"></div>
+                    
+               </StylishBox>
           </div>
           <div className="section1RightImage">
             <div className="style1 mainDivStyle">
@@ -138,49 +141,10 @@ function Home() {
                </TextBox>
           </div>
           <div className="clientTestimonials">
-              <ContentBox className="supportBox">
-                  <h1>MaxMike</h1>
-                  <div className="contentBoxHr"></div>
-                  <div className="clear"></div>
-                  <ul className="FooterListDesign">
-                    <li>Google Community</li>
-                    <li>SmartMinds Tech</li>
-                    <li>Hotel support</li>
-                  </ul>
-              </ContentBox>
-              <ContentBox className="supportBox">
-                  <h1>John Drake</h1>
-                  <div className="contentBoxHr"></div>
-                  <div className="clear"></div>
-                  <ul className="FooterListDesign">
-                    <li>Google Community</li>
-                    <li>SmartMinds Tech</li>
-                    <li>Hotel support</li>
-                  </ul>
-              </ContentBox>
-              <ContentBox className="supportBox">
-                  <h1>Mwangi Artist</h1>
-                  <div className="contentBoxHr"></div>
-                  <div className="clear"></div>
-                  <ul className="FooterListDesign">
-                    <li>Google Community</li>
-                    <li>SmartMinds Tech</li>
-                    <li>Hotel support</li>
-                  </ul>
-              </ContentBox>
-              <ContentBox className="supportBox">
-                  <h1>Cate Blessings</h1>
-                  <div className="contentBoxHr"></div>
-                  <div className="clear"></div>
-                  <ul className="FooterListDesign">
-                    <li>Google Community</li>
-                    <li>SmartMinds Tech</li>
-                    <li>Hotel support</li>
-                  </ul>
-              </ContentBox>
-        </div>
+          <MessageMover/>
+          </div>
 
-
+        
 
         <MyForm />
         <Button />

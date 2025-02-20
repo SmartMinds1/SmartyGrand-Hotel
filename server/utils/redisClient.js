@@ -1,3 +1,5 @@
+//Redis client instance for blacklisting tokens
+
 const redis = require("redis");
 const client = redis.createClient();
 

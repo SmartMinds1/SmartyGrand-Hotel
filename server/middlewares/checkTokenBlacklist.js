@@ -1,5 +1,4 @@
-const jwt = require("jsonwebtoken");
-const redisClient = require("../redisClient");
+const jwtHelper = require("../utils/jwtHelper"); // Import jwtHelper
 
 const checkTokenBlacklist = async (req, res, next) => {
   const authHeader = req.headers.authorization;
@@ -13,8 +12,8 @@ const checkTokenBlacklist = async (req, res, next) => {
   const token = authHeader.split(" ")[1]; // Extract token from "Bearer <token>"
 
   try {
-    // Check if the token is in Redis blacklist
-    const isBlacklisted = await redisClient.get(token);
+    // Check if the token is blacklisted using jwtHelper
+    const isBlacklisted = await jwtHelper.isTokenBlacklisted(token);
 
     if (isBlacklisted) {
       return res
@@ -22,8 +21,8 @@ const checkTokenBlacklist = async (req, res, next) => {
         .json({ message: "Token is invalid or blacklisted." });
     }
 
-    // Verify the token and attach payload to the request
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    // Verify the token and attach payload to the request using jwtHelper
+    const decoded = jwtHelper.verifyAccessToken(token);
     req.user = decoded;
 
     next(); // Proceed to the next middleware/route

@@ -14,15 +14,19 @@
     position:relative;
     margin-top: 6rem;
     margin-left: 15%;
+
 }
 
 .phoneImageShadder{
     width:60%;
     height:18rem;
-    background-color:rgba(0, 0, 0, 0.308);
+    background-color:rgba(0, 0, 0, 0.1);
     position:absolute;
     top:-6rem;
     left: 14%;
+    backdrop-filter: blur(2px);
+    border:1px solid rgba(211, 211, 255, 0.39);
+    border-radius: 1rem;
 
 }
 .phoneImageShadder p{
@@ -87,10 +91,14 @@
 
 .contactForm textArea{
 background-color: transparent;
-border:1.5px solid rgb(211, 211, 255);
+/* border:1.5px solid rgb(211, 211, 255); */
 color:rgba(240, 248, 255, 0.85);
 border-radius: 1rem;
 padding:1rem;
+
+backdrop-filter: blur(2px);
+border:1px solid rgba(211, 211, 255, 0.39);
+
 }
 
 

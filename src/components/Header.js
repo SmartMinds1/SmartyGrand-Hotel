@@ -34,7 +34,7 @@ const Header = ({ title }) => {
                 </Link>
               </li>
               <li>
-                <Link className="linkStyle" to="/admin">
+                <Link className="linkStyle" to="/blog">
                   blog
                 </Link>
               </li>

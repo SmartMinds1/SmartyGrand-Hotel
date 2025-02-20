@@ -1,0 +1,38 @@
+*{
+    padding: 0;
+    margin:0;
+    box-sizing: border-box;
+}
+
+/* textbox widh to be defined where its rendered */
+.stylishTextBox{
+    background-image: linear-gradient(to top, #151c2e, rgba(17, 23, 37, 0.7) );
+    padding:1rem;
+    width: 80%;
+    height:16.3rem;
+    margin: auto;
+  
+}
+
+.TextDesign p{
+    font-size: 1rem;
+    color:#f0f8ff;
+    filter:brightness(0.85);
+    text-align: left;
+    line-height: 1.8rem;
+   
+   
+}
+.lightDesign{
+    width:8rem;
+    height:8rem;
+    border-top-right-radius:6rem ;
+    border-top-left-radius:6rem ;
+    border-bottom-left-radius:6rem ;
+    background-image: linear-gradient(to bottom right, rgb(255, 203, 172), rgba(224, 147, 47, 0));
+    /* background-image: linear-gradient(to bottom right, rgb(224, 148, 47), rgba(224, 147, 47, 0)); */
+    /*  transform: rotateZ(-35deg) skewY(-30deg); */
+    float:right;
+    margin-right: -1rem;
+}
+

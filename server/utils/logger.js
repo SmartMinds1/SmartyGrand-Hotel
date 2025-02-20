@@ -1,3 +1,5 @@
+//Handles logging using tools like Winston
+
 const { createLogger, format, transports } = require("winston");
 
 const logger = createLogger({
