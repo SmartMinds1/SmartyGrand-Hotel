@@ -1,0 +1,56 @@
+*{
+    box-sizing: border-box;
+    padding:0;
+    margin:0;
+
+}
+
+.dashBoard{
+    width:100%;
+    height: 100vh;
+    background-color: rgb(17, 23, 37);
+}
+.iconsBar{
+    width:20%;
+    height:30rem;
+    background-color: #fa764e;
+    float: left;
+}
+.dashIcons{
+    background-color: #fa8f6f;
+    width:20%;
+    height: 100vh;
+}
+.sidenav{
+    width:20%;
+    height: 100vh;
+    background-color: #FF5722;
+    float:left;
+}
+.div1mainColorShade{
+   
+    height: 100vh;
+    width: 20%;
+
+}
+.div2mainColorShade{
+    background-color: rgb(25, 30, 41);
+    height: 100vh;
+    width: 20%;
+
+}
+.div3mainColorShade{
+    background-color: rgb(28, 31, 37);
+    height: 100vh;
+    width: 20%;
+
+}
+.mainNav{
+    width:50%;
+    height: 100vh;
+    background-color: black;
+    float:right;
+}
+.clear{
+    clear:both;
+}

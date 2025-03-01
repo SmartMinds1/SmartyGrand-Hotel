@@ -6,7 +6,7 @@
   .FooterHr{
     width:100%;
     height:1px;
-    background-image: linear-gradient(to right,rgb(17, 23, 37), rgb(255, 203, 172), rgb(17, 23, 37));
+    background-image: linear-gradient(to right,rgb(17, 23, 37), #FF5722, rgb(17, 23, 37));
     margin: auto;
     margin-top: 1rem;
 }
@@ -31,7 +31,7 @@ h1{
 .contentBoxHr{
   width:70%;
   height:1px;
-  background-image: linear-gradient(to right, rgb(255, 203, 172),rgba(21, 28, 46, 0.6), rgba(21, 28, 46, 0.6), aliceblue, aliceblue);
+  background-image: linear-gradient(to right, #FF5722,rgba(21, 28, 46, 0.6), rgba(21, 28, 46, 0.6), aliceblue, aliceblue);
   margin: auto;
   margin-bottom: 1rem;
   float:left;

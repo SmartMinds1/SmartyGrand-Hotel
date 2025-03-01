@@ -1,11 +1,33 @@
 import "./Header.css";
 import { Link } from "react-router-dom";
+import { React, useState, useEffect, useRef } from "react";
 
 //creating the header function
 //PROPS EXAMPLE
-const Header = ({ title }) => {
+const Header = () => {
+  //animating my header
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = useRef(0); // Use ref to persist scroll value
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY.current) {
+        setIsVisible(false); // Hide on scroll down
+      } else {
+        setIsVisible(true); // Show on scroll up
+      }
+
+      lastScrollY.current = currentScrollY; // Update last scroll position
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div className="Head">
+    <div className={`header ${isVisible ? "visible" : "hidden"}`}>
       <div className="navBar">
         <h1 className="headerTitle">
           <span>Smarty</span>Grand
@@ -29,7 +51,7 @@ const Header = ({ title }) => {
                 </Link>
               </li>
               <li>
-                <Link className="linkStyle" to="/admin">
+                <Link className="linkStyle" to="/reservations">
                   Reservation
                 </Link>
               </li>
@@ -60,7 +82,5 @@ const Header = ({ title }) => {
     </div>
   );
 };
-
-Header.defaultProps = { title: "Default title" };
 
 export default Header;

@@ -1,4 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import '../styles/admin.css';
+import SocialIcons from '../components/SocialIcons';
+
+//The UI part
 const Admin = () => {
             const [submissions, setSubmissions] = useState([]);
             const [loading, setLoading] = useState(true);
@@ -27,6 +31,27 @@ const Admin = () => {
             return (
                 <div>
                     <h1>Admin Page</h1>
+                    <div className="dashBoard">
+                        <div className="iconsBar">
+                            <div className="dashIcons">
+                               <SocialIcons/>
+                            </div>
+                        </div>
+                        <div className="sidenav">
+
+                        </div>
+
+                        <div className="mainNav">
+
+                        </div>
+                        <div className="clear"></div>
+                        <div className="div1mainColorShade"></div>
+                        <div className="div2mainColorShade"></div>
+                        <div className="div3mainColorShade"></div>
+                       
+                    </div>
+
+                    {/* This is the logical output part */}
                     {loading ? (
                         <p>Loading submissions...</p>
                     ) : error ? (

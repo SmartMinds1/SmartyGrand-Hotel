@@ -4,16 +4,39 @@
   box-sizing: border-box;
   
 }
-.Head{
-position: sticky;
-top:0;
-width:100%;
-height:5rem;
-/* margin-bottom: 3rem; */
-background-color: rgb(17, 23, 37);
 
-
+/* Make the header fixed at the top */
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height:5rem;
+  background-color: rgba(17, 23, 37, 0.5);
+  transition: transform 0.3s ease-in-out; /* Smooth transition */
+  z-index: 1;
 }
+
+/* When the header is hidden (moving up out of view) */
+.header.hidden {
+  transform: translateY(-100%);
+}
+
+/* When the header is visible */
+.header.visible {
+  transform: translateY(0);
+}
+
+
+
+
+
+
+
+
+
+
+
 
 .headerTitle{
 float:left;
@@ -22,13 +45,13 @@ font-size: 1.5rem;
 margin-top: 1rem;
 }
 .headerTitle span{
-  color:#ffcbac;
+  color:#FF5722;
   font-weight: 300;
 }
 .navBar{
 height: 5rem;
 padding:0.3rem;
-background-image:linear-gradient(to top, rgb(21, 28, 46),rgb(17, 23, 37));
+background-image:linear-gradient(to top, rgb(21, 28, 46,0.5),rgb(17, 23, 37, 0.5));
 }
 
 .navBar div{
@@ -50,7 +73,7 @@ cursor: pointer;
   transition: all 200ms ease-in-out;
 }
 .linkStyle:hover, .linkStyle:focus{
-color: rgb(255, 203, 172);
+color: #FF5722;
 
 }
 .navPages{
@@ -75,10 +98,11 @@ margin-top: 1rem;
   transition: all 200ms ease-in-out;
 }
 .navAcc li:hover, .navAcc li:focus{
-  color: rgb(255, 203, 172);
+  color: #FF5722;
 }
 .navProfile{
-background-image: url(../assets/favicon.ico);
+background-image: url(../assets/cover.jpg);
+background-size: cover;
 width:4rem;
 height: 4rem;
 padding:1rem;
@@ -96,7 +120,7 @@ h1{
 .introhr{
   width:80%;
   height:1px;
-  background-image: linear-gradient(to right,rgb(17, 23, 37), rgb(255, 203, 172), rgb(17, 23, 37));
+  background-image: linear-gradient(to right,rgb(17, 23, 37), #FF5722, rgb(17, 23, 37));
   margin: auto;
   margin-top: 1.7rem;
 }

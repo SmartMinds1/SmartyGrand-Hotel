@@ -1,0 +1,17 @@
+*{
+    box-sizing: border-box;
+    padding:0;
+    margin:0;
+}
+
+.reservationBg{
+    /* background-image:linear-gradient(to top right, rgb(17, 23, 37),rgb(17, 23, 37), rgb(43, 54, 82), rgb(17, 23, 37),rgb(17, 23, 37));*/   
+    height:20rem;
+    width: 20rem;
+    border-radius: 50%;
+    margin-left: 50%;
+    filter:blur(100px) opacity(0.1);
+   
+    background-color: aliceblue;
+
+}

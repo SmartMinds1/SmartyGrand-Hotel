@@ -5,7 +5,7 @@
   }
   .Layout{
     text-align: center;
-    background-image: linear-gradient(to bottom right, rgb(47, 57, 80),rgb(17, 23, 37),rgb(17, 23, 37),rgb(17, 23, 37),rgb(17, 23, 37),rgb(17, 23, 37));
+    background-color:rgb(17, 23, 37);
     min-height: 100vh;
     font-size: calc(10px + 2vmin);
   }

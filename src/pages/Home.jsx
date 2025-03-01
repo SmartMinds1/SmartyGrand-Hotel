@@ -51,21 +51,6 @@ function Home() {
     }; */
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   return (
     <>
       <div className="Home">
@@ -78,15 +63,29 @@ function Home() {
          </div>
 
 {/* This is the homepage intro caption */}
-        <div className="homeCaptionImage">
-              <div className="homeCaptionShader">
-                  <p className='formalDate'>{formatDate(today)}</p>
+        <div className="homeCaptionImage1">
+          </div>
+        <div className="homeCaptionImage2">
+          </div>
+        
+
+          <div className="captionShader">
+              <div className="captionTextBox">
+                  <div className="captionHeaderText">
+                      <h1>Your cozy home <br />away from <br />home!</h1>
+                  </div>
+
+                  <div className="captionBodyText">
+                      <p>Experience the Extraordinary! Book Your Stay Today!</p>
+                  </div>
+
+                  <div className="captionDate">
+                      <p>{formatDate(today)}</p>
+                  </div>
               </div>
-              <div className="homeCaptionRightShader">
-                  <h1><span className="homeTitlespan">Smarty</span><br />Grand</h1>
-                  <p>Experience the Extraordinary <br /> Book Your Stay Today!</p>
-              </div>
-        </div>
+              <div className="clear"></div>
+          </div>
+      
 
 {/* SIMPLE lOGIN TEST */}
       {/*   <div>

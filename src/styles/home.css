@@ -3,10 +3,13 @@
     padding:0;
     box-sizing: border-box;
   }
+  .clear{
+    clear: both;
+}
   .bodyHr{
     width:100%;
     height:1px;
-    background-image: linear-gradient(to right,rgb(17, 23, 37), rgb(255, 203, 172), rgb(17, 23, 37));
+    background-image: linear-gradient(to right,rgb(17, 23, 37), #FF5722, rgb(17, 23, 37));
     margin: auto;
     margin-top: 1rem;
     margin-bottom: 2rem;
@@ -23,85 +26,162 @@
     pointer-events: none;
   }
 
-.homeCaptionImage{
+.homeCaptionImage1{
   width:100%;
-  height: 30rem;
+  height: 26rem;
   margin:auto;
-  margin-bottom: 3rem;
-  background-image: url(../assets/modernHotelTable.png);
-  background-repeat: repeat-x;
-  background-position-x: 100%;
-  background-position-y: 50%;
-  /* background-color: #d3d3ff;
-  background-color: rgb(151, 98, 98); */
-/*   background-image: url(../assets/HotelMainEntrance.jpg); */
+  margin-bottom: 2rem;
+  top: 0;
+  background-image: url(../assets/HotelCaption1.png);
+  background-size: cover;
+  background-position-y: 35%;
+  background-position-x: -3rem;
+
+  animation: captionImage1Slide 40s ease-in-out 0s infinite;
+
+  position: absolute;
+}
+.homeCaptionImage2{
+  width:100%;
+  height: 26rem; /* 30rem */
+  margin:auto;
+  margin-bottom: 2rem;
+  background-image: url(../assets/hotelCaption2.png);
+  background-size: cover;
+  background-position-y: 70%;
+  position: relative;
+  animation: captionImage2Slide 40s ease-in-out 0s infinite;
+  top:-5rem;
+
+}
+@keyframes captionImage1Slide {
+
+  0%{
+     width: 100%;
+  }
+
+  20%{
+    width: 100%;
+  }
+
+  40%{
+    width: 0%;
+  }
+
+  60%{
+    width: 0%;
+  }
+
+  80%{
+    width: 0%;
+
+  }
+  100%{
+    width:100%;
+  }
 
 }
 
-.homeCaptionShader{
-      width: 0;
-      height: 0;
-      border-bottom: 30rem solid rgba(21, 28, 46, 0.5);
-      border-right: 25rem solid transparent; 
-     /*  border-bottom: 5rem solid red; */
-      border-left: 40rem solid rgba(21, 28, 46);
-      background-color: transparent;
-      border-bottom-right-radius: 50%;
-      float:left;
-  /* background-image: linear-gradient(to right,rgba(17, 23, 37),rgb(17, 23, 37, 0.5),rgba(17, 23, 37, 0)); */
+@keyframes captionImage2Slide {
 
- /*  backdrop-filter: blur(2px); */
-}
+  0%{
+     width: 0%;
+  }
 
-.homeCaptionRightShader{
-  width:20%;
-  height: 30rem;
-  background-image: linear-gradient(to right, #11172500,rgba(17, 23, 37, 0.5),rgb(17, 23, 37, 0.8),rgb(17, 23, 37));
-  float:right;
-  
-}
-.homeCaptionRightShader h1{
-  color:#d3d3ff;
-  font-size: 5rem;
-  text-align: right;
-  margin-right: 10%;
-  margin-top: 1rem;
-  border-right: 1px solid ;
-  padding-right:3rem;
-  transform: translateX(-64rem);
-/*   background-color: red; */
-  width:20rem;
-  animation: homeHeadSlide 3s ease-in-out 0s forwards;
+  20%{
+    width: 0%;
+  }
+
+  40%{
+    width: 100%;
+  }
+
+  60%{
+    width: 100%;
+  }
+
+  80%{
+    width: 100%;
+
+  }
+  100%{
+    width:0%;
+  }
 
 }
-@keyframes homeHeadSlide  {
+
+
+.captionShader{
+  width:100%;
+  height: 26rem;
+  background-image: linear-gradient(to right,#ff562200,#ff56224f,rgba(17, 23, 37, 0.95),rgb(17, 23, 37));
+  position:absolute;
+  top:0;
+  padding-top: 5rem;
+}
+
+.captionTextBox{
+  width: 40%;
+  height: 20rem;
+  float: right;
+  padding:1rem;
+}
+.captionHeaderText h1{
+  height: fit-content;
+  font-size: 2rem;
+  margin: auto;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: 300;
+  font-family: 'Prata', serif;
+  background-clip: text;
+  background-image: linear-gradient(to top right, #FF5722,rgb(211, 211, 255),rgb(211, 211, 255));
+  color:transparent;
+  letter-spacing: 0.4rem;
+}
+.captionBodyText {
+  margin:auto;
+  padding:1rem;
+  background-color: #ff56222d;
+  height: 7.5rem;
+  width: 80%;
+  font-size: 1.2rem;
+  text-align: center;
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.3rem;
+  color:rgb(211, 211, 255);
+
+  animation: captionBodyTextSlide 3s ease-in-out 0s forwards;
+
+}
+@keyframes captionBodyTextSlide  {
   from{
     width:0;
     filter:brightness(0.5);
-    transform: translateX(-74rem);
-  }
-  to{
-  filter:brightness(1);
     transform: translateX(-64rem);
   }
+  to{
+   filter:brightness(1);
+    transform: translateX(0rem);
+    width: 80%;
+  }
+}
+
+.captionDate{
+  width:50%;
+  height:2rem;
+  margin:auto;
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: 200;
+  color:rgb(211, 211, 255);
 }
 
 .homeTitlespan{
-  color:#ffcbac;
+  color:#FF5722;
   font-weight: 100;
 }
 
-.homeCaptionRightShader p{
-  color:rgb(211, 211, 255);
-  font-weight: 100;
-  font-size: 1.9rem;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding:1rem;
-  margin:auto;
-  width:25rem;
-  transform: translateX(-56rem);
-  margin-top: 3rem; 
-}
 
 .WelcomeParagraph{
   color:rgb(211, 211, 255);
@@ -116,11 +196,14 @@
   height:25rem;
   margin-left: 10%;
   margin-bottom: 3rem;
+  background-color: transparent;
+  box-shadow: 1100px 100px 400px -100px #FF5722,
+              -600px -100px 400px -100px #FF5722;
 }
 .why_Us{
 font-size: 1.1rem;
 font-weight: 500;
-color:rgb(211, 211, 255);
+color:#FF5722;
 text-align: left;
 margin-bottom: 2rem;
 }
@@ -132,47 +215,28 @@ margin-bottom: 2rem;
   margin: auto;
   width:80%;
 }
+
 /* the styled images */
 .section1RightImage{
  width:45%;
  height:25rem;
  float:right;
 }
-.mainDivStyle{
+.mainDivStyle {
   width: 13rem;
   height:19rem;
+  transform: translate(1rem, 1rem);
 }
 .style1{
-  background-color:rgba(21, 28, 46);
-  animation: homesection1Anim 60s ease-in-out 0s infinite;
+  background-color: #fa8f6f1e;
 }
 .style2{
-  background-color:rgb(42, 54, 85);
-  animation: homesection1Anim 60s ease-in-out 0s infinite;
+  background-color: #fa8f6f62;
 }
 .style3{
-  background-color:rgb(133, 151, 197);
   background-image: url(../assets/modernHotelTable.png);
   background-position-x: 25%;
   background-size: cover;
-  animation: homesection1Anim 60s ease-in-out 0s infinite;
-}
-@keyframes homesection1Anim {
-  0%{
-    transform: translate(0);
-  }
-  25%{
-    transform: translate(2rem, 2rem);
-  }
-  50%{
-    transform: translate(0);
-  }
-  75%{
-    transform: translate(2rem, 2rem);
-  }
-  100%{
-    transform: translate(0);
-  }
 }
 
 /* ----------------------This is the second section-------------------------- */
@@ -181,7 +245,9 @@ margin-bottom: 2rem;
     width:40%;
     height:25rem;
     margin-left: 10%;
-  /*   background-color: blue; */
+  
+
+    box-shadow: 300px 300px 400px -170px #FF5722;
   }
 
 
@@ -193,29 +259,6 @@ margin-bottom: 2rem;
   float:right;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-  .formalDate{
-    font-size: 3rem;
-    float:left;
-    color:rgb(255, 255, 255);
-    margin-top: 15rem;
-
-}
-.clear{
-    clear: both;
-}
-
 
 .HomeImage{
     width: 30%;

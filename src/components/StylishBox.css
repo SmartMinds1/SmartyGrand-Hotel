@@ -9,7 +9,7 @@
     background-image: linear-gradient(to top, #151c2e, rgba(17, 23, 37, 0.7) );
     padding:1rem;
     width: 80%;
-    height:16.3rem;
+    height:12rem;
     margin: auto;
   
 }
@@ -24,15 +24,16 @@
    
 }
 .lightDesign{
-    width:8rem;
-    height:8rem;
+    width:2rem;
+    height:2rem;
     border-top-right-radius:6rem ;
     border-top-left-radius:6rem ;
     border-bottom-left-radius:6rem ;
-    background-image: linear-gradient(to bottom right, rgb(255, 203, 172), rgba(224, 147, 47, 0));
-    /* background-image: linear-gradient(to bottom right, rgb(224, 148, 47), rgba(224, 147, 47, 0)); */
-    /*  transform: rotateZ(-35deg) skewY(-30deg); */
+    background-image: linear-gradient(to bottom right, #FF5722, rgba(224, 147, 47, 0));
     float:right;
     margin-right: -1rem;
+    margin-top: 2rem;
+
+    box-shadow: -70px -50px 70px 20px #FF5722;
 }
 
