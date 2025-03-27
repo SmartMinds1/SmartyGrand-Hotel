@@ -1,0 +1,75 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+
+/* This is the main div container that holds everything */
+.imageDiv{
+  float: left;
+  width: 15.8rem;
+  height: 22rem;
+  padding:0.3rem;
+}
+
+/* This divs will hold the featured rooms' images */
+    .divResize{
+        width:15rem;
+        height:18rem; 
+        border-radius: 0.5rem;
+        background-size: cover;
+        background-position: center;
+    }
+   .featuredRoom1{
+    background-image: url(../assets/Diluxe2.jpg);
+ 
+  }
+  .featuredRoom2{
+    background-image: url(../assets/Deluxe1.jpg);
+
+  }
+  .featuredRoom3{
+    background-image: url(../assets/meeting3.jpg);
+
+  }
+
+  
+.captionDiv{
+    width:15rem;
+    height:10rem;
+    background-color:rgba(4, 11, 29, 0.582);
+    transform: translate(6rem, -8rem);
+    text-align: center;
+    backdrop-filter: blur(10px);
+    color: rgb(231, 231, 255);
+
+    border-top:1px solid rgb(231, 231, 255, 0.712);
+    border-top-right-radius: 1rem;
+    border-left:1px solid rgba(231, 231, 255, 0.712);
+    border-bottom-left-radius: 1rem;
+
+  
+  /*   transition: transform 300ms ease; */
+  
+}
+/* .captionDiv:hover{
+  transform: rotate(0deg);
+} */
+
+.captionDiv p:nth-child(1){
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--color-accent-secondary);
+
+}
+.captionDiv p:nth-child(2){
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  filter:brightness(0.95);
+}
+.featuredBtn{
+  position:absolute;
+  bottom: 0;
+  right:0;
+
+}

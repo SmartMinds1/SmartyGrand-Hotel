@@ -5,14 +5,23 @@
 }
 
 .checkedCircle{
-    color:rgb(255, 203, 172);
+    color: var(--color-accent-secondary);
     font-size: 2rem;
-    float:left;
-
+    width:2rem;
+    height:2rem;
+    border-radius: 100%; 
+    transform: translateY(-1rem);
 }
-
+.checkBoxText{
+    width:20rem;
+    height: 5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
 .checkBoxText h1{
+    width:10rem;
     font-size: 1.1rem;
-    transform: translateY(0.25rem);
-    margin-left: 0.8rem;
+    
 }

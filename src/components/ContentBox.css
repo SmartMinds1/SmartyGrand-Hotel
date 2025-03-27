@@ -5,7 +5,7 @@
   }
 
 .contentBox{
-    background-color: rgba(21, 28, 46, 0.6);
+    background-color: rgb(7, 16, 37, 0.6);
     width:12rem;
     height:15rem;
     float:left;
@@ -25,7 +25,9 @@
   }
 
   .FooterListDesign li:hover{
-    filter: brightness(0.85);
+    filter: brightness(0.8);
+    color: var(--color-accent-secondary);
+    
   }
   .FooterListDesign li:active{
     filter: brightness(1);

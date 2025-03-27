@@ -8,6 +8,7 @@ import Admin from './pages/Admin';
 import Blog from './pages/Blog';
 import Reservations from './pages/Reservations';
 import AuthForm from './components/AuthForm';
+import TestAgent from './components/TestAgent';
 
 const App = () => {
     return (
@@ -20,6 +21,8 @@ const App = () => {
                     <Route path="/admin" element={<Admin />} />
                     <Route path="/blog" element={<Blog />} />
                     <Route path="/reservations" element={<Reservations />} />
+                    <Route path="/testagent" element={<TestAgent />} />
+
 
 
                     {/* routes for login purposes */}

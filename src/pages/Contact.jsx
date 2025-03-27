@@ -1,83 +1,67 @@
-import React, { useState } from 'react';
+import React from 'react';
 import "../styles/contact.css";
 import OfficeTelephone from "../assets/TransparentPhone.png";
 import TextBox from "../components/TextBox";
 import CheckBox from "../components/CheckBox";
-import Button from "../components/Button";
 import ChatButton from '../components/ChatButton';
 import { FaPhoneAlt, FaEnvelope, FaComments } from 'react-icons/fa';
-import MyForm from '../components/MyForm';
+import Chatform from '../components/Chatform';
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+
+import HotelMap from '../components/HotelMap';
+
 
 
 const Contact = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        message: '',
-    });
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({ ...prevData, [name]: value }));
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-    
-        try {
-            const response = await fetch('http://localhost:5000/submit-form', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
-    
-            if (response.ok) {
-                alert('Form submitted successfully!');
-                setFormData({ name: '', email: '', message: '' });
-            } else {
-                alert('Failed to submit the form.');
-            }
-        } catch (error) {
-            console.error('Error submitting the form:', error);
-        }
-    };
-    
-
-
-    /* The methods below will hadle calls, chats and Emails */
-
+/* The methods below will hadle calls, chats and Emails */
     const handleCall = () =>{
         window.location.href="tel: +25415154402";
 
     }
 
     const handleEmail = () =>{
-
         window.location.href="mailto:learnerssmart1@gmail.com";
     }
 
-    const handleChat = () =>{
-
-        alert("chat will start shortly...");
+    const handleCommunity = () =>{
+        alert("Follow community using the link below...");
 
     }
 
+
+
+/*.......................Below is the CONTACT JSX................................ */
     return (
         <div>
 
-            <p className="contact_Us">| Conctact Us</p>
+           <h1 className="contact_Us">| Connect with Us</h1>
+
+{/* Indicating name and location of our hotel */}
+            <div className="locationSection">
+                    <div className="nameAndLocation">
+                            <p><span className='locationIcon'> <FontAwesomeIcon icon={faMapMarkerAlt}/> </span>Nairobi KE</p>
+                            <p><i>Max_Buiding, Next To Hilax Gardens Along WaterFalls Avenue! <br />
+                                P.O Box 1279-20100, <br />
+                                Nairobi.</i></p>
+                    </div>
+                    <div className="mapContainer">
+                      {/*   <MapComponent/> */}
+
+                        <HotelMap/>
+                    </div>
+           </div>
 
            <div className="contactIntroImg">
-                <figure className='OfficeTelephone'>
+                 <figure className='OfficeTelephone'>
                     <img src={OfficeTelephone} alt="OfficeTelephone" width="400" height="300" />
                 </figure>
 
                 <div className="phoneImageShadder">
                     <p>One Call Away!</p>
                 </div>
-
             </div>
 
 
@@ -86,7 +70,7 @@ const Contact = () => {
             <div className="contactIntro">
                
 
-                <h1>Always here to assist you! As you create unforgettable memories. </h1>
+            <h1>| Always here to assist you! As <br />&nbsp;  you create unforgettable <br />&nbsp;  memories. </h1>
 
             <TextBox className="contactMessage1 TextDesign">
                     <p>Whether you have questions, special requests, or need help planning your stay, our dedicated team is just a call or email away. Reach out to us anytime—day or—night. Focus on your business objectives while we handle all the logistics.
@@ -98,28 +82,30 @@ const Contact = () => {
 
             <div className="contactCheckBox1">
                 <CheckBox>
-                    <h1>Lets know how we can help you</h1>
+                    <h1>ALWAYS FRIENDLY</h1>
+                </CheckBox>
+                <CheckBox>
+                    <h1>QUICK</h1>
+                </CheckBox>
+                <CheckBox>
+                    <h1>HELPFUL</h1>
+                </CheckBox>
+                <CheckBox>
+                    <h1>RELIABLE</h1>
                 </CheckBox>
             </div>
            
-            <form className='contactForm' onSubmit={handleSubmit}>
-                 <MyForm  />
-                    <textarea 
-                        className='textArea'
-                        id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        required
-                        placeholder='Your Message'
-                        rows="10"
-                        cols="40"
-                    />
-                    <br />
-                <Button type="submit" btnLabel="Submit"/> 
-            </form>
+{/* ....................... This is the contact chatbox section ..............................*/}
 
+            <div className="contactChatSection">
+                 <div className="chatCaption">
+                     <h2><span>| Need help?</span> Start a conversation and let us take care of the rest!</h2>
+                     <p>Our team is here to help with a smile — fast, friendly, and reliable service every time!</p>
+                 </div>
+                 <Chatform/>   
+             </div>
 
+{/*..........................This is the email Call and community section.......................*/}
             <div className='callEmailChat'>
                     <div className="call_E_ChatDesign emailBox">
                         <CheckBox>
@@ -133,7 +119,6 @@ const Contact = () => {
                              btnName= "Email us"
                              icon = {FaEnvelope}
                           />
-
                           </p>
                         </TextBox>
                     </div>
@@ -156,14 +141,14 @@ const Contact = () => {
 
                     <div className="call_E_ChatDesign chatBox">
                         <CheckBox>
-                        <h1>Chat with Us</h1>
+                        <h1>Community Support</h1>
                         </CheckBox>
                         <TextBox className=" TextDesign">
                           <p>
-                          Chat with us now for instant support! Your comfort and convenience are our top priorities.
+                          Our community is very supportive. Visit the team and get most of your questions aswered.
                           <ChatButton 
-                             onClick={handleChat}
-                             btnName ="Start chat"
+                             onClick={handleCommunity}
+                             btnName ="visit"
                              icon = {FaComments}
                           />
                           </p>
@@ -171,6 +156,8 @@ const Contact = () => {
                     </div>
             </div>
 
+
+{/* .....................This is the location details section.................................... */}
 
 
             <h1 className="finalContactComment">| Your comfort and satisfaction are our top priorities, and we look forward to making your experience with us truly exceptional.</h1>

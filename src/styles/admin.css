@@ -4,11 +4,208 @@
     margin:0;
 
 }
+.mainBoard{
+    background-color: yellow;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.headerDiv{
+    background-color: rgb(226, 13, 180);
+    height: 7vh;
+    width:100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.mainDiv{
+    background-color: aqua;
+    width:100%;
+    height: 92vh;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width:2.5rem;
+    transition:  width 1s ease-in-out; 
+    background-color: darkblue;
+}
+.wrapper:hover {
+    width: 15.5rem; /* Expand the wrapper smoothly */
+}
+.iconsDiv{
+    background-color: rgb(8, 31, 51);
+    width:2.5rem;
+    height: 92vh;
+    cursor:pointer;
+}
+.navDiv{
+    background-color: #fa764e;
+    width: 0;
+  /*   width: 13.5rem;  */
+    height: 89vh;
+    overflow: hidden;
+    transition:  width 1s ease-in-out;
+    cursor:pointer;    
+}
+.wrapper:hover  .navDiv{
+    width: 13.5rem; 
+ }
+
+.navDiv ul{
+    background-color: purple;
+    width:100%;
+    height: fit-content;
+    margin:auto;
+    line-height: 3rem;
+}
+.navDiv ul li{
+    background-color: grey;
+    list-style-type: none;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+.navDiv ul li:hover, .navDiv ul li:focus{
+    border-bottom: 1px solid aliceblue;
+    filter:brightness(0.8);
+}
+
+
+
+.contentDiv{
+ background-color: rgb(187, 108, 12);
+ height: 92vh;
+ display:flex;
+ flex-direction: column;
+ justify-content: flex-start;
+ align-items: flex-start;
+ gap: 1%;
+ flex-grow: 2;
+ margin-left: 0.5%;
+ padding:1%;
+
+}
+.contentHeader{
+    background-color: rgb(114, 91, 63);
+    width: 100%;
+    height: 25vh;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1%;
+    padding:1%;
+}
+.box{
+    width:20%;
+    height:8rem;
+    border-radius: 0.5rem;
+    background-color: black;
+    color:white;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.dbContentHeader{
+    width:60%;
+    height:7vh;
+    background-color: rgb(44, 70, 80);
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.nameOfContentDisplayed{
+    width:25%;
+    height: 2rem;
+    background-color: red;
+}
+.searchBox{
+    width:40%;
+    height: 2rem;
+    background-color: rgb(217, 255, 0);
+}
+.sortBy{
+    width:15%;
+    height: 2rem;
+    background-color: rgb(47, 0, 255);
+}
+.dbContent{
+    width:100%;
+    height:55vh;
+    background-color: skyblue;
+    overflow: hidden;
+    overflow: scroll;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* MY COLORS */
+
+body {
+    background-color: var(--color-background);
+    color: var(--color-text);
+  }
+  
+  .button-primary {
+    background-color: var(--color-accent-primary);
+    color: var(--color-text);
+  }
+  
+  .button-secondary {
+    background-color: var(--color-accent-secondary);
+    color: var(--color-background);
+  }
+  
+
+
+
+
+
+
+
+
 
 .dashBoard{
     width:100%;
     height: 100vh;
-    background-color: rgb(17, 23, 37);
+    background-image: linear-gradient(to top, rgb(7, 16, 37) , #040b1d);
+
+   /*  chatform color */
+    background-image: linear-gradient(to right,  rgb(7, 16, 37) , #ff562217);
 }
 .iconsBar{
     width:20%;
@@ -17,15 +214,18 @@
     float: left;
 }
 .dashIcons{
-    background-color: #fa8f6f;
+    background-color: #ff562217;
     width:20%;
     height: 100vh;
 }
 .sidenav{
     width:20%;
     height: 100vh;
-    background-color: #FF5722;
+    background-color: #c42e00;
     float:left;
+
+
+    color:rgb(211, 211, 255);
 }
 .div1mainColorShade{
    
@@ -50,6 +250,7 @@
     height: 100vh;
     background-color: black;
     float:right;
+    color:rgb(211, 211, 255);
 }
 .clear{
     clear:both;

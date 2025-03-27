@@ -1,17 +1,348 @@
-*{
-    box-sizing: border-box;
-    padding:0;
-    margin:0;
+/* ...........................SECTION ONE......................... */
+.reserveSection1{
+    width:100%;
+    height: fit-content;
+    margin-bottom: 20vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    
 }
 
-.reservationBg{
-    /* background-image:linear-gradient(to top right, rgb(17, 23, 37),rgb(17, 23, 37), rgb(43, 54, 82), rgb(17, 23, 37),rgb(17, 23, 37));*/   
-    height:20rem;
-    width: 20rem;
-    border-radius: 50%;
-    margin-left: 50%;
-    filter:blur(100px) opacity(0.1);
+/* IMAGE SLIDER */
+  .section1ImageSlider{
+    width:50%;
+    min-width: 30rem;
+    height: 84vh;
+    border-left: none;
+    margin:1rem;
+    position:relative;
+
+  }
+
+  .sliderItem{
+    width:20%;
+    height: 15vh;
+    overflow: hidden;
+    position: absolute;
+    top:70%;
+    left:5%;
+    transform: translate(0, 50%);
+    border-radius: 1rem;
+    display: inline-block;
+    transition: ease-in 1s;
+
+
+
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .sliderItem:nth-child(1),
+  .sliderItem:nth-child(2) {
+      top: 0;
+      left: 0;
+      transform: translate(0, 0);
+      border-radius: 0;
+      width: 100%;
+      height: 100%;
+  
+  }
+
+.sliderItem:nth-child(3) { 
+    left:40%;
+}
+.sliderItem:nth-child(4) {
+    left: 65%;
+}
+.sliderItem:nth-child(n + 5) {
+    left: 90%;
+    opacity: 0;
+       
+}
+/* 
+.slide {
+    animation: animate 20s ease-in-out 1s forwards;
+} */
+
+/* content container inside the animating divStyle */
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50px;
+    width: 300px;
+    text-align: left;
+    color: var(--color-text);
+    transform: translate(0, -50%);
+    background-color: rgba(0, 0, 0, 0.400);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    display:none;
+}
+
+.sliderItem:nth-child(2) .content{
+    display: block;
+    
+}
+.booking_name {
+    font-size: 25px;
+    text-transform: uppercase;
+    font-weight: bold;
+    opacity: 0;
+    animation: slide 1s ease-in-out 1s forwards;
+}
+.booking_Des {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    opacity: 0;
+    animation: slide 1s ease-in-out 1.3s forwards;
+}
+.content button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    background-color:var(--color-accent-primary);
+    color: var(--color-text);
+    opacity: 0;
+    animation: slide 1s ease-in-out 1.6s forwards;
+    transition:all 200ms;
+}
+.content button:hover,
+.content button:focus {
+    filter: brightness(0.85);
+}
+@keyframes slide {
+    from {
+        transform: translate(0, 100px);
+        opacity: 0;
+        filter: blur(33px);
+    }
+
+    to {
+        transform: translate(0);
+        opacity:1;
+        filter: blur(0);
+    }
+}
+
+
+/* Adding bckgroundImags to our image divs */
+  .imageDiv1{
+    background-image: url(../assets/animeReservation/introAnimation2.jpg);
+  }
+  .imageDiv2{
+    background-image: url(../assets/animeReservation/FamilyDeluxeRoom1.jpg);
+  }
+  .imageDiv3{
+    background-image: url(../assets/animeReservation/pexels-charlotte-may-5825536.jpg);
+  }
+  .imageDiv4{
+    background-image: url(../assets/animeReservation/pexels-heyho-6492384.jpg);
+  }
+  .imageDiv5{
+    background-image: url(../assets/animeReservation/room.jpg);
+  }
+  .imageDiv6{
+    background-image: url(../assets/animeReservation/pexels-houzlook-3797991.jpg);
+  }
+  .imageDiv7{
+    background-image: url(../assets/animeReservation/pexels-heyho-6580396.jpg);
+  }
+
+
+/* CAPTION PARAGRAPH */
+  .Section1TextCaption{
+    width:40%;
+    min-width: 21rem;
+    height: 70vh;
+  }
+
+
+  .Section1TextCaption h1{
+    /*   background-color: brown; */
+      font-size: 2.5rem;
+      font-weight: 300;
+  }
+  .Section1TextCaption h1 span{
+    color:var(--color-accent-secondary);
+    letter-spacing: 0.5rem;
+    font-size: 2rem;
+  }
+  
+  .reserveMessage1{
+      margin: auto;
+      width:80%;
+  
+  }
+
+
+
+/* ---------------------  SECTION 2 ----------------------- */
+.reserveSection2{
+    width:100%;
+    height: fit-content;
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-bottom: 5vh;
+    padding:0 1rem 0 1rem;
+    
    
-    background-color: aliceblue;
+}
+.reserveSection2 h3{
+  font-weight: 320;
+  color: var(--color-text);
+  text-align: left;
+  margin-bottom: 2rem;
 
 }
+.reserveSection2 h3 span{
+  color:var(--color-faded-accent-primary);
+  font-size: 2rem;
+  font-weight: 500;
+  
+}
+.selectRoomBar{
+  width:100%;
+  height: fit-content;
+  min-height: 15%;
+ /*  border: 1px solid rgb(78, 29, 62); */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+.selectRoomBar ul{
+  height: fit-content;
+  width: 60%;
+  min-width: 35rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap:5%;
+  list-style-type: none;
+
+}
+.selectRoomBar ul li{
+  border-right:1px solid var(--color-accent-secondary);
+  padding-right: 1rem;
+  font-weight: 300;
+  font-size: 1.2rem;
+  transition: all 300ms;
+  cursor: pointer;
+}
+
+.selectRoomBar ul li:hover, .selectRoomBar ul li:focus{
+  filter:brightness(0.8);
+  color: var(--color-faded-accent-primary);
+}
+
+
+.roomsHolderMover {
+  width:100%;
+  height: fit-content;
+ 
+}
+.deluxeRooms {
+  display: block;
+}
+.FamilyRooms {
+  display:none;
+}
+.ConfferenceHalls {
+  display:none;
+}
+.spaServices {
+  display:none;
+}
+.gymServices {
+  display:none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*--------------------------- SECTION 3------------------- */
+.reserveSection3{
+    width:100%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+.reserveSection3 h2{
+  font-weight: 320;
+  color: var(--color-text);
+  text-align: left;
+  margin-bottom: 2rem;
+  width:80%;
+
+  
+}
+
+.reserveSection3 h2 span{
+  color:var(--color-accent-secondary);
+  font-size: 2rem;
+  font-weight: 300;
+  
+  
+}
+
+.reservationGuidlines ul li{
+  text-align: left;
+  line-height: 2rem;
+  font-size: 1.1rem;
+  
+}
+.reservationGuidlinesp{
+  
+  font-size: 1.5rem;
+}
+.reservationGuidlinesp span{
+  color:var(--color-faded-accent-primary);
+
+  }
+
+.reservationGuidlines ::marker{
+  color:var(--color-accent-primary);
+}
+
+
+

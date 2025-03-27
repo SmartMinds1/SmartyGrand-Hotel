@@ -1,6 +1,6 @@
 // messages.js
 const testHeadings = [
-  "PaulK Mwangi",
+  "Chris Martin",
   "John Kims",
   "Alpha Minova",
   "Melodyne Wells",

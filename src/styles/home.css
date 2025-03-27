@@ -1,22 +1,22 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing: border-box;
-  }
+
   .clear{
     clear: both;
 }
+
+/* my own custom horizontal rule */
   .bodyHr{
     width:100%;
     height:1px;
-    background-image: linear-gradient(to right,rgb(17, 23, 37), #FF5722, rgb(17, 23, 37));
+    background-image: linear-gradient(to right,rgb(4, 11, 29), #c42e00, rgb(4, 11, 29));
     margin: auto;
     margin-top: 1rem;
     margin-bottom: 2rem;
   }
+
+/* start of homepage */
   .Home {
     text-align: center;
-    background-color: rgb(17, 23, 37);
+    background-color: rgb(4, 11, 29);
     min-height: 100vh;
     font-size: calc(10px + 2vmin);
     color: white;
@@ -26,11 +26,11 @@
     pointer-events: none;
   }
 
+/* .................hero section animation images...................... */
 .homeCaptionImage1{
   width:100%;
   height: 26rem;
   margin:auto;
-  margin-bottom: 2rem;
   top: 0;
   background-image: url(../assets/HotelCaption1.png);
   background-size: cover;
@@ -38,20 +38,18 @@
   background-position-x: -3rem;
 
   animation: captionImage1Slide 40s ease-in-out 0s infinite;
-
   position: absolute;
 }
 .homeCaptionImage2{
   width:100%;
-  height: 26rem; /* 30rem */
+  height: 26rem;
   margin:auto;
-  margin-bottom: 2rem;
   background-image: url(../assets/hotelCaption2.png);
   background-size: cover;
   background-position-y: 70%;
   position: relative;
   animation: captionImage2Slide 40s ease-in-out 0s infinite;
-  top:-5rem;
+  top:-3rem;
 
 }
 @keyframes captionImage1Slide {
@@ -110,16 +108,21 @@
 
 }
 
-
+/* ................The shade ontop of hero section images ................*/
 .captionShader{
   width:100%;
   height: 26rem;
-  background-image: linear-gradient(to right,#ff562200,#ff56224f,rgba(17, 23, 37, 0.95),rgb(17, 23, 37));
+  background-image: linear-gradient(to right,#ff562200,#ff56224f,rgb(4, 11, 29, 0.9),rgb(4, 11, 29));
   position:absolute;
   top:0;
-  padding-top: 5rem;
+  padding-top: 3rem;
 }
-
+.captionFilter{
+  backdrop-filter: blur(2px);
+  width: 20%;
+  height: 21rem;
+  float:left;
+}
 .captionTextBox{
   width: 40%;
   height: 20rem;
@@ -128,27 +131,23 @@
 }
 .captionHeaderText h1{
   height: fit-content;
-  font-size: 2rem;
   margin: auto;
-  text-align: center;
-  margin-bottom: 1rem;
-  font-weight: 300;
-  font-family: 'Prata', serif;
+  text-align: left;
+  margin-bottom: 0.5rem;
+  font-size: 3rem;
   background-clip: text;
-  background-image: linear-gradient(to top right, #FF5722,rgb(211, 211, 255),rgb(211, 211, 255));
+  background-image: linear-gradient(to top right, rgb(211, 211, 255), rgb(211, 211, 255), var(--color-accent-secondary), rgb(211, 211, 255),rgb(211, 211, 255), rgb(211, 211, 255));
   color:transparent;
-  letter-spacing: 0.4rem;
 }
 .captionBodyText {
   margin:auto;
+  width:30%;
   padding:1rem;
-  background-color: #ff56222d;
-  height: 7.5rem;
-  width: 80%;
+  background-color: #ff562217;
+  height: 7rem;
   font-size: 1.2rem;
   text-align: center;
-  margin-bottom: 0.3rem;
-  letter-spacing: 0.3rem;
+  font-weight: 300;
   color:rgb(211, 211, 255);
 
   animation: captionBodyTextSlide 3s ease-in-out 0s forwards;
@@ -163,23 +162,8 @@
   to{
    filter:brightness(1);
     transform: translateX(0rem);
-    width: 80%;
+    width: 60%;
   }
-}
-
-.captionDate{
-  width:50%;
-  height:2rem;
-  margin:auto;
-  padding: 1rem;
-  font-size: 1.2rem;
-  font-weight: 200;
-  color:rgb(211, 211, 255);
-}
-
-.homeTitlespan{
-  color:#FF5722;
-  font-weight: 100;
 }
 
 
@@ -189,20 +173,25 @@
   font-size: 1.1rem;
   margin-bottom: 2rem;
 }
+
+/* searchBar */
+.searchBar{
+margin-right: 10%;
+margin-top: 1rem 0 5rem 0;
+float:right;
+}
 /* ---------------This is the first section------------ */
 .homeSection1{
   float:left;
   width:40%;
   height:25rem;
-  margin-left: 10%;
-  margin-bottom: 3rem;
+  margin: 5rem 0 5rem 10%;
   background-color: transparent;
-  box-shadow: 1100px 100px 400px -100px #FF5722,
-              -600px -100px 400px -100px #FF5722;
+ 
 }
 .why_Us{
 font-size: 1.1rem;
-font-weight: 500;
+font-weight: bold;
 color:#FF5722;
 text-align: left;
 margin-bottom: 2rem;
@@ -214,24 +203,29 @@ margin-bottom: 2rem;
 .homeMessage1{
   margin: auto;
   width:80%;
+
+  box-shadow: 1100px 100px 400px -10px #ff56222d,
+  -200px -100px 400px -10px #ff56222d;
 }
 
 /* the styled images */
 .section1RightImage{
- width:45%;
+ width:35%;
  height:25rem;
  float:right;
+ margin: 5rem 10% 5rem 0;
+
 }
 .mainDivStyle {
-  width: 13rem;
+  width: 18rem;
   height:19rem;
   transform: translate(1rem, 1rem);
 }
 .style1{
-  background-color: #fa8f6f1e;
+  background-color: transparent;
 }
 .style2{
-  background-color: #fa8f6f62;
+  background-color: transparent;
 }
 .style3{
   background-image: url(../assets/modernHotelTable.png);
@@ -239,41 +233,162 @@ margin-bottom: 2rem;
   background-size: cover;
 }
 
-/* ----------------------This is the second section-------------------------- */
-.homeSection2{
-    float:left;
-    width:40%;
-    height:25rem;
-    margin-left: 10%;
-  
+/* ...............This is the featured rooms section just below the first section ..........*/
+.featuredRooms{
+  width:100%;
+  height:fit-content;
+  padding:1%;
+  text-align: left;
+  margin:5rem 0 5rem 0;
+}
+.featuredRoomsHeader{
+font-size: 1.1rem;
+font-weight: bold;
+color:#FF5722;
+text-align: left;
+margin-left: 8%;
+margin-bottom: 3rem;
 
-    box-shadow: 300px 300px 400px -170px #FF5722;
-  }
+}
+.featuredRooms div{
+  display: inline-block;
+  margin-inline:5%;
+} 
 
 
-/* This is the testimonials section */
+
+/* .................This is the testimonials section.............. */
+.testimonialSection{
+  height: fit-content;
+  width:100%;
+  margin:5rem 0 5rem 0;
+
+}
+.testimonialsCaption{
+  float:left;
+  width:40%;
+  height:25rem;
+  margin-left: 10%;
+  margin-top: 2rem;
+
+}
 .clientTestimonials{
- /*  background-color: red; */
   width:45%;
   height:fit-content;
   float:right;
+  margin-top: 2rem;
+
+}
+/* Testimonial lights from the second message box shadow */
+.testimoniaLights{
+  box-shadow: 300px 400px 600px 10px #ff56222d;
 
 }
 
-.HomeImage{
-    width: 30%;
-    height: 20rem;
-    margin: auto;
+
+/* ............................Special Offers and Promos section....................... */
+.promoSection{
+height:fit-content;
+width:90%;
+padding-bottom: 1rem;
+margin:5rem auto 5rem auto;
+
 }
-figcaption{
-    font-size: 0.9rem;
-    color:#f0f8ff;
-    filter:brightness(0.85);
-    margin: auto;
+.promosHeader{
+font-size: 1.1rem;
+font-weight: bold;
+color:#FF5722;
+text-align: center;
+margin-left: 3%;
+margin-bottom: 2rem;
+}
+.promoh1Text{
+font-size: 2.5rem;
+font-weight: 300;
+text-align: right;
+
 }
 
+.promoh1Text span{
+  color:var(--color-accent-secondary);
+}
+
+
+.promoParagraph{
+  width: 100%;
+  height: fit-content;
+  color:rgb(211, 211, 255);
+  font-size: 1.1rem;
+  line-height: 1.7rem;
+  filter: brightness(0.85);
+  text-align: left;
+  display: flex;
+  justify-content: flex-end;
+
+}
+.promoParagraph p{
+  width:50%;
+  margin-bottom: 2rem;
+}
+
+.promosContainer div{
+  display: inline-block;
+  margin-inline: 3%;  
+
+}
+.promoJoinUs{
+  width: 100%;
+  height: fit-content;
+  color:rgb(211, 211, 255);
+  font-size: 1.1rem;
+  margin-top: 4rem;
+  text-align: left;
+
+  display: flex;
+  justify-content: center;
+
+}
   
   
+
+
+/* .............................Now moving to the chat form section................  */
+  .homeChatSection{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding:0.5rem;
+    margin:5rem 0 5rem 0;
+
+  }
+  .chatCaption{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+  .chatCaption h2{
+    font-weight: 300;
+    font-size: 2.5rem;
+  }
+
+  .chatCaption h2 span{
+    color: var(--color-accent-secondary);
+
+  }
   
-  
+  .chatCaption p{
+    font-size: 1.1rem;
+  }
+
+/* date */
+  .captionDate{
+    width:50%;
+    height:2rem;
+    margin:auto;
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: 200;
+    color:rgb(211, 211, 255);
+  }
   

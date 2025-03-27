@@ -5,13 +5,12 @@
 }
 
 .chatBtn{
-    background-color: transparent;
+    background-color:  transparent;
     width:8rem;
     height: 2.5rem;
-    color:aliceblue;
+    color: rgb(211, 211, 255);
     font-size: 1rem;
-    border: 1px solid rgb(255, 203, 172);
-    border-radius: 1rem;
+    border: 1PX solid var(--color-accent-primary);
     margin-top: 1rem;
     transition: all 200ms ease-in-out;
 }

@@ -6,7 +6,7 @@
   .FooterHr{
     width:100%;
     height:1px;
-    background-image: linear-gradient(to right,rgb(17, 23, 37), #FF5722, rgb(17, 23, 37));
+    background-image: linear-gradient(to right,rgb(17, 23, 37), #c42e00, rgb(17, 23, 37));
     margin: auto;
     margin-top: 1rem;
 }
@@ -42,7 +42,7 @@ h1{
   clear:both;
 }
   .FooterItems{
-    background-image:linear-gradient(to bottom, rgb(17, 23, 37),rgba(17, 23, 37, 0.7));
+    background-image:linear-gradient(to bottom, rgb(4, 11, 29),rgb(4, 11, 29, 0.75));
     height: 23rem;
     position:relative;
     

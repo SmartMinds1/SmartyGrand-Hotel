@@ -4,29 +4,65 @@
     box-sizing: border-box;
 }
 
+/* This is the main container div */
+.locationSection{
+display: flex;
+flex-direction: row;
+justify-content: space-evenly;
+align-items: center;
+width:100%;
+height: fit-content;
+margin-bottom: 4rem;
+}
+
+/* Name and location Address */
+.nameAndLocation{
+    color:rgb(211, 211, 255);   
+    }
+
+.nameAndLocation p:nth-child(2){
+    margin-left: 10%;
+    font-size: 1.1rem;
+}
+.locationIcon{
+    color: var(--color-accent-secondary);
+    font-size: 2rem;   
+}
+
+/* This is the contact map section */
+.mapContainer{
+        width: 30%; 
+        height: fit-content;
+        background-image: linear-gradient(to right,  rgb(7, 16, 37) , #ff562217);
+
+        box-shadow: 300px 300px 400px -10px #ff56222d,
+        -800px -1px 400px -10px #ff56222d;
+      
+}
+
 .contactIntroImg{
-    background-color:rgba(211, 211, 255, 0.5);
- /*    border:3px solid rgb(255, 203, 172); */
+    background-image: linear-gradient(to right,  rgb(7, 16, 37) , #ff5622);
     border-radius: 50%;
     width:30%;
     height: 15rem;
     float:left;
     position:relative;
-    margin-top: 6rem;
+    margin-top: 16rem;
     margin-left: 15%;
-
 }
 
 .phoneImageShadder{
     width:60%;
     height:18rem;
-    background-color:rgba(0, 0, 0, 0.1);
+    background-color:#c3d8ff0e;
     position:absolute;
     top:-6rem;
     left: 14%;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(3px);
     border:1px solid rgba(211, 211, 255, 0.39);
-    border-radius: 1rem;
+   /*  border-radius: 1rem; */
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
 
 }
 .phoneImageShadder p{
@@ -36,7 +72,7 @@
 }
 .OfficeTelephone{
    /*  filter: blur(3px); */
-   margin:auto;
+    margin:auto;
     margin-top: 3rem;
     height:3rem;
     transform: translateY(-10rem);
@@ -52,14 +88,15 @@
     width:40%;
     height:25rem;
     margin-right: 10%;
+    margin-top: 7rem;
 }
 .contact_Us{
     font-size: 1.1rem;
-    font-weight: 500;
-    color: aliceblue;
+    font-weight: bold;
+    color:#FF5722;
     text-align: left;
-    margin-bottom: 2rem;
-    margin-left: 10%;
+    margin: 2rem 0 2rem 10%;
+    
 }
 
 .contactIntro h1{
@@ -74,32 +111,46 @@
 
 }
 .contactCheckBox1{
-    /*   background-color: red; */
-      height:3rem;
-      margin-left:10%;
-      margin-top: 2rem;
-      width:30%;
-      margin-bottom: 1rem;
-      padding-left: 0.5rem;
+      height: fit-content;
+      width:60%;
+      margin: auto;
+      margin: 6rem 0 6rem 3%;
+      padding: 1rem;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
   }
 
-/* This is now the form section where we are going to obtain the user information */
-.contactForm{
-    padding:0.1rem;
-    margin-bottom:6rem;
-}
+/* .............................Now moving to the chat form section................  */
+.contactChatSection{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding:0.5rem;
+    margin:5rem 0 5rem 0;
 
-.contactForm textArea{
-background-color: transparent;
-/* border:1.5px solid rgb(211, 211, 255); */
-color:rgba(240, 248, 255, 0.85);
-border-radius: 1rem;
-padding:1rem;
+  }
+  .chatCaption{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 
-backdrop-filter: blur(2px);
-border:1px solid rgba(211, 211, 255, 0.39);
+    color:rgb(211, 211, 255);
+  }
+  .chatCaption h2{
+    font-weight: 300;
+    font-size: 2.5rem;
+  }
+  .chatCaption h2 span{
+    color:var(--color-accent-secondary);
+  }
+  .chatCaption p{
+    font-size: 1.1rem;
+  }
 
-}
+
+
 
 
 .singInBtn{
@@ -110,7 +161,7 @@ border:1px solid rgba(211, 211, 255, 0.39);
     width:100%;
     height: fit-content;
     padding:1rem;
-    margin-top:1rem;
+    margin:10rem 0 8rem 0;
    
 }
 

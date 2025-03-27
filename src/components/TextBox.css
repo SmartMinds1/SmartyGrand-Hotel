@@ -6,7 +6,7 @@
 
 /* textbox widh to be defined where its rendered */
 .TextBox{
-    background-image: linear-gradient(to top, #151c2e, rgba(17, 23, 37, 0.7) );
+    background-image: linear-gradient(to top, rgb(7, 16, 37), transparent);
     padding:1rem;
   
 }

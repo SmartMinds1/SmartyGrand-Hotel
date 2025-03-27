@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/admin.css';
-import SocialIcons from '../components/SocialIcons';
+import AdminNavIcons from '../components/AdminNavIcons';
 
 //The UI part
 const Admin = () => {
@@ -30,29 +30,77 @@ const Admin = () => {
         
             return (
                 <div>
-                    <h1>Admin Page</h1>
-                    <div className="dashBoard">
-                        <div className="iconsBar">
-                            <div className="dashIcons">
-                               <SocialIcons/>
-                            </div>
-                        </div>
-                        <div className="sidenav">
 
+{/*......................... dashBoard headings ...........................*/}
+           <div className="mainBoard">
+                   <div className="headerDiv">
+                        <h2>DASHBOARD</h2>
+                        <h2>smartyGrand</h2>
+                   </div>
+                    
+
+                    <div className="mainDiv">
+                        {/* this is the wrapping div which will tie the icons div and the navDiv */}
+                        <div className="wrapper">
+                                <div className="iconsDiv">
+                                <AdminNavIcons/>
+                                </div>
+                            
+                                <div className="navDiv">
+                                    <ul>
+                                        <li>Users</li>
+                                        <li>Bookings</li>
+                                        <li>Messsages</li>
+                                        <li>Payments</li>
+                                        <li>complains</li>
+                                        <li>Admins</li>
+                                        <li></li>
+                                    </ul>
+                                </div>
                         </div>
 
-                        <div className="mainNav">
+                       {/* this is the main content div that will display the data retrieved from the database */}
+                        <div className="contentDiv">
+                          <div className="contentHeader">
+                                   <div className="box">
+                                        Box1
+                                    </div>
+                                    <div className="box">
+                                        Box2
+                                    </div>
+                                    <div className="box">
+                                        Box3
+                                    </div>
+                                    <div className="box">
+                                        Box4
+                                    </div>
+                                    <div className="box">
+                                        Box5
+                                    </div>
+                          </div>
 
-                        </div>
-                        <div className="clear"></div>
-                        <div className="div1mainColorShade"></div>
-                        <div className="div2mainColorShade"></div>
-                        <div className="div3mainColorShade"></div>
-                       
+                          <div className="dbContentHeader">
+                                <div className="nameOfContentDisplayed"></div>
+                                <div className="sortBy"></div>     
+                                <div className="searchBox"></div>
+                          </div>
+                          
+                          <div className="dbContent">
+                                
+                          </div>
+
+                        </div>  
                     </div>
+            </div>
 
-                    {/* This is the logical output part */}
-                    {loading ? (
+        
+{/*.............................. End of the dashBoard ............................... */}
+
+
+
+{/* This is the logical output part to be implemented later */}
+
+                {/*     {loading ? (
                         <p>Loading submissions...</p>
                     ) : error ? (
                         <p>Error: {error}</p>
@@ -79,7 +127,8 @@ const Admin = () => {
                                 ))}
                             </tbody>
                         </table>
-                    )}
+                    )} */}
+
                 </div>
     );
 }

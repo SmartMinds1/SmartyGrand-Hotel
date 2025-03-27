@@ -11,8 +11,8 @@
   top: 0;
   left: 0;
   width: 100%;
-  height:5rem;
-  background-color: rgba(17, 23, 37, 0.5);
+  height:3rem;
+  background-color: rgb(4, 11, 29, 0.5);
   transition: transform 0.3s ease-in-out; /* Smooth transition */
   z-index: 1;
 }
@@ -42,16 +42,14 @@
 float:left;
 width:10rem;
 font-size: 1.5rem;
-margin-top: 1rem;
 }
 .headerTitle span{
-  color:#FF5722;
+  color: var(--color-accent-secondary);
   font-weight: 300;
 }
 .navBar{
-height: 5rem;
-padding:0.3rem;
-background-image:linear-gradient(to top, rgb(21, 28, 46,0.5),rgb(17, 23, 37, 0.5));
+height: 3rem;
+background-image:linear-gradient(to top, rgb(21, 28, 46,0.5),rgb(4, 11, 29, 0.5));
 }
 
 .navBar div{
@@ -80,7 +78,6 @@ color: #FF5722;
 width:50%;
 height:2rem;
 text-align: center;
-margin-top: 1rem;
 margin-left: 1%;
 
 }
@@ -90,8 +87,6 @@ height:2rem;
 float:right;
 text-align: right;
 margin-right: 0.5%;
-margin-top: 1rem;
-
 
 }
 .navAcc li{
@@ -103,11 +98,12 @@ margin-top: 1rem;
 .navProfile{
 background-image: url(../assets/cover.jpg);
 background-size: cover;
-width:4rem;
-height: 4rem;
+width: 2.5rem;
+height: 2.5rem;
 padding:1rem;
 border-radius: 50%;
 float:right;
+margin: 0.2% 1% 0 0;
 
 }
 
@@ -120,7 +116,7 @@ h1{
 .introhr{
   width:80%;
   height:1px;
-  background-image: linear-gradient(to right,rgb(17, 23, 37), #FF5722, rgb(17, 23, 37));
+  background-image: linear-gradient(to right,rgb(4, 11, 29), #FF5722, rgb(4, 11, 29));
   margin: auto;
-  margin-top: 1.7rem;
+  transform: translateY(-0.5rem);
 }

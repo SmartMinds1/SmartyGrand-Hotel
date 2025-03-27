@@ -6,12 +6,12 @@
 
 /* textbox widh to be defined where its rendered */
 .stylishTextBox{
-    background-image: linear-gradient(to top, #151c2e, rgba(17, 23, 37, 0.7) );
+    background-image: linear-gradient(to top, var(---color-faded-background) , transparent);
     padding:1rem;
     width: 80%;
     height:12rem;
     margin: auto;
-  
+    
 }
 
 .TextDesign p{
@@ -29,11 +29,11 @@
     border-top-right-radius:6rem ;
     border-top-left-radius:6rem ;
     border-bottom-left-radius:6rem ;
-    background-image: linear-gradient(to bottom right, #FF5722, rgba(224, 147, 47, 0));
+    background-image: linear-gradient(to bottom right, var(--color-accent-secondary), rgba(224, 147, 47, 0));
     float:right;
     margin-right: -1rem;
     margin-top: 2rem;
 
-    box-shadow: -70px -50px 70px 20px #FF5722;
+    box-shadow: -70px -50px 70px 10px  var(--color-accent-secondary);
 }
 

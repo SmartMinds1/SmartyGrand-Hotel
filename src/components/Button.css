@@ -5,18 +5,21 @@
   }
 
 .btn{
-  background-color:  #FF5722;
-  border-radius: 3px;
-  color: rgb(17, 23, 37);
+  background-color:  #c42e00;
+  color: aliceblue;
   display: inline-block;
   margin: 0.5rem 1rem;
   padding: 0.5rem 0;
   transition: all 200ms ease-in-out;
   margin-top: 1rem;
-  width: 6rem;
-  height: 2rem;
+  width: 7rem;
+  height: 2.5rem;
   border:none;
-  font-size: 0.9rem;
+  font-size: 1rem;
+
+  cursor:pointer;
+
+  box-shadow: 3px 3px 10px #6e1c04;
 
   }
 

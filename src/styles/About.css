@@ -1,97 +1,138 @@
-*{
-    padding:0;
-    margin: 0;
-    box-sizing: border-box;
-}
-.clear{
-    clear: both;
-}
-.aboutGigImages{
-    margin-right: 5%;
-    
-}
-.aboutIntro{
-    float:left;
-    width:40%;
-    height:25rem;
-    margin-left: 10%;
-  /*   background-color: blue; */
-}
+/* SECTION 1 */
 .abt_Us{
-/*  background-color: aqua; */
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: aliceblue;
+    color:rgb(211, 211, 255);
     text-align: left;
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
+    font-weight: 400;
 }
+.aboutSection1{
+height: 80vh;
+width:100%;
+display:flex;
+flex-direction: row;
+justify-content: flex-start;
+margin:2rem 0 5rem 0;
+padding-left: 7%;
+}
+.aboutHighlights{
+    width:38%;
+} 
+.aboutHighlights ul {
+    margin-left: 20%;
+}
+.aboutHighlights ul li:nth-child(even){
+    color:var(--color-accent-secondary);
+}
+.aboutHighlights ul li{
+list-style-type:circle;
+font-size: 2rem;
+text-align: left;
+line-height: 3rem;
 
-.aboutIntro h1{
-  /*   background-color: brown; */
-    font-size: 2.5rem;
+color:rgb(211, 211, 255);
+}
+::marker{
+    color:var(--color-accent-secondary);
+}
+.highlightsCaption{
+    font-size: 1rem;
+    margin-top: 4rem;
     font-weight: 300;
+    color:rgb(211, 211, 255);
 }
 
-.aboutMessage1{
+
+
+/* SECTION 2 */
+.aboutSection2{
+    width:100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 3rem 0 5rem 0;
+}
+.aboutTextBoxContainer{
+    width:40%;
+    height: fit-content;
+}
+.aboutTextBoxContainer h1{
+    font-size: 2rem;
+    font-weight: 300;
+
+}
+.aboutMessage{
     margin: auto;
     width:80%;
 
 }
-
 /* This is the graph section */
-.hotelGraph{
-   float:left;
-   margin-left: 15%;
-
-}
 .graphCaption{
     font-size: 1rem;
     color:aliceblue;
     filter:brightness(0.85)
 }
 
-/* This is the second body section of our about page */
-.aboutSection1{
-    float:right;
-    width:42%;
-    height: 13rem;
-    margin-right: 10%;
-    margin-bottom: 3rem;
-}
-.our_services{
-    margin-left: 10%;
-    font-size: 1.1rem;
-    color: aliceblue;
-    text-align: left;
-    margin-bottom: 2rem;
-    width:10%;
-}
-.our_services_intro{
-    color:aliceblue;
-    text-align: left;
-    font-size: 2.5rem;
-    font-weight: 300;
-    margin-left: 15%;
-    width:40%;
-    margin-bottom: 2rem;
-}
 
-.aboutSection2{
-    float:left;
-    width:38%;
-    height: fit-content;
-    margin-left: 20%;
-    margin-bottom: 4rem;
-}
 
+/* .............SECTION 3............*/
 .aboutSection3{
-    float:right;
-    width:38%;
+    width:100%;
     height: fit-content;
-    margin-right: 4%;
-    margin-bottom: 4rem;
- 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 3rem 0 5rem 0;
 }
+.aboutTrustMessage{
+    width:50%;
+}
+
+
+/* .............SECTION 4............*/
+.aboutSection4{
+    width:100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    margin:15rem 0 5rem 0;
+    color:rgb(211, 211, 255);
+}
+.our_services_intro span{
+
+    color: var(--color-accent-primary);
+
+}
+.ServicesMessage{
+    margin: auto;
+    width:70%;
+    margin-bottom: 2rem;
+}
+.overFlowDesign{
+    display: -webkit-box;
+    -webkit-line-clamp: 3; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    height: 6.8rem;
+    cursor:pointer;
+    transition: height 400ms ease-in-out;
+
+}
+.overFlowDesign:hover {
+    height:22rem;
+}
+
+.our_services{
+    transform: translateY(-8rem);
+}
+
+
 .finalAboutComment{
     width:50%;
     text-align: center;
@@ -101,3 +142,4 @@
     margin:auto;
     
 }
+ 

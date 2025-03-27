@@ -4,34 +4,37 @@
     box-sizing: border-box;
 }
 
+/* This is the main container holding the testimonial messages */
 .MessageMover{
 width:100%;
-height: 22rem;
-padding:1rem;
+height: 25rem;
 
-
+}
+.MessageMover div{
+    border-radius: 1rem;
+    display: inline-block;
 }
 
 .testimonialHeader{
-color:black;
-font-size: 1.5rem;
-letter-spacing: 0.2rem;
-font-weight: 300;
-border-bottom: 2px solid rgb(42, 54, 85) ;
-margin: 1rem;
-padding-bottom: 0.5rem;
+    color:rgb(211, 211, 255);
+    font-size: 1.5rem;
+    font-weight:600;
+    letter-spacing: 0.2rem;
+    border-right: 2px solid var(--color-accent-secondary);
+    margin: 1rem;
+    padding-bottom: 0.5rem;
 }
 
 .testimonialMessage{
-    color:rgb(19, 17, 17);
+    color:rgb(211, 211, 255);
     font-size: 1rem;
     text-align: justify;
     margin: 2rem;
 }
 
+/* ..................The three message display divs............. */
 .movingDiv1{
-    background-color:rgba(21, 28, 46);
-  /*   filter: brightness(0.2); */
+    background-color: #ff56222d;
     height: 9rem;
     width:10rem;
     margin-top: 6rem;
@@ -40,51 +43,48 @@ padding-bottom: 0.5rem;
 }
 
 .movingDiv2{
-    background-color:rgb(42, 54, 85);
-   /*  filter: brightness(0.5); */
-   filter:blur(0.1rem);
-    transform: translate(5rem, -12rem);
+    background-color: #ff56222d;
+   filter:blur(0.18rem);
+    transform: translate(-7rem, 3rem);
     height: 14rem;
-    width:10rem;
+    width:15rem;
     overflow: hidden;
     
 }
 
 .movingDiv3{
-    background-color:rgb(211, 211, 255);
-    transform: translate(10rem,-29rem);
+    background-image:linear-gradient( to right, #ff56222d, rgb(4, 11, 29) );
+    transform: translate(2.5rem,-14rem);
     height: 20rem;
     width:18rem;
-    overflow: hidden;
-   
+    overflow: hidden;  
 }
-
 
 .arrowHeadsContainer{
     width:70%;
     height:3rem;
     padding:0.5rem;
     background-color: transparent;
-    transform: translate(0,-40rem);
-    margin-left: 18%;
-
+    transform: translate(2.5rem,-14rem);
 }
 .backBtn{
     float:right;
     font-size: 2rem;
-    color:aliceblue;
+    color:var(--color-accent-secondary);
     background-color: transparent;
     border:none;
     transition: all 300ms ease-in-out;
+    margin-right: 20%;
 }
 
 .forwadBtn{
     float:left;
     font-size: 2rem;
-    color:aliceblue;
+    color:var(--color-accent-secondary);
     background-color: transparent;
     border:none;
     transition: all 300ms ease-in-out;
+    margin-left: 20%;
 }
 .backBtn:hover ,.forwadBtn:hover{
     filter: brightness(0.7);

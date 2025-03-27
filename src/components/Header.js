@@ -65,6 +65,11 @@ const Header = () => {
                   Admin
                 </Link>
               </li>
+              <li>
+                <Link className="linkStyle" to="/testagent">
+                  RunTest
+                </Link>
+              </li>
             </ul>
           </nav>
 
