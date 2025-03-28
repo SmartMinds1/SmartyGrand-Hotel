@@ -246,27 +246,42 @@
   color: var(--color-faded-accent-primary);
 }
 
-
+/* part 2 of section II */
+/* This is the outermost div hoding the entire content container */
 .roomsHolderMover {
   width:100%;
   height: fit-content;
+  background-color: var(--color-faded-background);
  
 }
-.deluxeRooms {
-  display: block;
+
+/* This div holds individual room category ie.. Deluxe, Gym etc */
+.roomImagesContainer{
+  width:100%;
+  height: fit-content;
+  padding: 0.3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap:1%;
+  
 }
-.FamilyRooms {
-  display:none;
-}
-.ConfferenceHalls {
-  display:none;
-}
-.spaServices {
-  display:none;
-}
-.gymServices {
-  display:none;
-}
+
+/*.............. Delux room images......... */
+  .duluxe1{
+    background-image: url(../assets/animeReservation/introAnimation7.jpg);
+  }
+  .duluxe2{
+    background-image: url(../assets/animeReservation/pexels-charlotte-may-5825536.jpg);
+  }
+  .duluxe3{
+    background-image: url(../assets/animeReservation/pexels-houzlook-3797991.jpg);
+  }
+  .duluxe4{
+    background-image: url(../assets/Diluxe2.jpg);
+  }
 
 
 

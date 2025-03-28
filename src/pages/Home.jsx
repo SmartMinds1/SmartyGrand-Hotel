@@ -11,7 +11,6 @@ import SearchBar from '../components/SearchBar';
 import PromosCircle from '../components/PromosCircle';
 import Chatform from '../components/Chatform';
 import ChatButton from '../components/ChatButton';
-import LayoutTest from '../components/Testas/LayoutTest';
 
 /* import { useNavigate } from 'react-router-dom';
 import axios from 'axios'; */

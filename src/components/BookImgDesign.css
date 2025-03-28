@@ -1,23 +1,24 @@
+/* This is the main container holding the iamge and the image details */
 .bookImgContainer{
-    height: 16rem;
-    width: 24%;
-    min-width: 19.7rem;
+    height: 18rem;
+   
+    min-width: 6rem; 
+    width: 19.7rem;
     background-size: cover;
     background-position-x: 50%;
-    margin-bottom: 1rem;
 }
 
-
+/* Container div holding room details */
 .roomDetailsBox{
     height: 100%;
     width: 100%;
+    padding-top: 0.5rem;
     background-image: linear-gradient(to top, var(--color-background), rgba(0, 0, 0, 0.5));
     display: none;
 }
 .bookImgContainer:hover .roomDetailsBox{
     display: block;
 }
-
 
 .roomDetailsBox h4{
     font-size: 2rem;

@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+/* import React, { useEffect, useState } from 'react'; */
 import '../styles/admin.css';
 import AdminNavIcons from '../components/AdminNavIcons';
 
 //The UI part
 const Admin = () => {
-            const [submissions, setSubmissions] = useState([]);
+       /*      const [submissions, setSubmissions] = useState([]);
             const [loading, setLoading] = useState(true);
             const [error, setError] = useState('');
         
@@ -26,7 +26,7 @@ const Admin = () => {
                 };
         
                 fetchSubmissions();
-            }, []);
+            }, []); */
         
             return (
                 <div>

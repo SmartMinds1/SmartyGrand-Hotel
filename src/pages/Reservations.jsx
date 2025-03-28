@@ -2,15 +2,17 @@ import React, { useState, useEffect } from "react";
 import '../styles/Reservation.css'
 import TextBox from "../components/TextBox";
 import SearchBar from "../components/SearchBar";
-
-import RoomsHolder from "../components/RoomsHolder";
-
+import Button from "../components/Button";
+import PayPopUp from "../components/PayPopUp";
+import BookImgDesign from "../components/BookImgDesign";
 
 
 
 const Reservations = ()=>{
-
   const [activeTab, setActiveTab] = useState('DELUXE');
+
+  /* setting up the popUp */
+  const [showPopup, setShowPopup] = useState(false);
 
 /* create an array of tabs to help in navigation */
    const tabs = ['DELUXE', 'FAMILY', 'CONFERENCE', 'SPA', 'GYM'];
@@ -125,6 +127,8 @@ const Reservations = ()=>{
 
 {/*......................... Reserve room SECTION 2....................... */}
   <div className="reserveSection2  scrollSnap">
+
+  {/*   SECTION 2 PART 1 */}
           <h3><span>| Seamless booking,</span> it's never been this Quick!</h3>
 
           <div className="selectRoomBar">
@@ -142,52 +146,405 @@ const Reservations = ()=>{
                 </ul>
         </div>
 
+
+{/* SECTION 2 PART II  */}
+
         <div className="roomsHolderMover">
                  {/* Content */}
                     <div className="tab-content">
+
+                  {/* 1. Deluxe Rooms Container */}
                           {activeTab === 'DELUXE' && (
-                              <div className="deluxeRooms">
-                                  <RoomsHolder/>
+                              <div className="roomImagesContainer">
+
+                                      <div className="bookImgContainer duluxe2">
+                                            <BookImgDesign className="roomDetails">
+                                                <h4>Garden View</h4>
+                                                <ul>
+                                                    <li>Plush king-size bed</li>
+                                                    <li>High-speed Wi-Fi</li>
+                                                    <li>43' smart-TV</li>
+                                                    <li>Spacious work desk</li>
+                                                    <li>En-suite bathroom</li>
+                                                    <li>24-hour room service</li>
+                                                </ul>
+                                              <Button type="submit"   onClick={() => setShowPopup(true)} btnLabel="Book Now"/>
+                                              {/*  This displays the popUp */}
+                                                {showPopup && <PayPopUp Amount="200" title="Garden View" onClose={() => setShowPopup(false)} />}
+                                            </BookImgDesign>
+                                      </div>
+
+                                      <div className="bookImgContainer duluxe1">
+                                              <BookImgDesign className="roomDetails">
+                                                  <h4>City View</h4>
+                                                  <ul>
+                                                      <li>Plush king-size bed</li>
+                                                      <li>High-speed Wi-Fi</li>
+                                                      <li>43' smart-TV</li>
+                                                      <li>Spacious work desk</li>
+                                                      <li>En-suite bathroom</li>
+                                                      <li>24-hour room service</li>
+                                                  </ul>
+
+                                                  <Button type="submit"   onClick={() => setShowPopup(true)} btnLabel="Book Now"/>
+                                                {/*  This displays the popUp */}
+                                                  {showPopup && <PayPopUp Amount="150" title="City View" onClose={() => setShowPopup(false)} />}
+                                              </BookImgDesign>
+                                      </div>
+
+                                      <div className="bookImgContainer duluxe3">
+                                          <BookImgDesign className="roomDetails">
+                                              <h4>Balcony Gaze</h4>
+                                              <ul>
+                                                  <li>Plush king-size bed</li>
+                                                  <li>High-speed Wi-Fi</li>
+                                                  <li>43' smart-TV</li>
+                                                  <li>Spacious work desk</li>
+                                                  <li>En-suite bathroom</li>
+                                                  <li>24-hour room service</li>
+                                              </ul>
+                                              <Button type="submit"   onClick={() => setShowPopup(true)} btnLabel="Book Now"/>
+                                            {/*  This displays the popUp */}
+                                              {showPopup && <PayPopUp Amount="250" title="Balcony Gaze" onClose={() => setShowPopup(false)} />}
+                                          </BookImgDesign>
+                                      </div>
+
+                                      <div className="bookImgContainer duluxe4">
+                                          <BookImgDesign className="roomDetails">
+                                              <h4>Mountain View</h4>
+                                              <ul>
+                                                  <li>Plush king-size bed</li>
+                                                  <li>High-speed Wi-Fi</li>
+                                                  <li>43' smart-TV</li>
+                                                  <li>Spacious work desk</li>
+                                                  <li>En-suite bathroom</li>
+                                                  <li>24-hour room service</li>
+                                              </ul>
+                                            <Button type="submit"   onClick={() => setShowPopup(true)} btnLabel="Book Now"/>
+                                            {/*  This displays the popUp */}
+                                              {showPopup && <PayPopUp Amount="300" title="Mountain View" onClose={() => setShowPopup(false)} />}
+                                          </BookImgDesign>
+                                      </div>     
+
+
                               </div>
-                          )}
+                           )}
 
 
+                  {/* 2. FAMILY Rooms Container */}
                           {activeTab === 'FAMILY' && (
-                              <div className="FamilyRooms">
-                                  <RoomsHolder/>
+                              <div className="roomImagesContainer">
+
+                                      <div className="bookImgContainer duluxe2">
+                                            <BookImgDesign className="roomDetails">
+                                                <h4>Garden View</h4>
+                                                <ul>
+                                                    <li>Plush king-size bed</li>
+                                                    <li>High-speed Wi-Fi</li>
+                                                    <li>43' smart-TV</li>
+                                                    <li>Spacious work desk</li>
+                                                    <li>En-suite bathroom</li>
+                                                    <li>24-hour room service</li>
+                                                </ul>
+                                              <Button type="submit"   onClick={() => setShowPopup(true)} btnLabel="Book Now"/>
+                                              {/*  This displays the popUp */}
+                                                {showPopup && <PayPopUp Amount="200" title="Garden View" onClose={() => setShowPopup(false)} />}
+                                            </BookImgDesign>
+                                      </div>
+
+                                      <div className="bookImgContainer duluxe1">
+                                              <BookImgDesign className="roomDetails">
+                                                  <h4>City View</h4>
+                                                  <ul>
+                                                      <li>Plush king-size bed</li>
+                                                      <li>High-speed Wi-Fi</li>
+                                                      <li>43' smart-TV</li>
+                                                      <li>Spacious work desk</li>
+                                                      <li>En-suite bathroom</li>
+                                                      <li>24-hour room service</li>
+                                                  </ul>
+
+                                                  <Button type="submit"   onClick={() => setShowPopup(true)} btnLabel="Book Now"/>
+                                                {/*  This displays the popUp */}
+                                                  {showPopup && <PayPopUp Amount="150" title="City View" onClose={() => setShowPopup(false)} />}
+                                              </BookImgDesign>
+                                      </div>
+
+                                      <div className="bookImgContainer duluxe3">
+                                          <BookImgDesign className="roomDetails">
+                                              <h4>Balcony Gaze</h4>
+                                              <ul>
+                                                  <li>Plush king-size bed</li>
+                                                  <li>High-speed Wi-Fi</li>
+                                                  <li>43' smart-TV</li>
+                                                  <li>Spacious work desk</li>
+                                                  <li>En-suite bathroom</li>
+                                                  <li>24-hour room service</li>
+                                              </ul>
+                                              <Button type="submit"   onClick={() => setShowPopup(true)} btnLabel="Book Now"/>
+                                            {/*  This displays the popUp */}
+                                              {showPopup && <PayPopUp Amount="250" title="Balcony Gaze" onClose={() => setShowPopup(false)} />}
+                                          </BookImgDesign>
+                                      </div>
+
+                                      <div className="bookImgContainer duluxe4">
+                                          <BookImgDesign className="roomDetails">
+                                              <h4>Mountain View</h4>
+                                              <ul>
+                                                  <li>Plush king-size bed</li>
+                                                  <li>High-speed Wi-Fi</li>
+                                                  <li>43' smart-TV</li>
+                                                  <li>Spacious work desk</li>
+                                                  <li>En-suite bathroom</li>
+                                                  <li>24-hour room service</li>
+                                              </ul>
+                                            <Button type="submit"   onClick={() => setShowPopup(true)} btnLabel="Book Now"/>
+                                            {/*  This displays the popUp */}
+                                              {showPopup && <PayPopUp Amount="300" title="Mountain View" onClose={() => setShowPopup(false)} />}
+                                          </BookImgDesign>
+                                      </div>     
+
+
                               </div>
-                          )}
+                           )}
 
 
+                  {/* 3. CONFFERENCE Rooms Container */}
                           {activeTab === 'CONFERENCE' && (
-                              <div className="ConfferenceHalls">
-                                  <RoomsHolder/>
+                              <div className="roomImagesContainer">
+
+                                      <div className="bookImgContainer duluxe2">
+                                            <BookImgDesign className="roomDetails">
+                                                <h4>Garden View</h4>
+                                                <ul>
+                                                    <li>Plush king-size bed</li>
+                                                    <li>High-speed Wi-Fi</li>
+                                                    <li>43' smart-TV</li>
+                                                    <li>Spacious work desk</li>
+                                                    <li>En-suite bathroom</li>
+                                                    <li>24-hour room service</li>
+                                                </ul>
+                                              <Button type="submit"   onClick={() => setShowPopup(true)} btnLabel="Book Now"/>
+                                              {/*  This displays the popUp */}
+                                                {showPopup && <PayPopUp Amount="200" title="Garden View" onClose={() => setShowPopup(false)} />}
+                                            </BookImgDesign>
+                                      </div>
+
+                                      <div className="bookImgContainer duluxe1">
+                                              <BookImgDesign className="roomDetails">
+                                                  <h4>City View</h4>
+                                                  <ul>
+                                                      <li>Plush king-size bed</li>
+                                                      <li>High-speed Wi-Fi</li>
+                                                      <li>43' smart-TV</li>
+                                                      <li>Spacious work desk</li>
+                                                      <li>En-suite bathroom</li>
+                                                      <li>24-hour room service</li>
+                                                  </ul>
+
+                                                  <Button type="submit"   onClick={() => setShowPopup(true)} btnLabel="Book Now"/>
+                                                {/*  This displays the popUp */}
+                                                  {showPopup && <PayPopUp Amount="150" title="City View" onClose={() => setShowPopup(false)} />}
+                                              </BookImgDesign>
+                                      </div>
+
+                                      <div className="bookImgContainer duluxe3">
+                                          <BookImgDesign className="roomDetails">
+                                              <h4>Balcony Gaze</h4>
+                                              <ul>
+                                                  <li>Plush king-size bed</li>
+                                                  <li>High-speed Wi-Fi</li>
+                                                  <li>43' smart-TV</li>
+                                                  <li>Spacious work desk</li>
+                                                  <li>En-suite bathroom</li>
+                                                  <li>24-hour room service</li>
+                                              </ul>
+                                              <Button type="submit"   onClick={() => setShowPopup(true)} btnLabel="Book Now"/>
+                                            {/*  This displays the popUp */}
+                                              {showPopup && <PayPopUp Amount="250" title="Balcony Gaze" onClose={() => setShowPopup(false)} />}
+                                          </BookImgDesign>
+                                      </div>
+
+                                      <div className="bookImgContainer duluxe4">
+                                          <BookImgDesign className="roomDetails">
+                                              <h4>Mountain View</h4>
+                                              <ul>
+                                                  <li>Plush king-size bed</li>
+                                                  <li>High-speed Wi-Fi</li>
+                                                  <li>43' smart-TV</li>
+                                                  <li>Spacious work desk</li>
+                                                  <li>En-suite bathroom</li>
+                                                  <li>24-hour room service</li>
+                                              </ul>
+                                            <Button type="submit"   onClick={() => setShowPopup(true)} btnLabel="Book Now"/>
+                                            {/*  This displays the popUp */}
+                                              {showPopup && <PayPopUp Amount="300" title="Mountain View" onClose={() => setShowPopup(false)} />}
+                                          </BookImgDesign>
+                                      </div>     
+
+
                               </div>
-                          )}
+                           )}
 
 
+                  {/* 4. SPA SERVICES Container */}
                           {activeTab === 'SPA' && (
-                            <div className="spaServices">
-                                   <RoomsHolder/>
-                            </div>
-                          )}
+                              <div className="roomImagesContainer">
+
+                                      <div className="bookImgContainer duluxe2">
+                                            <BookImgDesign className="roomDetails">
+                                                <h4>Garden View</h4>
+                                                <ul>
+                                                    <li>Plush king-size bed</li>
+                                                    <li>High-speed Wi-Fi</li>
+                                                    <li>43' smart-TV</li>
+                                                    <li>Spacious work desk</li>
+                                                    <li>En-suite bathroom</li>
+                                                    <li>24-hour room service</li>
+                                                </ul>
+                                              <Button type="submit"   onClick={() => setShowPopup(true)} btnLabel="Book Now"/>
+                                              {/*  This displays the popUp */}
+                                                {showPopup && <PayPopUp Amount="200" title="Garden View" onClose={() => setShowPopup(false)} />}
+                                            </BookImgDesign>
+                                      </div>
+
+                                      <div className="bookImgContainer duluxe1">
+                                              <BookImgDesign className="roomDetails">
+                                                  <h4>City View</h4>
+                                                  <ul>
+                                                      <li>Plush king-size bed</li>
+                                                      <li>High-speed Wi-Fi</li>
+                                                      <li>43' smart-TV</li>
+                                                      <li>Spacious work desk</li>
+                                                      <li>En-suite bathroom</li>
+                                                      <li>24-hour room service</li>
+                                                  </ul>
+
+                                                  <Button type="submit"   onClick={() => setShowPopup(true)} btnLabel="Book Now"/>
+                                                {/*  This displays the popUp */}
+                                                  {showPopup && <PayPopUp Amount="150" title="City View" onClose={() => setShowPopup(false)} />}
+                                              </BookImgDesign>
+                                      </div>
+
+                                      <div className="bookImgContainer duluxe3">
+                                          <BookImgDesign className="roomDetails">
+                                              <h4>Balcony Gaze</h4>
+                                              <ul>
+                                                  <li>Plush king-size bed</li>
+                                                  <li>High-speed Wi-Fi</li>
+                                                  <li>43' smart-TV</li>
+                                                  <li>Spacious work desk</li>
+                                                  <li>En-suite bathroom</li>
+                                                  <li>24-hour room service</li>
+                                              </ul>
+                                              <Button type="submit"   onClick={() => setShowPopup(true)} btnLabel="Book Now"/>
+                                            {/*  This displays the popUp */}
+                                              {showPopup && <PayPopUp Amount="250" title="Balcony Gaze" onClose={() => setShowPopup(false)} />}
+                                          </BookImgDesign>
+                                      </div>
+
+                                      <div className="bookImgContainer duluxe4">
+                                          <BookImgDesign className="roomDetails">
+                                              <h4>Mountain View</h4>
+                                              <ul>
+                                                  <li>Plush king-size bed</li>
+                                                  <li>High-speed Wi-Fi</li>
+                                                  <li>43' smart-TV</li>
+                                                  <li>Spacious work desk</li>
+                                                  <li>En-suite bathroom</li>
+                                                  <li>24-hour room service</li>
+                                              </ul>
+                                            <Button type="submit"   onClick={() => setShowPopup(true)} btnLabel="Book Now"/>
+                                            {/*  This displays the popUp */}
+                                              {showPopup && <PayPopUp Amount="300" title="Mountain View" onClose={() => setShowPopup(false)} />}
+                                          </BookImgDesign>
+                                      </div>     
 
 
+                              </div>
+                           )}
+
+
+                  {/* 5. GYM SERVICES Container */}
                           {activeTab === 'GYM' && (
-                             <div className="gymServices">
-                                   <RoomsHolder/>
-                             </div>  
-                          )}
-                    </div>
+                              <div className="roomImagesContainer">
+
+                                      <div className="bookImgContainer duluxe2">
+                                            <BookImgDesign className="roomDetails">
+                                                <h4>Garden View</h4>
+                                                <ul>
+                                                    <li>Plush king-size bed</li>
+                                                    <li>High-speed Wi-Fi</li>
+                                                    <li>43' smart-TV</li>
+                                                    <li>Spacious work desk</li>
+                                                    <li>En-suite bathroom</li>
+                                                    <li>24-hour room service</li>
+                                                </ul>
+                                              <Button type="submit"   onClick={() => setShowPopup(true)} btnLabel="Book Now"/>
+                                              {/*  This displays the popUp */}
+                                                {showPopup && <PayPopUp Amount="200" title="Garden View" onClose={() => setShowPopup(false)} />}
+                                            </BookImgDesign>
+                                      </div>
+
+                                      <div className="bookImgContainer duluxe1">
+                                              <BookImgDesign className="roomDetails">
+                                                  <h4>City View</h4>
+                                                  <ul>
+                                                      <li>Plush king-size bed</li>
+                                                      <li>High-speed Wi-Fi</li>
+                                                      <li>43' smart-TV</li>
+                                                      <li>Spacious work desk</li>
+                                                      <li>En-suite bathroom</li>
+                                                      <li>24-hour room service</li>
+                                                  </ul>
+
+                                                  <Button type="submit"   onClick={() => setShowPopup(true)} btnLabel="Book Now"/>
+                                                {/*  This displays the popUp */}
+                                                  {showPopup && <PayPopUp Amount="150" title="City View" onClose={() => setShowPopup(false)} />}
+                                              </BookImgDesign>
+                                      </div>
+
+                                      <div className="bookImgContainer duluxe3">
+                                          <BookImgDesign className="roomDetails">
+                                              <h4>Balcony Gaze</h4>
+                                              <ul>
+                                                  <li>Plush king-size bed</li>
+                                                  <li>High-speed Wi-Fi</li>
+                                                  <li>43' smart-TV</li>
+                                                  <li>Spacious work desk</li>
+                                                  <li>En-suite bathroom</li>
+                                                  <li>24-hour room service</li>
+                                              </ul>
+                                              <Button type="submit"   onClick={() => setShowPopup(true)} btnLabel="Book Now"/>
+                                            {/*  This displays the popUp */}
+                                              {showPopup && <PayPopUp Amount="250" title="Balcony Gaze" onClose={() => setShowPopup(false)} />}
+                                          </BookImgDesign>
+                                      </div>
+
+                                      <div className="bookImgContainer duluxe4">
+                                          <BookImgDesign className="roomDetails">
+                                              <h4>Mountain View</h4>
+                                              <ul>
+                                                  <li>Plush king-size bed</li>
+                                                  <li>High-speed Wi-Fi</li>
+                                                  <li>43' smart-TV</li>
+                                                  <li>Spacious work desk</li>
+                                                  <li>En-suite bathroom</li>
+                                                  <li>24-hour room service</li>
+                                              </ul>
+                                            <Button type="submit"   onClick={() => setShowPopup(true)} btnLabel="Book Now"/>
+                                            {/*  This displays the popUp */}
+                                              {showPopup && <PayPopUp Amount="300" title="Mountain View" onClose={() => setShowPopup(false)} />}
+                                          </BookImgDesign>
+                                      </div>     
 
 
+                              </div>
+                           )}
 
-
-              
-               
-              
-              
-                    
+               {/*-----------  END OF ALL ROOMS , IMAGES AND DETAILS----------------  */}         
+              </div>
+           
         </div>
 
   </div>
@@ -210,52 +567,6 @@ const Reservations = ()=>{
                 <p>We are looking forwad to your value stay at SmatyGrand. <span>Feel at home!</span></p>
           </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
- 
-
-  
-
-
-    
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
