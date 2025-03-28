@@ -11,3 +11,16 @@ code {
     monospace;
     
 }
+
+
+/* This is the code to add snap scrolling effect */
+.html{
+  scroll-snap-type: y mandatory;
+}
+
+.scrollSnap{
+  margin:0px auto;
+  height:100vh;
+  width:100%;
+  scroll-snap-align: start;
+}

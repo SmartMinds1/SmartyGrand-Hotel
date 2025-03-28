@@ -43,7 +43,7 @@ const Contact = () => {
             <div className="locationSection">
                     <div className="nameAndLocation">
                             <p><span className='locationIcon'> <FontAwesomeIcon icon={faMapMarkerAlt}/> </span>Nairobi KE</p>
-                            <p><i>Max_Buiding, Next To Hilax Gardens Along WaterFalls Avenue! <br />
+                            <p><i>Max_Buiding, Next To Hilax Gardens. Along WaterFalls Avenue! <br />
                                 P.O Box 1279-20100, <br />
                                 Nairobi.</i></p>
                     </div>
@@ -70,7 +70,7 @@ const Contact = () => {
             <div className="contactIntro">
                
 
-            <h1>| Always here to assist you! As <br />&nbsp;  you create unforgettable <br />&nbsp;  memories. </h1>
+            <h1>|<span> Always here,</span> to assist you! <br />&nbsp;As you create unforgettable <br />&nbsp;  memories. </h1>
 
             <TextBox className="contactMessage1 TextDesign">
                     <p>Whether you have questions, special requests, or need help planning your stay, our dedicated team is just a call or email away. Reach out to us anytime—day or—night. Focus on your business objectives while we handle all the logistics.

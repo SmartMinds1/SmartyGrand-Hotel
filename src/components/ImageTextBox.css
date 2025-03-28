@@ -1,31 +1,26 @@
-*{
-    padding:0;
-    margin:0;
-    box-sizing: border-box;
-}
 
 /* This is the main div container that holds everything */
 .imageDiv{
-  float: left;
-  width: 15.8rem;
-  height: 22rem;
-  padding:0.3rem;
+  width: 16rem;
+  height: 50vh;
 }
 
 /* This divs will hold the featured rooms' images */
-    .divResize{
-        width:15rem;
-        height:18rem; 
+ .divResize{
+        width:100%;
+        height:80%; 
+        margin: auto;
         border-radius: 0.5rem;
         background-size: cover;
         background-position: center;
+        background-position-y: 100%;
     }
    .featuredRoom1{
-    background-image: url(../assets/Diluxe2.jpg);
+    background-image: url(../assets/animeReservation/pexels-charlotte-may-5825536.jpg);
  
   }
   .featuredRoom2{
-    background-image: url(../assets/Deluxe1.jpg);
+    background-image: url(../assets/animeReservation/pexels-houzlook-3797991.jpg);
 
   }
   .featuredRoom3{
@@ -35,41 +30,29 @@
 
   
 .captionDiv{
-    width:15rem;
-    height:10rem;
-    background-color:rgba(4, 11, 29, 0.582);
-    transform: translate(6rem, -8rem);
-    text-align: center;
-    backdrop-filter: blur(10px);
-    color: rgb(231, 231, 255);
-
-    border-top:1px solid rgb(231, 231, 255, 0.712);
-    border-top-right-radius: 1rem;
-    border-left:1px solid rgba(231, 231, 255, 0.712);
-    border-bottom-left-radius: 1rem;
-
-  
-  /*   transition: transform 300ms ease; */
+    width:100%;
+    height: 30vh;
+    padding-bottom: 0.55rem;
+    transform: translateY(-9rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 1rem;
+    background-image: linear-gradient(to top, var(--color-faded-background),var(--color-faded-background), transparent);
   
 }
-/* .captionDiv:hover{
-  transform: rotate(0deg);
-} */
+
 
 .captionDiv p:nth-child(1){
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: var(--color-accent-secondary);
+  font-size: 1.2rem;
+  font-weight: 400;
+  letter-spacing: 0.3rem;
+/*   color: var(--color-accent-secondary); */
 
 }
 .captionDiv p:nth-child(2){
-  font-size: 1rem;
+  font-size: 0.9rem;
   margin-top: 0.5rem;
   filter:brightness(0.95);
 }
-.featuredBtn{
-  position:absolute;
-  bottom: 0;
-  right:0;
 
-}

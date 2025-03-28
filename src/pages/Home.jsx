@@ -77,7 +77,7 @@ function Home() {
             
               <div className="captionTextBox">
                   <div className="captionHeaderText  urbanist">
-                      <h1>Your cozy home <br />away from <br />home!</h1>
+                      <h1>Your cozy home <br />away <span>from <br />home!</span></h1>
                   </div>
 
                   <div className="captionBodyText">
@@ -113,7 +113,7 @@ function Home() {
 {/* ..............................The WHY US section................................ */}
           <div className="homeSection1">
                 <p className="why_Us">| Why Us</p>
-                <h1 className="h1Text">Offering a unique and exceptional experience.</h1>
+                <h1 className="h1Text"><span>Offering,</span> a unique and exceptional experience!</h1>
                 <StylishBox className="homeMessage1 TextDesign">
                     <p>Nestled amidst the bustling energy of the city, 
                        our hotel offers a serene escape where modern elegance
@@ -127,25 +127,26 @@ function Home() {
           <div className="section1RightImage">
             <div className="style1 mainDivStyle">
                 <div className="style2 mainDivStyle">
-                    <div className="style3 mainDivStyle">
-                    </div>
+                   {/*  <div className="style3 mainDivStyle">
+                    </div> */}
+                    <button>Explore More...</button>
                 </div>
                 </div>
             </div>
           <div className="clear"></div>
 
-          <div className="bodyHr"></div>
 
 
 
 
  {/*-------------------------------- This is the featured rooms and suits section -----------------------------*/}
            <div className='featuredRooms scrollSnap'>
-           <p className="featuredRoomsHeader">| Featured rooms</p>
+               <p className="featuredRoomsHeader">| Featured rooms</p>
+               <div className="featuredImagesDiv">
                     <ImageTextBox
                             className="featuredRoomContainer"
                             captionTitle ="| Deluxe rooms"
-                            captionMessage="Luxury, Comfort & Elegance Await!"
+                            captionMessage="Luxury & Comfort Awaits!"
                             btnIcon = ""
                             btnAction = "submit"
                             >
@@ -154,7 +155,7 @@ function Home() {
                     <ImageTextBox
                             className="featuredRoomContainer"
                             captionTitle ="| Family rooms"
-                            captionMessage="Spacious, Cozy & Perfect Together!"
+                            captionMessage="Spacious, Cozy & Perfect!"
                             btnIcon = ""
                             btnAction = "submit"
                             >
@@ -163,18 +164,19 @@ function Home() {
                     <ImageTextBox
                             className="featuredRoomContainer"
                             captionTitle ="| Cofference hall"
-                            captionMessage="Ensuring a seamless and productive event."
+                            captionMessage="Seamless & productive events!"
                             btnIcon = ""
                             btnAction = "submit"
                             >
                                <div className="featuredRoom3 divResize">  </div>
                     </ImageTextBox>
+                </div>
           </div>
 
       {/*     <LayoutTest/> */}
 
 
-          <div className="bodyHr"></div>
+      
 
           
 
@@ -182,11 +184,19 @@ function Home() {
 <div className="testimonialSection scrollSnap">
           <div className="testimonialsCaption">
                 <p className="why_Us">| Our Testimonials</p>
-                <h1 className="h1Text">Here’s what our clients have to say about us.</h1>
+                <h1 className="h1Text"><span>Here’s</span> what our clients have to say about us.</h1>
                <TextBox className="homeMessage1 TextDesign testimoniaLights">
-                    <p>From our warm hospitality to our thoughtfully designed spaces, every detail is crafted to ensure comfort and satisfaction. But don’t just take our word for it—hear from our valued guests who have experienced it firsthand.
+                    <p>From our warm hospitality to our thoughtfully designed spaces. 
+                        every detail is crafted to ensure comfort and satisfaction. 
                     </p>
                </TextBox>
+               <TextBox className="homeMessage1 TextDesign testimoniaLights">
+                    <p>But don’t just take our word for it—hear from our valued
+                         guests who have experienced it firsthand.
+                    </p>
+               </TextBox>
+
+
           </div>
          {/*  This is the testimonial box to hold the users says */}
           <div className="clientTestimonials">
@@ -204,7 +214,7 @@ function Home() {
 {/*.............................. Special offers and promos section .................................*/}
 <div className="promoSection scrollSnap">
          <p className="promosHeader">| Special Offers and Promos!</p>
-         <h1 className="promoh1Text">Stay in style – unlock exclusive promos for  <br /> <span>unforgettable memories !</span></h1>
+         <h1 className="promoh1Text"><span>Stay in style – </span> unlock exclusive promos for  <br /> <span>unforgettable memories !</span></h1>
 
          <div className="promoParagraph">
           <p>Your perfect escape awaits! Join us today for amazing offers, top-tier comfort, and an experience you'll cherish forever!</p>

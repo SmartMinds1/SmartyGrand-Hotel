@@ -1,13 +1,9 @@
-*{
-    padding: 0;
-    margin:0;
-    box-sizing: border-box;
-}
 
 /* textbox widh to be defined where its rendered */
 .TextBox{
     background-image: linear-gradient(to top, rgb(7, 16, 37), transparent);
     padding:1rem;
+    margin-bottom: 2rem;
   
 }
 
@@ -16,6 +12,7 @@
     color:#f0f8ff;
     filter:brightness(0.85);
     text-align: left;
-    line-height: 1.8rem;
+/*     line-height: 5rem; */
+    letter-spacing: 1px;
    
 }

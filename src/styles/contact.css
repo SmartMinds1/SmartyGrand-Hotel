@@ -1,8 +1,3 @@
-*{
-    padding:0;
-    margin:0;
-    box-sizing: border-box;
-}
 
 /* This is the main container div */
 .locationSection{
@@ -17,12 +12,17 @@ margin-bottom: 4rem;
 
 /* Name and location Address */
 .nameAndLocation{
-    color:rgb(211, 211, 255);   
+    color:var(--color-text);
     }
+.nameAndLocation p:nth-child(1){
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+}
 
 .nameAndLocation p:nth-child(2){
     margin-left: 10%;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 .locationIcon{
     color: var(--color-accent-secondary);
@@ -68,7 +68,8 @@ margin-bottom: 4rem;
 .phoneImageShadder p{
     color:aliceblue;
     margin-top: 8rem;
-    font-size: 2rem;
+    font-size: 1.5rem;
+    letter-spacing: 0.3rem;
 }
 .OfficeTelephone{
    /*  filter: blur(3px); */
@@ -103,6 +104,9 @@ margin-bottom: 4rem;
   /*   background-color: brown; */
     font-size: 2.5rem;
     font-weight: 300;
+}
+.contactIntro h1 span{
+    font-weight: 800;
 }
 
 .contactMessage1{

@@ -136,24 +136,28 @@
   margin-bottom: 0.5rem;
   font-size: 3rem;
   background-clip: text;
-  background-image: linear-gradient(to top right, rgb(211, 211, 255), rgb(211, 211, 255), var(--color-accent-secondary), rgb(211, 211, 255),rgb(211, 211, 255), rgb(211, 211, 255));
+  background-image: linear-gradient(to top right, var(--color-text), var(--color-text), var(--color-accent-secondary), var(--color-text),var(--color-text), var(--color-text));
   color:transparent;
+}
+.captionHeaderText h1 span{
+ font-weight: 300;
+
 }
 .captionBodyText {
   margin:auto;
   width:30%;
   padding:1rem;
-  background-color: #ff562217;
+  background-color: #ff56220c;
   height: 7rem;
   font-size: 1.2rem;
   text-align: center;
   font-weight: 300;
-  color:rgb(211, 211, 255);
+  color: var(--color-text);
 
   animation: captionBodyTextSlide 3s ease-in-out 0s forwards;
 
 }
-@keyframes captionBodyTextSlide  {
+@keyframes captionBodyTextSlide {
   from{
     width:0;
     filter:brightness(0.5);
@@ -168,7 +172,7 @@
 
 
 .WelcomeParagraph{
-  color:rgb(211, 211, 255);
+  color:var(--color-text);
   letter-spacing: 0.3rem;
   font-size: 1.1rem;
   margin-bottom: 2rem;
@@ -200,6 +204,9 @@ margin-bottom: 2rem;
     font-size: 2.5rem;
     font-weight: 300;
 }
+.h1Text span{
+  font-weight: 800;
+}
 .homeMessage1{
   margin: auto;
   width:80%;
@@ -217,43 +224,92 @@ margin-bottom: 2rem;
 
 }
 .mainDivStyle {
-  width: 18rem;
-  height:19rem;
+  width: 15rem;
+  height:60vh;
+  border-radius: 2rem;
   transform: translate(1rem, 1rem);
+
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  box-shadow: 2px 2px 15px  var(--color-accent-secondary);
 }
 .style1{
-  background-color: transparent;
+  background-color: var(--color-text);
+  transform: rotateZ(25deg) translateY(3rem);
+  margin-left: 30%;
+
+  background-image: url(../assets/animeReservation/introAnimation7.jpg);
+  background-position-x: 64%;
+
+  
+  
 }
 .style2{
-  background-color: transparent;
+  transform: rotateZ(-25deg) translate(-5rem, -4rem);
+  background-color: var(--color-accent-secondary);
+
+
+  background-image: url(../assets/animeReservation/pexels-houzlook-3797991.jpg);
+  background-position-x: 90%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
-.style3{
+.style2 button{
+width:60%;
+height: 2rem;
+padding:0.5rem;
+font-size: 1rem;
+border-radius: 2rem;
+border:none;
+margin:0 1rem 1rem 0;
+background-color: var(--color-text);
+
+transition: all 200ms;
+
+}
+.style2 button:hover{
+  filter: brightness(0.85);
+  
+}
+
+
+
+/* .style3{
   background-image: url(../assets/modernHotelTable.png);
   background-position-x: 25%;
   background-size: cover;
-}
+} */
 
 /* ...............This is the featured rooms section just below the first section ..........*/
 .featuredRooms{
   width:100%;
   height:fit-content;
-  padding:1%;
-  text-align: left;
-  margin:5rem 0 5rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+
+  margin: 5rem 0rem 20vh 0rem;
+  
+}
+
+.featuredImagesDiv{
+  width:60%;
+  height:fit-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap:1rem;
+  margin-top: 3rem;
 }
 .featuredRoomsHeader{
-font-size: 1.1rem;
-font-weight: bold;
-color:#FF5722;
-text-align: left;
-margin-left: 8%;
-margin-bottom: 3rem;
-
+  color: var(--color-faded-accent-primary);
 }
-.featuredRooms div{
-  display: inline-block;
-  margin-inline:5%;
-} 
 
 
 
@@ -309,7 +365,10 @@ text-align: right;
 
 }
 
-.promoh1Text span{
+.promoh1Text span:nth-child(1){
+  font-weight: 800;
+}
+.promoh1Text span:nth-child(2){
   color:var(--color-accent-secondary);
 }
 
@@ -317,7 +376,7 @@ text-align: right;
 .promoParagraph{
   width: 100%;
   height: fit-content;
-  color:rgb(211, 211, 255);
+  color:var(--color-text);
   font-size: 1.1rem;
   line-height: 1.7rem;
   filter: brightness(0.85);
@@ -339,7 +398,7 @@ text-align: right;
 .promoJoinUs{
   width: 100%;
   height: fit-content;
-  color:rgb(211, 211, 255);
+  color:var(--color-text);
   font-size: 1.1rem;
   margin-top: 4rem;
   text-align: left;
@@ -389,6 +448,5 @@ text-align: right;
     padding: 1rem;
     font-size: 1.2rem;
     font-weight: 200;
-    color:rgb(211, 211, 255);
+    color:var(--color-text);
   }
-  
