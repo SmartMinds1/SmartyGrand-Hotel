@@ -1,11 +1,6 @@
-*{
-    box-sizing: border-box;
-    padding:0;
-    margin:0;
 
-}
 .mainBoard{
-    background-color: yellow;
+    background-color: var(--color-background);
     width: 100%;
     height: 100vh;
     display: flex;
@@ -14,17 +9,59 @@
     justify-content: space-evenly;
 }
 .headerDiv{
-    background-color: rgb(226, 13, 180);
-    height: 7vh;
+    background-color: var(--color-faded-background);
+    height: 7.5vh;
     width:100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    padding-left: 3%;
+    padding-right: 1%;
 }
 
+/* styling headers */
+.headerDiv h1{
+    font-size: 1.8rem;
+}
+.headerDiv h1 span{
+    color: var(--color-accent-secondary);
+    font-weight: 300;
+}
+.headerDiv h2{
+    font-size: 1.8rem;
+}
+.headerDiv h2 span{
+    color:var(--color-accent-secondary);
+}
+
+/* adminProfile */
+.adminDiv{
+    height:3rem;
+    width:15%;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.adminProfile{
+    width:3rem;
+    height:3rem;
+    border-radius: 50%;
+    background-image: url(../assets/favicon.ico);
+    background-size: contain;
+    border:1px solid #55ddf5;
+}
+.adminDiv p{
+    font-size: 1rem;
+    color: var(--color-text);
+}
+
+
+
+/*------------- NOW MOVING TO THE MAIN DIV --------------*/
 .mainDiv{
-    background-color: aqua;
+    background-color: var(--color-text);
     width:100%;
     height: 92vh;
     display:flex;
@@ -32,61 +69,66 @@
     align-items: center;
     justify-content: space-evenly;
 }
-
+/* Wrapper div for the entire navigation div menu
+  when hoverd, it opens to show the hidden nav links
+*/
 .wrapper {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     width:2.5rem;
+    height: 92vh;
     transition:  width 1s ease-in-out; 
-    background-color: darkblue;
+    background-color:var(--color-background);
+    padding:0.1%;
+    gap: 1%;
 }
 .wrapper:hover {
     width: 15.5rem; /* Expand the wrapper smoothly */
 }
+
+/*----The div holding the nav icons on the left side------- */
 .iconsDiv{
-    background-color: rgb(8, 31, 51);
+    background-color: var(--color-faded-background);
     width:2.5rem;
-    height: 92vh;
+    height: 100%;
     cursor:pointer;
 }
+/* nav links div */
 .navDiv{
-    background-color: #fa764e;
+    background-color:var(--color-faded-background);
     width: 0;
-  /*   width: 13.5rem;  */
-    height: 89vh;
+    height: 100%;
     overflow: hidden;
     transition:  width 1s ease-in-out;
     cursor:pointer;    
 }
 .wrapper:hover  .navDiv{
-    width: 13.5rem; 
+    width: 12.6rem; 
  }
-
 .navDiv ul{
-    background-color: purple;
     width:100%;
     height: fit-content;
     margin:auto;
     line-height: 3rem;
 }
 .navDiv ul li{
-    background-color: grey;
+    background-color: var(--color-background);
     list-style-type: none;
     margin-bottom: 1rem;
     font-size: 1rem;
     transition: all 0.3s;
 }
 .navDiv ul li:hover, .navDiv ul li:focus{
-    border-bottom: 1px solid aliceblue;
+    border-bottom: 1px solid var(--color-text);
     filter:brightness(0.8);
 }
 
 
-
+/* -----------This is the content div with the data retrieved from the database ----------------*/
 .contentDiv{
- background-color: rgb(187, 108, 12);
+ background-color: var(--color-background);
  height: 92vh;
  display:flex;
  flex-direction: column;
@@ -94,12 +136,11 @@
  align-items: flex-start;
  gap: 1%;
  flex-grow: 2;
- margin-left: 0.5%;
+ margin-left: 0.1%;
  padding:1%;
 
 }
 .contentHeader{
-    background-color: rgb(114, 91, 63);
     width: 100%;
     height: 25vh;
     display:flex;
@@ -113,68 +154,81 @@
     width:20%;
     height:8rem;
     border-radius: 0.5rem;
-    background-color: black;
-    color:white;
-
+    background-color: var(--color-faded-background);
+    color:var(--color-text);
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
+.box p{
+    font-size: 1rem;
+}
+.box p span{
+    font-size: 2rem;
+    color: var(--color-accent-primary);
+}
 .dbContentHeader{
     width:60%;
     height:7vh;
-    background-color: rgb(44, 70, 80);
+    background-color: var(--color-background);
     border-top-right-radius: 2rem;
-    border-bottom-right-radius: 2rem;
-
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+    margin-bottom: 1rem;
+}
+.dbContentHeader p{
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 .nameOfContentDisplayed{
-    width:25%;
+    width:20%;
     height: 2rem;
-    background-color: red;
+    background-color: var(--color-faded-background);
+
 }
+
 .searchBox{
     width:40%;
     height: 2rem;
-    background-color: rgb(217, 255, 0);
+    background-color: var(--color-faded-background);
 }
 .sortBy{
-    width:15%;
+    width:24%;
     height: 2rem;
-    background-color: rgb(47, 0, 255);
+    border-radius: 1rem;
+    background-color: var(--color-faded-background);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
+.sortBy select{
+  background-color: var(--color-text);
+  height: 80%;
+  border:none;
+  font-size: 0.9rem;
+  margin-right: 10%;
+  outline:none;
+}
+/* .sortBy select option{
+   
+  
+} */
 .dbContent{
     width:100%;
     height:55vh;
-    background-color: skyblue;
-    overflow: hidden;
-    overflow: scroll;
+    background-color: var(--color-faded-background);
+    overflow-x: hidden;
+    overflow-y: scroll;
+    border:1px solid #7082a848;
+    
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* MY COLORS */
-
 body {
     background-color: var(--color-background);
     color: var(--color-text);
@@ -190,68 +244,3 @@ body {
     color: var(--color-background);
   }
   
-
-
-
-
-
-
-
-
-
-.dashBoard{
-    width:100%;
-    height: 100vh;
-    background-image: linear-gradient(to top, rgb(7, 16, 37) , #040b1d);
-
-   /*  chatform color */
-    background-image: linear-gradient(to right,  rgb(7, 16, 37) , #ff562217);
-}
-.iconsBar{
-    width:20%;
-    height:30rem;
-    background-color: #fa764e;
-    float: left;
-}
-.dashIcons{
-    background-color: #ff562217;
-    width:20%;
-    height: 100vh;
-}
-.sidenav{
-    width:20%;
-    height: 100vh;
-    background-color: #c42e00;
-    float:left;
-
-
-    color:rgb(211, 211, 255);
-}
-.div1mainColorShade{
-   
-    height: 100vh;
-    width: 20%;
-
-}
-.div2mainColorShade{
-    background-color: rgb(25, 30, 41);
-    height: 100vh;
-    width: 20%;
-
-}
-.div3mainColorShade{
-    background-color: rgb(28, 31, 37);
-    height: 100vh;
-    width: 20%;
-
-}
-.mainNav{
-    width:50%;
-    height: 100vh;
-    background-color: black;
-    float:right;
-    color:rgb(211, 211, 255);
-}
-.clear{
-    clear:both;
-}

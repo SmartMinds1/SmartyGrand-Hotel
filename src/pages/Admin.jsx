@@ -34,8 +34,13 @@ const Admin = () => {
 {/*......................... dashBoard headings ...........................*/}
            <div className="mainBoard">
                    <div className="headerDiv">
-                        <h2>DASHBOARD</h2>
-                        <h2>smartyGrand</h2>
+                        <h2> <span>&#9776;</span> DASHBOARD</h2>
+                        <h1><span>smarty</span>Grand</h1>
+                        <div className="adminDiv">
+                            <div className="adminProfile"></div>
+                            <p>Admin Name</p>
+                        </div>
+                        
                    </div>
                     
 
@@ -61,28 +66,85 @@ const Admin = () => {
 
                        {/* this is the main content div that will display the data retrieved from the database */}
                         <div className="contentDiv">
-                          <div className="contentHeader">
-                                   <div className="box">
-                                        Box1
-                                    </div>
-                                    <div className="box">
-                                        Box2
-                                    </div>
-                                    <div className="box">
-                                        Box3
-                                    </div>
-                                    <div className="box">
-                                        Box4
-                                    </div>
-                                    <div className="box">
-                                        Box5
-                                    </div>
-                          </div>
 
+                        {/*  this displays the number of different items from the database */}
+                             <div className="contentHeader">
+                                   <div className="box">
+                                    <p>
+                                        <span id="userCount">25</span> <br />
+                                        Users
+                                    </p>
+                                        <i class="fas fa-user"></i>
+                                        {/*  Font Awesome multiple users icon */}
+                                    </div>
+
+
+                                    <div className="box">
+                                        <p>
+                                            <span id="messageCount">120</span> <br />
+                                            Messages
+                                        </p>
+                                          <i class="fas fa-comments"></i>
+                                            {/* Font Awesome messages icon */} 
+                                    </div>
+
+
+                                    <div className="box">
+                                        <p>
+                                            <span id="bookingCount">87</span> <br />
+                                            Bookings
+                                        </p>
+                                            <i class="fas fa-calendar-check"></i>
+                                            {/* Font Awesome bookings icon */} 
+                                    </div>
+
+
+                                    <div className="box">
+                                        <p><span id="paymentCount">93</span> <br />
+                                            Payments
+                                        </p>
+                                            <i class="fas fa-money-check"></i>
+                                            {/* Font Awesome payments icon  */}
+                                    </div>
+
+
+                                    <div className="box">
+                                        <p><span id="paymentCount">62</span> <br />
+                                            Testimonials
+                                        </p>
+                                            <i class="fas fa-money-check"></i>
+                                            {/* Font Awesome payments icon  */}
+                                    </div>
+
+
+                                    <div className="box">
+                                        <p><span id="paymentCount">3</span> <br />
+                                            Admins
+                                        </p>
+                                            <i class="fas fa-money-check"></i>
+                                            {/* Font Awesome payments icon  */}
+                                    </div>
+
+                              </div>
+
+
+
+                         {/*  DB DATA DISPLAY */}
                           <div className="dbContentHeader">
-                                <div className="nameOfContentDisplayed"></div>
-                                <div className="sortBy"></div>     
-                                <div className="searchBox"></div>
+                                <div className="nameOfContentDisplayed">
+                                 <p> Users</p>
+                                </div>
+                                <div className="sortBy">
+                                  <p> Sort by</p>
+                                  <select name="nameOfContent" id="nameOfContent">
+                                        <option value="Latest selected">Latest</option>
+                                        <option value="Oldest">Oldest</option>
+                                        <option value="Frequent">Frequent</option>
+                                  </select>
+                                </div>     
+                                <div className="searchBox">
+                                    <p>search</p>
+                                </div>
                           </div>
                           
                           <div className="dbContent">
