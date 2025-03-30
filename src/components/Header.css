@@ -49,7 +49,6 @@ font-size: 1.5rem;
 }
 .navBar{
 height: 3rem;
-background-image:linear-gradient(to top, rgb(21, 28, 46,0.5),rgb(4, 11, 29, 0.5));
 }
 
 .navBar div{

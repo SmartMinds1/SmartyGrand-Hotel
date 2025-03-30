@@ -1,6 +1,7 @@
 const cors = require("cors");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
+const logger = require("../utils/logger");
 
 const commonMiddleware = (app) => {
   // Security headers
@@ -10,11 +11,14 @@ const commonMiddleware = (app) => {
   const rateLimiter = rateLimit({
     windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS, 10) || 15 * 60 * 1000, // Default: 15 minutes
     max: parseInt(process.env.RATE_LIMIT_MAX, 10) || 100, // Default: 100 requests per window
-    message: {
-      status: 429,
-      error: "Too many requests",
-      message:
-        "You have exceeded the maximum allowed requests. Please try again later.",
+    handler: (req, res) => {
+      logger.warn(`Rate limit exceeded for IP: ${req.ip}`);
+      res.status(429).json({
+        status: 429,
+        error: "Too many requests",
+        message:
+          "You have exceeded the maximum allowed requests. Please try again later.",
+      });
     },
     standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
     legacyHeaders: false, // Disable `X-RateLimit-*` headers
@@ -31,9 +35,8 @@ const commonMiddleware = (app) => {
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
-        callback(
-          new Error(`CORS policy: The origin "${origin}" is not allowed.`)
-        );
+        logger.warn(`Blocked CORS request from origin: ${origin}`);
+        callback(null, false); // Instead of throwing an error, we deny the request gracefully
       }
     },
     credentials: true,

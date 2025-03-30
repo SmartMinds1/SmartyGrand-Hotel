@@ -1,4 +1,4 @@
-//Database connection pool setup
+// Database connection pool setup
 const mariadb = require("mariadb");
 const logger = require("./utils/logger"); // Use logger for better logging
 
@@ -26,6 +26,19 @@ const pool = mariadb.createPool({
 // Handle pool connection errors
 pool.on("error", (err) => {
   logger.error(`Database connection error: ${err.message}`);
+});
+
+// Graceful shutdown handling
+process.on("SIGINT", async () => {
+  try {
+    logger.info("Closing database connection pool...");
+    await pool.end();
+    logger.info("Database pool closed.");
+    process.exit(0);
+  } catch (err) {
+    logger.error(`Error closing database pool: ${err.message}`);
+    process.exit(1);
+  }
 });
 
 module.exports = pool;

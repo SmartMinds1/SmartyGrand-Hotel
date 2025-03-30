@@ -50,17 +50,23 @@ const Admin = () => {
                                 <div className="iconsDiv">
                                 <AdminNavIcons/>
                                 </div>
-                            
+
+                               
+                        {/* This is the nav links div and the profile pic */}
                                 <div className="navDiv">
-                                    <ul>
-                                        <li>Users</li>
-                                        <li>Bookings</li>
-                                        <li>Messsages</li>
-                                        <li>Payments</li>
-                                        <li>complains</li>
-                                        <li>Admins</li>
-                                        <li></li>
-                                    </ul>
+                                        <div className='hello'>
+                                            <div className="profile"> </div>
+                                            <p><span>Hi</span> Smart!</p>
+                                        </div>
+                                        <ul>
+                                            <li>Users</li>
+                                            <li>Bookings</li>
+                                            <li>Messsages</li>
+                                            <li>Payments</li>
+                                            <li>complains</li>
+                                            <li>Admins</li>
+                                            <li></li>
+                                        </ul>
                                 </div>
                         </div>
 

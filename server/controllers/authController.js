@@ -9,16 +9,14 @@ const { executeQuery } = require("../utils/dbHelper");
 exports.register = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    logger.warn(
-      `Validation failed for registration: ${JSON.stringify(errors.array())}`
-    );
+    logger.warn(`Validation failed: ${JSON.stringify(errors.array())}`);
     return res.status(400).json({ errors: errors.array() });
   }
 
   const { username, email, password } = req.body;
 
   try {
-    const saltRounds = process.env.NODE_ENV === "production" ? 12 : 8;
+    const saltRounds = process.env.NODE_ENV === "production" ? 12 : 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
     await executeQuery(
@@ -26,18 +24,17 @@ exports.register = async (req, res) => {
       [username, hashedPassword, email]
     );
 
-    logger.info(`User registered successfully: ${username}`);
+    logger.info(`User registered: ${username}`);
     res.status(201).json({ message: "User registered successfully." });
   } catch (error) {
     if (error.errno === 1062) {
-      logger.warn(
-        `Registration failed: Username or email already exists (${username})`
-      );
-      res.status(409).json({ message: "Username or email already exists." });
-    } else {
-      logger.error(`Registration error: ${error.message}`);
-      res.status(500).json({ message: "Server error." });
+      logger.warn(`Registration failed: Duplicate entry for ${username}`);
+      return res
+        .status(409)
+        .json({ message: "Username or email already exists." });
     }
+    logger.error(`Registration error: ${error.message}`);
+    res.status(500).json({ message: "Internal server error." });
   }
 };
 
@@ -45,25 +42,24 @@ exports.register = async (req, res) => {
 exports.login = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    logger.warn(
-      `Validation failed for login: ${JSON.stringify(errors.array())}`
-    );
+    logger.warn(`Validation failed: ${JSON.stringify(errors.array())}`);
     return res.status(400).json({ errors: errors.array() });
   }
 
   const { username, password } = req.body;
 
   try {
-    const [user] = await executeQuery(
-      "SELECT * FROM smartydb_users WHERE username = ?",
+    const users = await executeQuery(
+      "SELECT id, username, password FROM smartydb_users WHERE username = ?",
       [username]
     );
 
-    if (!user) {
+    if (users.length === 0) {
       logger.warn(`Login failed: User not found (${username})`);
       return res.status(401).json({ message: "Invalid credentials." });
     }
 
+    const user = users[0];
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       logger.warn(`Login failed: Incorrect password (${username})`);
@@ -79,11 +75,11 @@ exports.login = async (req, res) => {
       username: user.username,
     });
 
-    logger.info(`Login successful for username: ${username}`);
+    logger.info(`Login successful: ${username}`);
     res.json({ accessToken, refreshToken });
   } catch (error) {
-    logger.error(`Login error for username: ${username} - ${error.message}`);
-    res.status(500).json({ message: "Server error." });
+    logger.error(`Login error: ${error.message}`);
+    res.status(500).json({ message: "Internal server error." });
   }
 };
 
@@ -91,9 +87,7 @@ exports.login = async (req, res) => {
 exports.refreshToken = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    logger.warn(
-      `Validation failed for refresh token: ${JSON.stringify(errors.array())}`
-    );
+    logger.warn(`Validation failed: ${JSON.stringify(errors.array())}`);
     return res.status(400).json({ errors: errors.array() });
   }
 
@@ -102,7 +96,7 @@ exports.refreshToken = async (req, res) => {
   try {
     const payload = jwtHelper.verifyRefreshToken(refreshToken);
     if (!payload) {
-      logger.warn(`Invalid refresh token: ${refreshToken}`);
+      logger.warn(`Invalid refresh token.`);
       return res.status(403).json({ message: "Invalid refresh token." });
     }
 
@@ -111,11 +105,11 @@ exports.refreshToken = async (req, res) => {
       username: payload.username,
     });
 
-    logger.info(`New access token generated for user: ${payload.username}`);
+    logger.info(`New access token issued for user: ${payload.username}`);
     res.json({ accessToken: newAccessToken });
   } catch (error) {
-    logger.error(`Error in /refresh-token: ${error.message}`);
-    res.status(500).json({ message: "Server error." });
+    logger.error(`Refresh token error: ${error.message}`);
+    res.status(500).json({ message: "Internal server error." });
   }
 };
 
@@ -126,12 +120,11 @@ exports.logout = async (req, res) => {
   try {
     const decoded = jwtHelper.verifyAccessToken(accessToken);
     if (!decoded) {
-      logger.warn(`Invalid access token: ${accessToken}`);
+      logger.warn(`Invalid access token.`);
       return res.status(403).json({ message: "Invalid access token." });
     }
 
     const expiresIn = decoded.exp - Math.floor(Date.now() / 1000);
-
     await redisClient.set(accessToken, "blacklisted", { EX: expiresIn });
 
     const result = await executeQuery(
@@ -140,14 +133,14 @@ exports.logout = async (req, res) => {
     );
 
     if (result.affectedRows === 0) {
-      logger.warn(`Logout failed: Refresh token not found - ${refreshToken}`);
+      logger.warn(`Logout failed: Refresh token not found.`);
       return res.status(403).json({ message: "Invalid refresh token." });
     }
 
-    logger.info(`User logged out successfully: ${decoded.username}`);
+    logger.info(`User logged out: ${decoded.username}`);
     res.json({ message: "Logged out successfully." });
   } catch (error) {
-    logger.error(`Error in /logout: ${error.message}`);
-    res.status(500).json({ message: "Server error." });
+    logger.error(`Logout error: ${error.message}`);
+    res.status(500).json({ message: "Internal server error." });
   }
 };

@@ -1,4 +1,4 @@
-//Helper functions for signing/verifying JWTss
+// Helper functions for signing/verifying JWTs
 
 const jwt = require("jsonwebtoken");
 const redisClient = require("./redisClient");
@@ -8,12 +8,17 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const ACCESS_TOKEN_EXPIRY = "15m"; // Adjust as needed
 const REFRESH_TOKEN_EXPIRY = "7d"; // Adjust as needed
 
+if (!JWT_SECRET) {
+  logger.error("JWT_SECRET is not defined. Exiting...");
+  process.exit(1);
+}
+
 // Function to verify the access token
 const verifyAccessToken = (token) => {
   try {
-    const decoded = jwt.verify(token, JWT_SECRET);
-    return decoded;
+    return jwt.verify(token, JWT_SECRET);
   } catch (error) {
+    logger.warn(`Access token verification failed: ${error.message}`);
     throw new Error("Invalid token or not authorized.");
   }
 };
@@ -61,9 +66,7 @@ const verifyToken = (token) => {
 // Decode Token (without verification)
 const decodeToken = (token) => {
   try {
-    const decoded = jwt.decode(token);
-    logger.info(`Token decoded: ${JSON.stringify(decoded)}`);
-    return decoded;
+    return jwt.decode(token);
   } catch (error) {
     logger.error(`Error decoding token: ${error.message}`);
     throw error;
@@ -84,12 +87,7 @@ const blacklistToken = async (token, expiryTime) => {
 // Check if Token is Blacklisted
 const isTokenBlacklisted = async (token) => {
   try {
-    const result = await redisClient.get(token);
-    if (result === "blacklisted") {
-      logger.warn(`Token is blacklisted.`);
-      return true;
-    }
-    return false;
+    return (await redisClient.get(token)) === "blacklisted";
   } catch (error) {
     logger.error(`Error checking token blacklist: ${error.message}`);
     throw error;
@@ -104,5 +102,4 @@ module.exports = {
   blacklistToken,
   isTokenBlacklisted,
   verifyAccessToken,
-  isTokenBlacklisted,
 };

@@ -1,13 +1,19 @@
-// Centralized error-handling middleware (optional)
-
 const logger = require("../utils/logger");
 
-// Global error-handling middleware
+// Centralized error-handling middleware
 const errorHandler = (err, req, res, next) => {
-  logger.error(`Error: ${err.message} | Stack: ${err.stack}`);
   const statusCode = err.statusCode || 500;
+  const errorMessage = err.message || "Internal Server Error";
+
+  logger.error(
+    `Error: ${errorMessage} | Status: ${statusCode} | Stack: ${err.stack}`
+  );
+
   res.status(statusCode).json({
-    message: err.message || "Internal Server Error",
+    success: false,
+    status: statusCode,
+    error: errorMessage,
+    stack: process.env.NODE_ENV === "development" ? err.stack : undefined, // Only send stack in development mode
   });
 };
 
