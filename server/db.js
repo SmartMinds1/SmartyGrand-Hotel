@@ -1,42 +1,44 @@
-// Database connection pool setup
-const mariadb = require("mariadb");
-const logger = require("./utils/logger"); // Use logger for better logging
+// Database connection setup for PostgreSQL
+const { Pool } = require("pg");
+const logger = require("../utils/logger");
 
-const pool = mariadb.createPool({
-  host: process.env.DB_HOST || "localhost",
-  user: process.env.DB_USER || "auth_user",
-  password: process.env.DB_PASSWORD || "your_password",
-  database: process.env.DB_NAME || "auth_db",
-  connectionLimit: 10, // Maximum number of connections in the pool
-  acquireTimeout: 10000, // 10 seconds to acquire a connection before throwing an error
+const pool = new Pool({
+  user: process.env.PG_USER || "smartminds",
+  host: process.env.PG_HOST || "localhost",
+  database: process.env.PG_DATABASE || "smartygrand_hotel",
+  password: process.env.PG_PASSWORD || "your_password",
+  port: process.env.PG_PORT || 5432,
+  max: 10, // Maximum number of connections in the pool
+  idleTimeoutMillis: 30000, // Close idle connections after 30 seconds
+  connectionTimeoutMillis: 10000, // 10 seconds timeout for acquiring a connection
 });
 
 // Test database connection
 (async () => {
   try {
-    const conn = await pool.getConnection();
-    logger.info("Connected to the database");
-    conn.release(); // Always release the connection after testing
+    const client = await pool.connect();
+    logger.info("Connected to PostgreSQL database");
+    client.release();
   } catch (err) {
-    logger.error(`Database connection failed: ${err.message}`);
-    process.exit(1); // Exit process on failure
+    logger.error(`PostgreSQL connection failed: ${err.message}`);
+    process.exit(1);
   }
 })();
 
 // Handle pool connection errors
 pool.on("error", (err) => {
-  logger.error(`Database connection error: ${err.message}`);
+  logger.error(`PostgreSQL connection error: ${err.message}`);
 });
 
 // Graceful shutdown handling
 process.on("SIGINT", async () => {
   try {
-    logger.info("Closing database connection pool...");
+    logger.info("Closing PostgreSQL connection pool...");
     await pool.end();
-    logger.info("Database pool closed.");
+    logger.info("PostgreSQL pool closed.");
     process.exit(0);
   } catch (err) {
-    logger.error(`Error closing database pool: ${err.message}`);
+    logger.error(`Error closing PostgreSQL pool: ${err.message}`);
     process.exit(1);
   }
 });

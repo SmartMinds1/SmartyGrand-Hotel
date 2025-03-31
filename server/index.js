@@ -1,8 +1,9 @@
-//Main entry point for the app
+// Main entry point for the app
 
 require("dotenv").config();
 const express = require("express");
 const authRoutes = require("./routes/authRoutes");
+const messageRoutes = require("./routes/messageRoutes"); // ✅ Added Messages API
 const logger = require("./utils/logger");
 const errorHandler = require("./middlewares/errorHandler");
 const commonMiddleware = require("./middlewares/common");
@@ -28,6 +29,7 @@ app.use(express.json());
 
 // Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/messages", messageRoutes); // ✅ Added Messages API
 
 // Health Check Route
 app.get("/", (req, res) => {
@@ -39,5 +41,5 @@ app.use(errorHandler);
 
 // Start the Server
 app.listen(PORT, () => {
-  logger.info(`Server is running on http://localhost:${PORT}`);
+  logger.info(`🚀 Server is running on http://localhost:${PORT}`);
 });

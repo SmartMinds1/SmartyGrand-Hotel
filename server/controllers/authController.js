@@ -3,7 +3,7 @@ const { validationResult } = require("express-validator");
 const redisClient = require("../utils/redisClient");
 const logger = require("../utils/logger");
 const jwtHelper = require("../utils/jwtHelper");
-const { executeQuery } = require("../utils/dbHelper");
+const { query } = require("../utils/pgHelper"); // ✅ PostgreSQL Helper
 
 // User Registration
 exports.register = async (req, res) => {
@@ -19,15 +19,16 @@ exports.register = async (req, res) => {
     const saltRounds = process.env.NODE_ENV === "production" ? 12 : 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-    await executeQuery(
-      "INSERT INTO smartydb_users (username, password, email) VALUES (?, ?, ?)",
+    await query(
+      "INSERT INTO smartydb_users (username, password, email) VALUES ($1, $2, $3)",
       [username, hashedPassword, email]
     );
 
     logger.info(`User registered: ${username}`);
     res.status(201).json({ message: "User registered successfully." });
   } catch (error) {
-    if (error.errno === 1062) {
+    if (error.code === "23505") {
+      // PostgreSQL duplicate entry error
       logger.warn(`Registration failed: Duplicate entry for ${username}`);
       return res
         .status(409)
@@ -49,17 +50,17 @@ exports.login = async (req, res) => {
   const { username, password } = req.body;
 
   try {
-    const users = await executeQuery(
-      "SELECT id, username, password FROM smartydb_users WHERE username = ?",
+    const result = await query(
+      "SELECT id, username, password FROM smartydb_users WHERE username = $1",
       [username]
     );
 
-    if (users.length === 0) {
+    if (result.rows.length === 0) {
       logger.warn(`Login failed: User not found (${username})`);
       return res.status(401).json({ message: "Invalid credentials." });
     }
 
-    const user = users[0];
+    const user = result.rows[0];
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       logger.warn(`Login failed: Incorrect password (${username})`);
@@ -127,12 +128,12 @@ exports.logout = async (req, res) => {
     const expiresIn = decoded.exp - Math.floor(Date.now() / 1000);
     await redisClient.set(accessToken, "blacklisted", { EX: expiresIn });
 
-    const result = await executeQuery(
-      "UPDATE smartydb_users SET refresh_token = NULL WHERE refresh_token = ?",
+    const result = await query(
+      "UPDATE smartydb_users SET refresh_token = NULL WHERE refresh_token = $1",
       [refreshToken]
     );
 
-    if (result.affectedRows === 0) {
+    if (result.rowCount === 0) {
       logger.warn(`Logout failed: Refresh token not found.`);
       return res.status(403).json({ message: "Invalid refresh token." });
     }
