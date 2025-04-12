@@ -125,9 +125,15 @@
 }
 .captionTextBox{
   width: 40%;
-  height: 20rem;
+  height: 100%;
   float: right;
-  padding:1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.captionHeaderText{
+  width: 100%;
 }
 .captionHeaderText h1{
   height: fit-content;
@@ -138,51 +144,65 @@
   background-clip: text;
   background-image: linear-gradient(to top right, var(--color-text), var(--color-text), var(--color-accent-secondary), var(--color-text),var(--color-text), var(--color-text));
   color:transparent;
+
 }
 .captionHeaderText h1 span{
  font-weight: 300;
 
 }
-.captionBodyText {
-  margin:auto;
-  width:30%;
-  padding:1rem;
-  background-color: #ff56220c;
-  height: 7rem;
-  font-size: 1.2rem;
-  text-align: center;
-  font-weight: 300;
-  color: var(--color-text);
+.captionMessage{
+  width:100%;
+  height: 10rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  animation: captionBodyTextSlide 3s ease-in-out 0s forwards; 
 
-  animation: captionBodyTextSlide 3s ease-in-out 0s forwards;
-
+}
+.captionMessage p{
+  width:50%;
+  height: fit-content;
+  font-size: 1.1rem;
+  color:var(--color-text);
+  letter-spacing: 0.4rem;
 }
 @keyframes captionBodyTextSlide {
   from{
     width:0;
-    filter:brightness(0.5);
-    transform: translateX(-64rem);
+    filter:blur(50px);
+    transform: translateX(-24rem);
   }
   to{
-   filter:brightness(1);
+   filter:blur(0);
     transform: translateX(0rem);
-    width: 60%;
+    width: 100%;
   }
 }
 
-
+/* this is home section 0 */
+.homeSection0{
+  height: 5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
 .WelcomeParagraph{
   color:var(--color-text);
   letter-spacing: 0.3rem;
   font-size: 1.1rem;
-  margin-bottom: 2rem;
+  
+
 }
 
 /* searchBar */
 .searchBar{
 margin-right: 10%;
-margin-top: 1rem 0 5rem 0;
-float:right;
 }
 /* ---------------This is the first section------------ */
 .homeSection1{
@@ -232,13 +252,12 @@ margin-bottom: 2rem;
   background-size: cover;
   background-repeat: no-repeat;
 
-  box-shadow: 2px 2px 15px  var(--color-accent-secondary);
+  box-shadow: 2px 2px 20px 10px rgb(0, 0, 0);
 }
 .style1{
   background-color: var(--color-text);
   transform: rotateZ(25deg) translateY(3rem);
   margin-left: 30%;
-
   background-image: url(../assets/animeReservation/introAnimation7.jpg);
   background-position-x: 64%;
 
@@ -248,16 +267,15 @@ margin-bottom: 2rem;
 .style2{
   transform: rotateZ(-25deg) translate(-5rem, -4rem);
   background-color: var(--color-accent-secondary);
-
-
   background-image: url(../assets/animeReservation/pexels-houzlook-3797991.jpg);
   background-position-x: 90%;
-
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-end;
 }
+
+
 .style2 button{
 width:60%;
 height: 2rem;
@@ -309,6 +327,7 @@ transition: all 200ms;
 }
 .featuredRoomsHeader{
   color: var(--color-faded-accent-primary);
+
 }
 
 
@@ -317,7 +336,7 @@ transition: all 200ms;
 .testimonialSection{
   height: fit-content;
   width:100%;
-  margin:5rem 0 5rem 0;
+  margin:5rem 0 10rem 0;
 
 }
 .testimonialsCaption{
@@ -347,7 +366,7 @@ transition: all 200ms;
 height:fit-content;
 width:90%;
 padding-bottom: 1rem;
-margin:5rem auto 5rem auto;
+margin:10rem auto 5rem auto;
 
 }
 .promosHeader{
@@ -450,3 +469,25 @@ text-align: right;
     font-weight: 200;
     color:var(--color-text);
   }
+
+
+  /* pulse animation */
+@keyframes pulse {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.7;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  .pulse {
+    animation: pulse 2s ease-in-out infinite;
+  }
+  

@@ -1,35 +1,16 @@
-/* import React, { useEffect, useState } from 'react'; */
-import '../styles/admin.css';
+import React, { useState } from 'react';
+import './admin.css';
 import AdminNavIcons from '../components/AdminNavIcons';
+import UsersList from './UsersList';
+import MessagesList from './MessagesList';
 
 //The UI part
 const Admin = () => {
-       /*      const [submissions, setSubmissions] = useState([]);
-            const [loading, setLoading] = useState(true);
-            const [error, setError] = useState('');
-        
-            useEffect(() => {
-                const fetchSubmissions = async () => {
-                    try {
-                        const response = await fetch('http://localhost:5000/get-submissions');
-                        if (response.ok) {
-                            const data = await response.json();
-                            setSubmissions(data);
-                            setLoading(false);
-                        } else {
-                            throw new Error('Failed to fetch submissions');
-                        }
-                    } catch (err) {
-                        setError(err.message);
-                        setLoading(false);
-                    }
-                };
-        
-                fetchSubmissions();
-            }, []); */
+    //below are the state variables to set the active tabs
+    const [activeTab, setActiveTab] = useState("users"); // 'users' by default
         
             return (
-                <div>
+                <div className="admin-dashboard">
 
 {/*......................... dashBoard headings ...........................*/}
            <div className="mainBoard">
@@ -59,11 +40,11 @@ const Admin = () => {
                                             <p><span>Hi</span> Smart!</p>
                                         </div>
                                         <ul>
-                                            <li>Users</li>
-                                            <li>Bookings</li>
-                                            <li>Messsages</li>
+                                            <li onClick={()=>setActiveTab("users")}>Users</li>
+                                            <li onClick={()=>setActiveTab("bookings")}>Bookings</li>
+                                            <li onClick={()=>setActiveTab("messages")}>Messsages</li>
                                             <li>Payments</li>
-                                            <li>complains</li>
+                                            <li onClick={()=>setActiveTab("testimonials")}>Testimonials</li>
                                             <li>Admins</li>
                                             <li></li>
                                         </ul>
@@ -152,9 +133,13 @@ const Admin = () => {
                                     <p>search</p>
                                 </div>
                           </div>
-                          
+
+                          {/* This is our display div where we display the content retrieved from the database */}
                           <div className="dbContent">
-                                
+                                {activeTab === "users" && <UsersList/>}
+                            {/*     {activeTab === "bookings" && <BookingsList/>}
+                                {activeTab === "testimonials" && <TestimonialsList/>} */}
+                                {activeTab === "messages" && <MessagesList/>}
                           </div>
 
                         </div>  
@@ -166,38 +151,7 @@ const Admin = () => {
 
 
 
-{/* This is the logical output part to be implemented later */}
-
-                {/*     {loading ? (
-                        <p>Loading submissions...</p>
-                    ) : error ? (
-                        <p>Error: {error}</p>
-                    ) : (
-                        <table border="1" style={{ width: '100%', textAlign: 'left' }}>
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Message</th>
-                                    <th>Submitted At</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {submissions.map((submission) => (
-                                    <tr key={submission.id}>
-                                        <td>{submission.id}</td>
-                                        <td>{submission.name}</td>
-                                        <td>{submission.email}</td>
-                                        <td>{submission.message}</td>
-                                        <td>{submission.submitted_at}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    )} */}
-
-                </div>
+        </div>
     );
 }
 

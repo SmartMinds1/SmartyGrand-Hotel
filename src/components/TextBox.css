@@ -4,15 +4,17 @@
     background-image: linear-gradient(to top, rgb(7, 16, 37), transparent);
     padding:1rem;
     margin-bottom: 2rem;
+
   
 }
 
 .TextDesign p{
     font-size: 1rem;
-    color:#f0f8ff;
-    filter:brightness(0.85);
+ /* filter:brightness(0.85); */
     text-align: left;
 /*     line-height: 5rem; */
     letter-spacing: 1px;
-   
+    color: hsl(0, 0%, 80%);
+
+
 }

@@ -1,68 +1,91 @@
 import "./Chatform.css";
-import React from "react";
 import Button from "./Button";
+import React, {useState} from "react";
+import axios from "axios";
 
-//user form UI
-const Chatform = ({ handleChange, formData}) => {
-  return (
+//Begining of chatForm
+const Chatform = () => {
+//states for input data and the response message from the API
+    const[formData, setFormData] = useState({username:"", email:"", message:""});
+    const[responseMessage, setResponseMessage] = useState("");
+
+//The handle change function sets the formdata with the user inputs
+const handleChange = (e)=>{
+  setFormData({...formData, [e.target.name]: e.target.value})
+}
+
+//handleSubmit sends the user inputs to the database
+const handleSubmit = async (e) => {
+   e.preventDefault();
+   console.log("submitting user message", formData);
+
+    try {
+        const response = await axios.post("http://localhost:5000/api/messages", formData);
+        setResponseMessage(response.data.message);
+        setFormData({username:"", email:"", message:""});
+        }
+    catch(error){
+      setResponseMessage("Error sending the message, Kindly try again later!");
+     }
+}
+
+return (
 //main div
 <div className="Chatform">
     <div className="chatFormCaption">
           <h1>One call away!</h1>
     </div>
     
-{/* //chat form */}
-  <form action="">
-      <div className="formtable">
-        <div className="Insidetable">
-          <input
-            type="text"
-            name="username"
-            id="username"
-            size="20"
-            placeholder="username"
-            autoComplete="on"
-            required
-            /*   value={formData.name} */
-            onChange={handleChange}
-          />
+    <form onSubmit={handleSubmit}>
+              <div className="formtable">
+                    <div className="Insidetable">
+                      <input
+                        type="text"
+                        name="username"
+                        id="username"
+                        size="20"
+                        placeholder="username"
+                        autoComplete="on"
+                        required
+                        value={formData.username}
+                        onChange={handleChange}
+                      />
+                      <div className="inputDivHr1"></div>
+                    </div>
 
-          <div className="inputDivHr1"></div>
-        </div>
+                    <div className="Insidetable">
+                      <input
+                        type="email"
+                        size="20"
+                        name="email"
+                        autoComplete="on"
+                        id="email"
+                        required
+                        placeholder="Email"
+                        value={formData.email}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="inputDivHr2"></div>
 
-        <div className="Insidetable">
-          <input
-            size="20"
-            autoComplete="on"
-            type="email"
-            id="email"
-            name="email"
-            /*  value={formData.email} */
-            onChange={handleChange}
-            required
-            placeholder="Email"
-          />
-        </div>
-        <div className="inputDivHr2"></div>
+                    <textarea 
+                        className='textArea'
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        required
+                        placeholder='Your Message'
+                        rows="10"
+                        cols="40"
+                    />
 
-        <textarea 
-            className='textArea'
-            id="message"
-            name="message"
-            value={formData}
-            onChange={handleChange}
-            required
-            placeholder='Your Message'
-            rows="10"
-            cols="40"
-        />
+                    <Button  type="submit" btnLabel="Submit"/> 
+              </div>
+      </form>
 
-        <Button  type="submit" btnLabel="Submit"/> 
+      {responseMessage && <p>{responseMessage}</p>}
 
-       </div>
-            
-    </form>
- 
  </div>
   );
 };

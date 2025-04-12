@@ -14,6 +14,7 @@ const findUserByUsername = async (username) => {
       "SELECT * FROM smartydb_users WHERE username = ?",
       [username]
     );
+
     conn.release();
     return rows[0] || null; // Explicitly return null if no user is found
   } catch (error) {

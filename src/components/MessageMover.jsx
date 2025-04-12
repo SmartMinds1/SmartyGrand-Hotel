@@ -5,8 +5,38 @@ import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons
 import messages from "./messages"; // Import the sample messages for testing
 import testHeadings from "./testHeadings"; //heading samples
 
+
+//db part
+import axios from "axios";
+import Button from "./Button";
+
 const MessageMover = () => {
-  //setting up the initial states.
+//use state for sendig message to the database
+const[formdata, setFormdata] = useState({username:"", comment:"",})
+const[responseMessage, setResponseMessage] = useState("");
+
+//retrieving and setting up form data values
+const handleChange = (e)=>{
+  setFormdata({...formdata, [e.target.name]: e.target.value });
+
+}
+
+//submitting form data values to the database
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  console.log("submitting testimonials", formdata);
+
+      try{
+        const response = await axios.post("http://localhost:5000/api/testimonials", formdata);
+        setResponseMessage(response.data.message);
+        setFormdata({username:"", comment:""});
+      }catch(error){
+        setResponseMessage("ERROR submitting message. Try gain later");
+
+      }
+}
+
+  //setting up the initial states for displaying messages
   const [div1Message, setDiv1Message] = useState(messages[2]);
   const [div2Message, setDiv2Message] = useState(messages[1]);
   const [div3Message, setDiv3Message] = useState(messages[0]);
@@ -90,7 +120,40 @@ const MessageMover = () => {
               <button className="backBtn" onClick={handleForwardButtonClick}>
                   <FontAwesomeIcon icon={faChevronRight} />
               </button>
-       </div>
+      </div>
+      <div className="sendTestimonial">
+          <form onSubmit={handleSubmit} className="testimonialForm">
+            <input 
+            type="text"
+            id="username"
+            size="20"
+            name="username" 
+            placeholder="username"
+            value={formdata.username}
+            onChange={handleChange}
+            required
+            autoComplete="on"
+            />
+
+            <textarea
+               cols="35" 
+               rows="6"
+               id="comment"
+               name="comment" 
+               placeholder="Leave us a comment"
+               value={formdata.comment}
+               onChange={handleChange}
+               required
+            >
+            </textarea>
+         
+            
+            <Button  type="submit" btnLabel="Comment"/> 
+
+          </form>
+
+          {responseMessage && <p className="errorMessage">{responseMessage}</p>}
+      </div>
      
     </div>
   );

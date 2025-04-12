@@ -1,32 +1,92 @@
 const express = require("express");
 const pool = require("../utils/pgHelper");
 const router = express.Router();
+const { body, validationResult } = require("express-validator");
+const rateLimit = require("express-rate-limit");
 
-// Add a new message
-router.post("/messages", async (req, res) => {
-  try {
-    const { username, email, message } = req.body;
-    const result = await pool.query(
-      "INSERT INTO messages (username, email, message) VALUES ($1, $2, $3) RETURNING *",
-      [username, email, message]
-    );
-    res.status(201).json(result.rows[0]);
-  } catch (err) {
-    console.error("❌ Error inserting message:", err);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
+//lets limit users/bots from overloading us with many messages
+const messageLimiter = rateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 5, // limit each IP to 5 requests per windowMs
+  message: "Too many requests. Please try again later.",
 });
 
-// Get all messages
-router.get("/messages", async (req, res) => {
+// Add a new message
+router.post(
+  "/",
+
+  messageLimiter,
+
+  //validation section
+  [
+    //triming to remove whitespace
+    body("username")
+      .notEmpty()
+      .trim()
+      .escape()
+      .withMessage("Username is required"),
+    body("email")
+      .isEmail()
+      .trim()
+      .escape()
+      .withMessage("Email should be valid"),
+    body("message")
+      .notEmpty()
+      .trim()
+      .escape()
+      .withMessage("Message should not be empty"),
+  ],
+
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    //retrieving values from the req body
+    const { username, email, message } = req.body;
+
+    // Additional cleaning: trim and remove spammy long spaces
+    // Cleaned versions
+    const cleanedUsername = username.trim().replace(/[ \t]{3,}/g, "  ");
+    const cleanedEmail = email.trim().replace(/[ \t]{3,}/g, "  ");
+    const cleanedMessage = message.trim().replace(/[ \t]{3,}/g, "  ");
+
+    try {
+      // Insert into the database
+      const result = await pool.query(
+        "INSERT INTO smartygrand_messages (username, email, message) VALUES ($1, $2, $3) RETURNING *",
+        [cleanedUsername, cleanedEmail, cleanedMessage]
+      );
+
+      res.status(201).json({
+        message:
+          "Message submitted successfully, Kindly wait for our feedback.",
+        data: result.rows[0],
+      });
+
+      // Dispatch global event to notify other parts of the app
+      window.dispatchEvent(new Event("listChange"));
+    } catch (err) {
+      console.error("Error inserting message:", err);
+      res
+        .status(500)
+        .json({ error: "Internal Server Error. Kindly try again later!" });
+    }
+  }
+);
+
+/* ...........................Now Let's get messages fromt the database............................... */
+// GET all messages
+router.get("/", async (req, res) => {
   try {
     const result = await pool.query(
-      "SELECT * FROM messages ORDER BY created_at DESC"
+      "SELECT id, username, email, message, created_at FROM smartygrand_messages ORDER BY id DESC"
     );
-    res.json(result.rows);
+    res.status(200).json(result.rows);
   } catch (err) {
-    console.error("❌ Error fetching messages:", err);
-    res.status(500).json({ error: "Internal Server Error" });
+    console.error("Error fetching messages:", err);
+    res.status(500).json({ error: "Failed to fetch messages" });
   }
 });
 

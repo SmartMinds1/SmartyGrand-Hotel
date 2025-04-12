@@ -1,12 +1,14 @@
 import React from "react";
 import StylishBox from "../components/StylishBox";
+import PayPopUp from "../components/PayPopUp";
+import RegisterForm from "../components/Testas/RegisterForm";
 
 
 const Blog = () => {
     return(
         <div>
             <h1>Welcome to the blog page for testing different components</h1>
-
+            
             
             <div className="homeSection1">
                 <p className="why_Us">| Why Us</p>
@@ -22,7 +24,18 @@ const Blog = () => {
                </StylishBox>
           </div>
 
+          <div className="clear"></div>
+
+          <RegisterForm/>
+
+          <PayPopUp/>
+
+        
+
             <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+
+    
             <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
         </div>
     );

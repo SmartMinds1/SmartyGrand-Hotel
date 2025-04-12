@@ -79,12 +79,10 @@ function Home() {
                   <div className="captionHeaderText  urbanist">
                       <h1>Your cozy home <br />away <span>from <br />home!</span></h1>
                   </div>
-
-                  <div className="captionBodyText">
-                      <p>Experience the Extraordinary! Book Your Stay <br />Today!</p>
-                  </div>
-
-                  <Button type="submit" btnLabel="Book Now"/> 
+                <div className="captionMessage">
+                <p>Book Your Stay Today!</p>
+                <Button type="submit" btnLabel="Book Now"/>
+                </div>            
               </div>
 
               <div className="clear"> </div>
@@ -93,10 +91,12 @@ function Home() {
 
 
 {/* ...........................Search bar section......................... */}
-               <SearchBar className="searchBar"/>
+<div className="homeSection0">
+       {/*  This is the first caption paragraph */}
+          <p className="WelcomeParagraph">| Your perfect escape begins here. |</p>
+          <SearchBar className="searchBar"/>
+</div>
 
-    {/*  This is the first caption paragraph */}
-              <p className="WelcomeParagraph">| Your perfect escape begins here. |</p>
 
 
 
@@ -129,7 +129,7 @@ function Home() {
                 <div className="style2 mainDivStyle">
                    {/*  <div className="style3 mainDivStyle">
                     </div> */}
-                    <button>Explore More...</button>
+                    <button class='pulse'>Explore More...</button>
                 </div>
                 </div>
             </div>
@@ -266,8 +266,7 @@ function Home() {
 </div>
          
 
-
-       {/* This is a simple date at the end of our homePage */}
+{/* This is a simple date at the end of our homePage */}
           <div className="captionDate">
               <p>{formatDate(today)}</p>
           </div>
