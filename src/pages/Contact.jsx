@@ -37,22 +37,20 @@ const Contact = () => {
     return (
         <div>
 
-           <h1 className="contact_Us">| Connect with Us</h1>
+{/* ....................... This is the contact chatbox section ..............................*/}
 
-{/* Indicating name and location of our hotel */}
-            <div className="locationSection">
-                    <div className="nameAndLocation">
-                            <p><span className='locationIcon'> <FontAwesomeIcon icon={faMapMarkerAlt}/> </span>Nairobi KE</p>
-                            <p><i>Max_Buiding, Next To Hilax Gardens. Along WaterFalls Avenue! <br />
-                                P.O Box 1279-20100, <br />
-                                Nairobi.</i></p>
-                    </div>
-                    <div className="mapContainer">
-                      {/*   <MapComponent/> */}
+<div className="contactChatSection">
+                 <div className="chatCaption">
+                 <h1 className="contact_Us">Connect with Us</h1>
+                     <h2><span>| Need help?</span> Start a conversation and let us take care of the rest!</h2>
+                     <p>Our team is here to help with a smile — fast, friendly, and reliable service every time!</p>
+                 </div>
+                 <Chatform/>   
+             </div>
 
-                        <HotelMap/>
-                    </div>
-           </div>
+
+
+
 
            <div className="contactIntroImg">
                  <figure className='OfficeTelephone'>
@@ -95,15 +93,24 @@ const Contact = () => {
                 </CheckBox>
             </div>
            
-{/* ....................... This is the contact chatbox section ..............................*/}
 
-            <div className="contactChatSection">
-                 <div className="chatCaption">
-                     <h2><span>| Need help?</span> Start a conversation and let us take care of the rest!</h2>
-                     <p>Our team is here to help with a smile — fast, friendly, and reliable service every time!</p>
-                 </div>
-                 <Chatform/>   
-             </div>
+
+
+{/* Indicating name and location of our hotel */}
+<div className="locationSection">
+                    <div className="nameAndLocation">
+                            <p><span className='locationIcon'> <FontAwesomeIcon icon={faMapMarkerAlt}/> </span>Nairobi KE</p>
+                            <p><i>Max_Buiding, Next To Hilax Gardens. Along WaterFalls Avenue! <br />
+                                P.O Box 1279-20100, <br />
+                                Nairobi.</i></p>
+                    </div>
+                    <div className="mapContainer">
+                      {/*   <MapComponent/> */}
+
+                        <HotelMap/>
+                    </div>
+           </div>
+
 
 {/*..........................This is the email Call and community section.......................*/}
             <div className='callEmailChat'>

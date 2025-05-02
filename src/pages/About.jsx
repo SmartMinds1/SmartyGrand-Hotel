@@ -32,7 +32,7 @@ const About = () => {
 {/*.....................SECOND SECTION ...................*/}
         <div className="aboutSection2">
                 <div className="aboutTextBoxContainer">
-                    <h1>Your ultimate destination for luxury and tranquility! </h1>
+                    <h1><span>Your ultimate</span> destination for luxury and tranquility! </h1>
                     <TextBox className="aboutMessage TextDesign">
                             <p>Nestled amidst the bustling energy of the city, 
                             our hotel offers a serene escape where modern elegance

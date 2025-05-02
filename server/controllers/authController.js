@@ -1,11 +1,12 @@
+//This file handles all the authentication logic
 const bcrypt = require("bcryptjs");
 const { validationResult } = require("express-validator");
 const redisClient = require("../utils/redisClient");
 const logger = require("../utils/logger");
 const jwtHelper = require("../utils/jwtHelper");
-const { query } = require("../utils/pgHelper"); // ✅ PostgreSQL Helper
+const { query } = require("../utils/pgHelper");
 
-// User Registration
+// User Registration <-----------------------------------------------
 exports.register = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -13,33 +14,36 @@ exports.register = async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  const { username, email, password } = req.body;
+  let { username, email, password } = req.body;
+
+  // Normalize email (trim & lowercase)
+  email = email.trim().toLowerCase();
 
   try {
     const saltRounds = process.env.NODE_ENV === "production" ? 12 : 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
     await query(
-      "INSERT INTO smartydb_users (username, password, email) VALUES ($1, $2, $3)",
-      [username, hashedPassword, email]
+      "INSERT INTO smartygrand_users (username, email, password) VALUES ($1, $2, $3)",
+      [username, email, hashedPassword]
     );
 
     logger.info(`User registered: ${username}`);
-    res.status(201).json({ message: "User registered successfully." });
+    res.status(201).json({ message: "Registration Successful!" });
   } catch (error) {
     if (error.code === "23505") {
       // PostgreSQL duplicate entry error
       logger.warn(`Registration failed: Duplicate entry for ${username}`);
       return res
         .status(409)
-        .json({ message: "Username or email already exists." });
+        .json({ message: "Username or email already exists!" });
     }
     logger.error(`Registration error: ${error.message}`);
     res.status(500).json({ message: "Internal server error." });
   }
 };
 
-// User Login
+// User Login <-----------------------------------------------
 exports.login = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -51,7 +55,7 @@ exports.login = async (req, res) => {
 
   try {
     const result = await query(
-      "SELECT id, username, password FROM smartydb_users WHERE username = $1",
+      "SELECT id, username, password FROM smartygrand_users WHERE username = $1",
       [username]
     );
 
@@ -71,10 +75,17 @@ exports.login = async (req, res) => {
       id: user.id,
       username: user.username,
     });
+
     const refreshToken = jwtHelper.generateRefreshToken({
       id: user.id,
       username: user.username,
     });
+
+    // Store the refresh token in DB
+    await query(
+      "UPDATE smartygrand_users SET refresh_token = $1 WHERE id = $2",
+      [refreshToken, user.id]
+    );
 
     logger.info(`Login successful: ${username}`);
     res.json({ accessToken, refreshToken });
@@ -84,7 +95,7 @@ exports.login = async (req, res) => {
   }
 };
 
-// Refresh Token
+// Refresh Token <-----------------------------------------------
 exports.refreshToken = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -95,9 +106,23 @@ exports.refreshToken = async (req, res) => {
   const { refreshToken } = req.body;
 
   try {
-    const payload = jwtHelper.verifyRefreshToken(refreshToken);
+    const payload = jwtHelper.verifyToken(refreshToken);
     if (!payload) {
-      logger.warn(`Invalid refresh token.`);
+      logger.warn("Invalid refresh token.");
+      return res.status(403).json({ message: "Invalid refresh token." });
+    }
+
+    // Check if refresh token matches the one stored in DB
+    const result = await query(
+      "SELECT refresh_token FROM smartygrand_users WHERE id = $1",
+      [payload.id]
+    );
+
+    if (
+      result.rows.length === 0 ||
+      result.rows[0].refresh_token !== refreshToken
+    ) {
+      logger.warn("Refresh token mismatch or not found.");
       return res.status(403).json({ message: "Invalid refresh token." });
     }
 
@@ -114,27 +139,29 @@ exports.refreshToken = async (req, res) => {
   }
 };
 
-// Logout
+// Logout <-----------------------------------------------
 exports.logout = async (req, res) => {
   const { accessToken, refreshToken } = req.body;
 
   try {
     const decoded = jwtHelper.verifyAccessToken(accessToken);
     if (!decoded) {
-      logger.warn(`Invalid access token.`);
+      logger.warn("Invalid access token.");
       return res.status(403).json({ message: "Invalid access token." });
     }
 
+    // Blacklist the access token in Redis
     const expiresIn = decoded.exp - Math.floor(Date.now() / 1000);
     await redisClient.set(accessToken, "blacklisted", { EX: expiresIn });
 
+    // Remove refresh token from DB
     const result = await query(
-      "UPDATE smartydb_users SET refresh_token = NULL WHERE refresh_token = $1",
+      "UPDATE smartygrand_users SET refresh_token = NULL WHERE refresh_token = $1",
       [refreshToken]
     );
 
     if (result.rowCount === 0) {
-      logger.warn(`Logout failed: Refresh token not found.`);
+      logger.warn("Logout failed: Refresh token not found.");
       return res.status(403).json({ message: "Invalid refresh token." });
     }
 

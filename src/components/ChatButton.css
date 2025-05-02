@@ -13,6 +13,7 @@
     border: 1PX solid var(--color-accent-primary);
     margin-top: 1rem;
     transition: all 200ms ease-in-out;
+    border-radius: 1rem;
 }
 
 .chatBtn:hover{

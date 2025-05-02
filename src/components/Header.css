@@ -1,10 +1,3 @@
-*{
-  margin:0;
-  padding:0;
-  box-sizing: border-box;
-  
-}
-
 /* Make the header fixed at the top */
 .header {
   position: sticky;
@@ -28,16 +21,6 @@
 }
 
 
-
-
-
-
-
-
-
-
-
-
 .headerTitle{
 float:left;
 width:10rem;
@@ -56,21 +39,26 @@ display:inline-block;
 }
 
 .navListDesign li{
-color:aliceblue;
+color:var(--color-text);
 list-style-type: none;
 display:inline-block;
 font-size: 0.9rem;
 margin-inline: 3%;
 cursor: pointer;
 }
+.navListDesign li:nth-child(2) span{
+  font-size: 1.5rem;
+  font-weight: 300;
+  color:var(--color-accent-primary);
+}
 
 .linkStyle{
   text-decoration: none;
-  color:aliceblue;
+  color:var(--color-text);
   transition: all 200ms ease-in-out;
 }
 .linkStyle:hover, .linkStyle:focus{
-color: #FF5722;
+color: var(--color-faded-accent-primary);
 
 }
 .navPages{
@@ -92,7 +80,7 @@ margin-right: 0.5%;
   transition: all 200ms ease-in-out;
 }
 .navAcc li:hover, .navAcc li:focus{
-  color: #FF5722;
+  color: var(--color-faded-accent-primary);
 }
 .navProfile{
 background-image: url(../assets/cover.jpg);
@@ -107,7 +95,7 @@ margin: 0.2% 1% 0 0;
 }
 
 h1{
-  color:rgb(211, 211, 255);
+  color:var(--color-text);
   font-size: 1.2rem;
 
 }

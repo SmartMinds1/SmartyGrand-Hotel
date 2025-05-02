@@ -25,7 +25,7 @@ margin-bottom: 4rem;
     font-size: 1rem;
 }
 .locationIcon{
-    color: var(--color-accent-secondary);
+    color: var(--color-faded-accent-primary);
     font-size: 2rem;   
 }
 
@@ -47,7 +47,7 @@ margin-bottom: 4rem;
     height: 15rem;
     float:left;
     position:relative;
-    margin-top: 16rem;
+    margin-top: 13rem;
     margin-left: 15%;
 }
 
@@ -76,8 +76,7 @@ margin-bottom: 4rem;
     margin:auto;
     margin-top: 3rem;
     height:3rem;
-    transform: translateY(-10rem);
-    
+    transform: translateY(-10rem);  
 }
 
 .clear{
@@ -89,23 +88,28 @@ margin-bottom: 4rem;
     width:40%;
     height:25rem;
     margin-right: 10%;
-    margin-top: 7rem;
+    margin-top: 4rem;
 }
 .contact_Us{
+    width: 55%;
     font-size: 1.1rem;
     font-weight: bold;
-    color:#FF5722;
+    color:var(--color-text);
     text-align: left;
-    margin: 2rem 0 2rem 10%;
+ /*    margin-bottom: 5rem; */
+    padding:0.5rem;
+    letter-spacing: 0.3rem;
+    border-left: 1px solid var(--color-text);
     
 }
 
 .contactIntro h1{
   /*   background-color: brown; */
-    font-size: 2.5rem;
+    font-size: 2.3rem;
     font-weight: 300;
 }
 .contactIntro h1 span{
+    font-size: 2.5rem;
     font-weight: 800;
 }
 
@@ -131,7 +135,7 @@ margin-bottom: 4rem;
     flex-direction: row;
     justify-content: space-evenly;
     padding:0.5rem;
-    margin:5rem 0 5rem 0;
+    margin:0 0 5rem 0;
 
   }
   .chatCaption{
@@ -147,7 +151,7 @@ margin-bottom: 4rem;
     font-size: 2.5rem;
   }
   .chatCaption h2 span{
-    color:var(--color-accent-secondary);
+    color:var(--color-faded-accent-primary);
   }
   .chatCaption p{
     font-size: 1.1rem;

@@ -1,10 +1,22 @@
 import "./Header.css";
 import { Link } from "react-router-dom";
 import { React, useState, useEffect, useRef } from "react";
+import Modal from "./popUps/Modal";
+import SignUp from "../pages/SignUp";
+import SignIn from "../pages/SignIn";
 
-//creating the header function
 //PROPS EXAMPLE
 const Header = () => {
+  const [showSignUp, setShowSignUp] = useState(false);
+  const [showSignIn, setShowSignIn] = useState(false);
+  const [signUpMessage, setSignUpMessage] = useState("");
+
+  const handleSwitchToSignIn = (message) => {
+    setShowSignUp(false);
+    setSignUpMessage(message);
+    setShowSignIn(true);
+  };
+
   //animating my header
   const [isVisible, setIsVisible] = useState(true);
   const lastScrollY = useRef(0); // Use ref to persist scroll value
@@ -27,64 +39,85 @@ const Header = () => {
   }, []);
 
   return (
-    <div className={`header ${isVisible ? "visible" : "hidden"}`}>
-      <div className="navBar">
-        <h1 className="headerTitle">
-          <span>Smarty</span>Grand
-        </h1>
-        <div className="navPages">
-          <nav>
-            <ul className="navListDesign">
-              <li>
-                <Link className="linkStyle" to="/">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link className="linkStyle" to="/contact">
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link className="linkStyle" to="/about">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link className="linkStyle" to="/reservations">
-                  Reservation
-                </Link>
-              </li>
-              <li>
-                <Link className="linkStyle" to="/blog">
-                  blog
-                </Link>
-              </li>
-              <li>
-                <Link className="linkStyle" to="/admin">
+    <>
+      <div className={`header ${isVisible ? "visible" : "hidden"}`}>
+        <div className="navBar">
+          <h1 className="headerTitle">
+            <span>Smarty</span>Grand
+          </h1>
+          <div className="navPages">
+            <nav>
+              <ul className="navListDesign">
+                <li>
+                  <Link className="linkStyle" to="/">
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link className="linkStyle" to="/contact">
+                    Contact
+                  </Link>
+                </li>
+                <li>
+                  <Link className="linkStyle" to="/about">
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <Link className="linkStyle" to="/reservations">
+                    Reservation
+                  </Link>
+                </li>
+                <li>
+                  <Link className="linkStyle" to="/blog">
+                    blog
+                  </Link>
+                </li>
+                <li className="linkStyle" onClick={() => setShowSignIn(true)}>
                   Admin
-                </Link>
-              </li>
+                </li>
+              </ul>
+            </nav>
+
+            <div className="introhr"></div>
+          </div>
+
+          <div className="navProfile"></div>
+
+          <div className="navAcc">
+            <ul className="navListDesign">
+              <li onClick={() => setShowSignIn(true)}>Sign In</li>
               <li>
-                <Link className="linkStyle" to="/testagent">
-                  RunTest
-                </Link>
+                <span>|</span>
               </li>
+              <li onClick={() => setShowSignUp(true)}>Sign Up</li>
             </ul>
-          </nav>
-
-          <div className="introhr"></div>
-        </div>
-
-        <div className="navProfile"></div>
-        <div className="navAcc">
-          <ul className="navListDesign">
-            <li>login</li>
-            <li>singup</li>
-          </ul>
+          </div>
         </div>
       </div>
-    </div>
+
+      {/* showing login popUp */}
+      {showSignIn && (
+        <Modal isOpen={showSignIn} onClose={() => setShowSignIn(false)}>
+          {/*Any popUP right here */}
+          <SignIn
+            signUpResponse={signUpMessage}
+            onClose={() => setShowSignIn(false)}
+          />
+        </Modal>
+      )}
+
+      {/* showing signUp popUp */}
+      {showSignUp && (
+        <Modal isOpen={showSignUp} onClose={() => setShowSignUp(false)}>
+          {/*Any popUP right here */}
+          <SignUp
+            onSuccess={handleSwitchToSignIn}
+            closeSignUp={() => setShowSignUp(false)}
+          />
+        </Modal>
+      )}
+    </>
   );
 };
 

@@ -1,8 +1,3 @@
-
-  .clear{
-    clear: both;
-}
-
 /* my own custom horizontal rule */
   .bodyHr{
     width:100%;
@@ -142,7 +137,7 @@
   margin-bottom: 0.5rem;
   font-size: 3rem;
   background-clip: text;
-  background-image: linear-gradient(to top right, var(--color-text), var(--color-text), var(--color-accent-secondary), var(--color-text),var(--color-text), var(--color-text));
+  background-image: linear-gradient(to top left, var(--color-text), var(--color-text),var(--color-text),var(--color-text), var(--color-accent-secondary), var(--color-text),var(--color-text), var(--color-text));
   color:transparent;
 
 }
@@ -164,9 +159,10 @@
 .captionMessage p{
   width:50%;
   height: fit-content;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color:var(--color-text);
   letter-spacing: 0.4rem;
+
 }
 @keyframes captionBodyTextSlide {
   from{
@@ -216,15 +212,16 @@ margin-right: 10%;
 .why_Us{
 font-size: 1.1rem;
 font-weight: bold;
-color:#FF5722;
+color: var(--color-faded-accent-primary);
 text-align: left;
 margin-bottom: 2rem;
 }
 .h1Text{
-    font-size: 2.5rem;
+    font-size: 2.3rem;
     font-weight: 300;
 }
 .h1Text span{
+  font-size: 2.5rem;
   font-weight: 800;
 }
 .homeMessage1{
@@ -248,17 +245,16 @@ margin-bottom: 2rem;
   height:60vh;
   border-radius: 2rem;
   transform: translate(1rem, 1rem);
-
   background-size: cover;
   background-repeat: no-repeat;
-
-  box-shadow: 2px 2px 20px 10px rgb(0, 0, 0);
+  box-shadow: 2px 2px 20px 10px rgba(0, 0, 0, 0.5);
 }
 .style1{
   background-color: var(--color-text);
   transform: rotateZ(25deg) translateY(3rem);
   margin-left: 30%;
-  background-image: url(../assets/animeReservation/introAnimation7.jpg);
+/*   background-image: url(../assets/animeReservation/introAnimation7.jpg); */
+    background-image: linear-gradient(to left,var(--color-background),#ff562217);
   background-position-x: 64%;
 
   
@@ -266,15 +262,32 @@ margin-bottom: 2rem;
 }
 .style2{
   transform: rotateZ(-25deg) translate(-5rem, -4rem);
-  background-color: var(--color-accent-secondary);
-  background-image: url(../assets/animeReservation/pexels-houzlook-3797991.jpg);
+  background-image: linear-gradient(to right,var(--color-background),#ff562217);
+/*   background-image: url(../assets/animeReservation/pexels-houzlook-3797991.jpg); */
   background-position-x: 90%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-end;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
+.style2 ul {
+  margin-left: 20%;
+}
+.style2 ul li:nth-child(even){
+  color:var(--color-accent-secondary);
+}
+.style2 ul li{
+list-style-type:circle;
+font-size: 2rem;
+text-align: left;
+line-height: 3rem;
+
+color:rgb(211, 211, 255);
+}
+::marker{
+  color:var(--color-accent-secondary);
+}
 
 .style2 button{
 width:60%;
@@ -285,7 +298,6 @@ border-radius: 2rem;
 border:none;
 margin:0 1rem 1rem 0;
 background-color: var(--color-text);
-
 transition: all 200ms;
 
 }
@@ -295,35 +307,30 @@ transition: all 200ms;
 }
 
 
-
-/* .style3{
-  background-image: url(../assets/modernHotelTable.png);
-  background-position-x: 25%;
-  background-size: cover;
-} */
-
 /* ...............This is the featured rooms section just below the first section ..........*/
 .featuredRooms{
-  width:100%;
+  width:90%;
   height:fit-content;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  margin: 5rem auto 20vh auto;
 
-  margin: 5rem 0rem 20vh 0rem;
   
 }
 
 .featuredImagesDiv{
-  width:60%;
+  width:70%;
   height:fit-content;
   display: flex;
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
   gap:1rem;
-  margin-top: 3rem;
+  padding-top: 5%;
+  
+
 }
 .featuredRoomsHeader{
   color: var(--color-faded-accent-primary);
@@ -337,22 +344,30 @@ transition: all 200ms;
   height: fit-content;
   width:100%;
   margin:5rem 0 10rem 0;
+  padding-bottom: 3rem;
 
 }
 .testimonialsCaption{
-  float:left;
-  width:40%;
-  height:25rem;
-  margin-left: 10%;
-  margin-top: 2rem;
-
+  width:30rem;
+  max-width: 95% ;
+  height:fit-content;
+  width:35rem;
 }
 .clientTestimonials{
-  width:45%;
+  width: 100%;
   height:fit-content;
-  float:right;
-  margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-bottom: 3rem;
 
+}
+.comments{
+  width: 75%;
+  margin: auto;
+  height: fit-content;
 }
 /* Testimonial lights from the second message box shadow */
 .testimoniaLights{
@@ -372,19 +387,20 @@ margin:10rem auto 5rem auto;
 .promosHeader{
 font-size: 1.1rem;
 font-weight: bold;
-color:#FF5722;
+color:var(--color-faded-accent-primary);
 text-align: center;
 margin-left: 3%;
 margin-bottom: 2rem;
 }
 .promoh1Text{
-font-size: 2.5rem;
-font-weight: 300;
-text-align: right;
-
+  font-size: 2.3rem;
+  font-weight: 300;
+  text-align: right;
+  
 }
 
 .promoh1Text span:nth-child(1){
+  font-size: 2.5rem;
   font-weight: 800;
 }
 .promoh1Text span:nth-child(2){
@@ -421,7 +437,6 @@ text-align: right;
   font-size: 1.1rem;
   margin-top: 4rem;
   text-align: left;
-
   display: flex;
   justify-content: center;
 
@@ -449,11 +464,6 @@ text-align: right;
     font-weight: 300;
     font-size: 2.5rem;
   }
-
-  .chatCaption h2 span{
-    color: var(--color-accent-secondary);
-
-  }
   
   .chatCaption p{
     font-size: 1.1rem;
@@ -478,8 +488,8 @@ text-align: right;
       opacity: 1;
     }
     50% {
-      transform: scale(1.05);
-      opacity: 0.7;
+      transform: scale(1.2);
+      opacity: 0.9;
     }
     100% {
       transform: scale(1);
@@ -488,6 +498,6 @@ text-align: right;
   }
   
   .pulse {
-    animation: pulse 2s ease-in-out infinite;
+    animation: pulse 2.5s ease-in-out infinite;
   }
   

@@ -8,7 +8,7 @@ const rateLimit = require("express-rate-limit");
 const messageLimiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
   max: 5, // limit each IP to 5 requests per windowMs
-  message: "Too many requests. Please try again later.",
+  message: "TOO MANY requests. Please try again later.",
 });
 
 // Add a new message
@@ -61,12 +61,9 @@ router.post(
 
       res.status(201).json({
         message:
-          "Message submitted successfully, Kindly wait for our feedback.",
+          "Message submitted SUCCESSFULLY! Kindly wait for our feedback.",
         data: result.rows[0],
       });
-
-      // Dispatch global event to notify other parts of the app
-      window.dispatchEvent(new Event("listChange"));
     } catch (err) {
       console.error("Error inserting message:", err);
       res
@@ -76,18 +73,47 @@ router.post(
   }
 );
 
-/* ...........................Now Let's get messages fromt the database............................... */
+/* ...........................Now Let's get messages from the database............................... */
 // GET all messages
-router.get("/", async (req, res) => {
-  try {
-    const result = await pool.query(
-      "SELECT id, username, email, message, created_at FROM smartygrand_messages ORDER BY id DESC"
-    );
-    res.status(200).json(result.rows);
-  } catch (err) {
-    console.error("Error fetching messages:", err);
-    res.status(500).json({ error: "Failed to fetch messages" });
+router.get(
+  "/",
+
+  async (req, res) => {
+    try {
+      const result = await pool.query(
+        "SELECT id, username, email, message, created_at FROM smartygrand_messages ORDER BY id DESC"
+      );
+      res.status(200).json(result.rows);
+    } catch (err) {
+      console.error("Error fetching messages:", err);
+      res.status(500).json({ error: "Failed to fetch messages" });
+    }
   }
-});
+);
+
+// DELETE a booking by ID
+router.delete(
+  "/:id",
+
+  async (req, res) => {
+    const messageId = req.params.id;
+    try {
+      const result = await pool.query(
+        "DELETE FROM smartygrand_messages WHERE id = $1 RETURNING *",
+        [messageId]
+      );
+
+      if (result.rowCount === 0) {
+        return res.status(404).json({ error: "Message not found" });
+      }
+      res.status(200).json({ message: "Message deleted successfully" });
+    } catch (err) {
+      console.error("Error deleting Message", err);
+      res
+        .status(500)
+        .json({ error: "Error deleting Message. Try again later." });
+    }
+  }
+);
 
 module.exports = router;

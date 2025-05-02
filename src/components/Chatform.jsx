@@ -1,13 +1,18 @@
 import "./Chatform.css";
 import Button from "./Button";
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import axios from "axios";
+import Modal from "./popUps/Modal";
+import Alert from "./popUps/Alert";
 
 //Begining of chatForm
 const Chatform = () => {
 //states for input data and the response message from the API
     const[formData, setFormData] = useState({username:"", email:"", message:""});
     const[responseMessage, setResponseMessage] = useState("");
+
+//Setting up our response
+  const [showModal, setShowModal] = useState(false);
 
 //The handle change function sets the formdata with the user inputs
 const handleChange = (e)=>{
@@ -24,10 +29,20 @@ const handleSubmit = async (e) => {
         setResponseMessage(response.data.message);
         setFormData({username:"", email:"", message:""});
         }
+        
     catch(error){
-      setResponseMessage("Error sending the message, Kindly try again later!");
+      setResponseMessage("ERROR! sending the message, Kindly try again later!");
      }
 }
+
+
+ // Show modal only when responseMessage changes and is not empty
+ useEffect(() => {
+  if (responseMessage) {
+    setShowModal(true);
+  }
+}, [responseMessage]);
+
 
 return (
 //main div
@@ -46,6 +61,8 @@ return (
                         size="20"
                         placeholder="username"
                         autoComplete="on"
+                        maxLength="30"
+                        minLength="3"
                         required
                         value={formData.username}
                         onChange={handleChange}
@@ -60,6 +77,7 @@ return (
                         name="email"
                         autoComplete="on"
                         id="email"
+                        maxLength="40"
                         required
                         placeholder="Email"
                         value={formData.email}
@@ -84,8 +102,20 @@ return (
               </div>
       </form>
 
-      {responseMessage && <p>{responseMessage}</p>}
+   {/*  Displaying the response messsage using a popUP */}
+   <Modal isOpen={showModal} onClose={() => {
+          setShowModal(false); 
+          setResponseMessage("");//reset so that to trigger useEffect on the second time
+        }}>
 
+        <Alert onClose={() => {
+          setShowModal(false); 
+          setResponseMessage("");
+        }}
+        >
+          <p className="responseMessage">{responseMessage}</p>
+        </Alert>
+      </Modal>
  </div>
   );
 };

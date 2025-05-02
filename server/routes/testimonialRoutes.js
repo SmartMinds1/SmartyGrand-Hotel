@@ -34,7 +34,7 @@ router.post(
 
       //success message
       res.status(201).json({
-        message: "Testimonial added successfully!",
+        message: "Comment sent successfully!",
         data: results.rows[0],
       });
 
@@ -42,6 +42,49 @@ router.post(
     } catch (err) {
       console.error("Error inserting testimonial to db", err);
       res.status(500).json({ error: "internal server error" });
+    }
+  }
+);
+
+/* ...........................Now Let's get testimonials from the database............................... */
+// GET all comments
+router.get(
+  "/",
+
+  async (req, res) => {
+    try {
+      const result = await pool.query(
+        "SELECT id, username, comment, received_at FROM smartygrand_testimonials ORDER BY id DESC"
+      );
+      res.status(200).json(result.rows);
+    } catch (err) {
+      console.error("Error fetching commentss:", err);
+      res.status(500).json({ error: "Failed to fetch comments" });
+    }
+  }
+);
+
+// DELETE a comment by ID
+router.delete(
+  "/:id",
+
+  async (req, res) => {
+    const commentId = req.params.id;
+    try {
+      const result = await pool.query(
+        "DELETE FROM smartygrand_testimonials WHERE id = $1 RETURNING *",
+        [commentId]
+      );
+
+      if (result.rowCount === 0) {
+        return res.status(404).json({ error: "Comment not found" });
+      }
+      res.status(200).json({ message: "Comment deleted successfully" });
+    } catch (err) {
+      console.error("Error deleting Comment", err);
+      res
+        .status(500)
+        .json({ error: "Error deleting Comment. Try again later." });
     }
   }
 );

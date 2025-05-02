@@ -1,4 +1,4 @@
-// Redis client instance for blacklisting tokens
+// Redis client instance for blacklisting tokens. It improves security by Preventing reuse of tokens after logout
 
 const redis = require("redis");
 const logger = require("./logger");

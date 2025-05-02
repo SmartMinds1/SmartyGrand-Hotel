@@ -1,8 +1,7 @@
-import React /* { useEffect, useState } */ from 'react';
+import React from 'react';
 import "../styles/home.css";
 import Button from "../components/Button";
 import { formatDate } from '../utils/formatDate';
-import TextBox from "../components/TextBox";
 /* import ContentBox from "../components/ContentBox"; */
 import MessageMover from '../components/MessageMover';
 import StylishBox from "../components/StylishBox";
@@ -11,61 +10,16 @@ import SearchBar from '../components/SearchBar';
 import PromosCircle from '../components/PromosCircle';
 import Chatform from '../components/Chatform';
 import ChatButton from '../components/ChatButton';
+import Comment from '../components/Comment';
+import { Link } from 'react-router-dom';
 
-/* import { useNavigate } from 'react-router-dom';
-import axios from 'axios'; */
-
-/* import { useUser } from '../context/userContext'; */
 
 function Home() {
     const today = new Date();
 
-    //Handling Login
-  /*   const { user, setUser } = useUser();
-    const handleLogin = () => {
-        setUser({ name: 'John Doe', loggedIn: true });
-    }; */
-
-  /*   simple lOGIN TEST */
-    /* const [username, setUsername] = useState('');
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-
-        if (!token) {
-            navigate('/login');
-        } else { */
-            // Decode or verify token (for simplicity, assume backend has a /verify route)
-           /*  axios
-                .post('http://localhost:5000/verify', {}, { headers: { Authorization: `Bearer ${token}` } })
-                .then((response) => {
-                    setUsername(response.data.username);
-                })
-                .catch(() => {
-                    localStorage.removeItem('token');
-                    navigate('/login');
-                });
-        }
-    }, [navigate]);
-
-    const handleLogout = () => {
-        localStorage.removeItem('token');
-        navigate('/login');
-    }; */
-
-
   return (
     <>
 <div className="Home">
-          <div>
-             <div className="clear"></div>
-             {/*  <p>User: {user.name}</p>
-             <button onClick={handleLogin}>Login</button> */}
-          </div>
-
-
-
 {/* .................................This is the homepage Hero section................................. */}
 {/* These are the BG anim images */}
       <div className="homeCaptionImage1"></div>
@@ -80,8 +34,13 @@ function Home() {
                       <h1>Your cozy home <br />away <span>from <br />home!</span></h1>
                   </div>
                 <div className="captionMessage">
-                <p>Book Your Stay Today!</p>
-                <Button type="submit" btnLabel="Book Now"/>
+                   <p>Book Your Stay Today!</p>
+                   <div class='pulse'>
+                
+                   <Link to="/reservations">
+                   <Button type="submit" btnLabel="Book Now"/>
+                   </Link>
+                   </div>
                 </div>            
               </div>
 
@@ -96,19 +55,6 @@ function Home() {
           <p className="WelcomeParagraph">| Your perfect escape begins here. |</p>
           <SearchBar className="searchBar"/>
 </div>
-
-
-
-
-{/*  SIMPLE lOGIN TEST */}
-      {/*   <div>
-            <h1>Welcome, {username}!</h1>
-            <button onClick={handleLogout}>Logout</button>
-        </div> */}
-
-
-
-
 
 {/* ..............................The WHY US section................................ */}
           <div className="homeSection1">
@@ -129,7 +75,12 @@ function Home() {
                 <div className="style2 mainDivStyle">
                    {/*  <div className="style3 mainDivStyle">
                     </div> */}
-                    <button class='pulse'>Explore More...</button>
+                    <ul>
+                        <li>Affordable</li>
+                        <li>Eeasy</li>
+                        <li>Quick</li>
+                    </ul>
+                    <button >Explore More...</button>
                 </div>
                 </div>
             </div>
@@ -140,32 +91,28 @@ function Home() {
 
 
  {/*-------------------------------- This is the featured rooms and suits section -----------------------------*/}
-           <div className='featuredRooms scrollSnap'>
-               <p className="featuredRoomsHeader">| Featured rooms</p>
+           <div className='featuredRooms'>
+           {/*  I have used the repeated design in the promo section hence the headers as shown */}
+                <p className="promosHeader">| Featured rooms</p>
+                <h1 className="promoh1Text"><span>Enjoy Memorable Stay </span> from Our Handpicked Rooms <br /> </h1>
+                <div className="promoParagraph">
+                    <p>  Whether you're here for business or leisure, our featured rooms offer the perfect blend of style, comfort, and convenience.
+                    </p>
+                </div>
+
                <div className="featuredImagesDiv">
                     <ImageTextBox
                             className="featuredRoomContainer"
-                            captionTitle ="| Deluxe rooms"
-                            captionMessage="Luxury & Comfort Awaits!"
-                            btnIcon = ""
-                            btnAction = "submit"
+                       
                             >
                                <div className="featuredRoom1 divResize">  </div>
                     </ImageTextBox>
                     <ImageTextBox
                             className="featuredRoomContainer"
-                            captionTitle ="| Family rooms"
-                            captionMessage="Spacious, Cozy & Perfect!"
-                            btnIcon = ""
-                            btnAction = "submit"
                             >
                                <div className="featuredRoom2 divResize">  </div>
                     </ImageTextBox>
                     <ImageTextBox
-                            className="featuredRoomContainer"
-                            captionTitle ="| Cofference hall"
-                            captionMessage="Seamless & productive events!"
-                            btnIcon = ""
                             btnAction = "submit"
                             >
                                <div className="featuredRoom3 divResize">  </div>
@@ -182,25 +129,23 @@ function Home() {
 
 {/* ...........................This is the Testimonials section................................... */}
 <div className="testimonialSection scrollSnap">
-          <div className="testimonialsCaption">
-                <p className="why_Us">| Our Testimonials</p>
-                <h1 className="h1Text"><span>Here’s</span> what our clients have to say about us.</h1>
-               <TextBox className="homeMessage1 TextDesign testimoniaLights">
-                    <p>From our warm hospitality to our thoughtfully designed spaces. 
-                        every detail is crafted to ensure comfort and satisfaction. 
-                    </p>
-               </TextBox>
-               <TextBox className="homeMessage1 TextDesign testimoniaLights">
-                    <p>But don’t just take our word for it—hear from our valued
-                         guests who have experienced it firsthand.
-                    </p>
-               </TextBox>
-
-
-          </div>
          {/*  This is the testimonial box to hold the users says */}
           <div className="clientTestimonials">
-          <MessageMover/>
+                <div className="testimonialsCaption">
+                        <p className="why_Us">| Our Testimonials</p>
+                        <h1 className="h1Text"><span>Here’s</span> what our clients have to say about us.</h1>
+                    <div className="homeMessage1 TextDesign testimoniaLights">
+                            <p> 
+                                Every detail is crafted to ensure comfort and satisfaction. But don’t just take our 
+                                word for it—hear from our valued guests who have experienced it firsthand.
+                            </p>
+                    </div>
+                </div>
+            {    <MessageMover/>}
+          </div>
+
+          <div className="comments">
+            <Comment/>
           </div>
           <div className="clear"></div>
  </div>
@@ -255,7 +200,7 @@ function Home() {
 
 
 {/*..................... This is the chatBox section where users can send their feedback................ */}
-<div className="homeChatSection scrollSnap">
+<div className="homeChatSection">
     <div className="chatCaption">
       <h2><span>| Need help?</span> Start a conversation and let us take care of the rest!</h2>
 

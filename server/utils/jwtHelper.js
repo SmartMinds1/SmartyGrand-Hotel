@@ -1,13 +1,14 @@
-// Helper functions for signing/verifying JWTs
+// This module handles everything related to JSON Web Tokens (JWTs): creating, verifying, decoding, and managing token blacklisting using Redis.
 
 const jwt = require("jsonwebtoken");
 const redisClient = require("./redisClient");
 const logger = require("./logger");
 
-const JWT_SECRET = process.env.JWT_SECRET;
+const JWT_SECRET = process.env.JWT_SECRET; //Used to sign and verify tokens
 const ACCESS_TOKEN_EXPIRY = "15m"; // Adjust as needed
 const REFRESH_TOKEN_EXPIRY = "7d"; // Adjust as needed
 
+//Ensures your server won't run if the secret is missing—good for security.
 if (!JWT_SECRET) {
   logger.error("JWT_SECRET is not defined. Exiting...");
   process.exit(1);

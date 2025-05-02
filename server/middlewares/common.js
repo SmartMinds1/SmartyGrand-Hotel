@@ -1,3 +1,5 @@
+//This file defines a function (commonMiddleware) that registers essential middlewares for: Security, Rate limiting, CORS and JSON request parsing
+
 const cors = require("cors");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");

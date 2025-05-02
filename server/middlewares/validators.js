@@ -1,3 +1,5 @@
+//This file is typically used to validate user input before it reaches your main route logic.
+
 const { body } = require("express-validator");
 
 exports.usernameValidation = body("username")

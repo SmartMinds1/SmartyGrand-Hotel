@@ -2,61 +2,46 @@ import React from "react";
 import "./AdminNavIcons.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faFacebook,
-  faTwitter,
-  faInstagram,
-  faWhatsapp,
-  faLinkedin,
-  faYoutube,
-} from "@fortawesome/free-brands-svg-icons";
+  faUsers,
+  faEnvelope,
+  faCommentDots,
+  faMoneyCheckAlt,
+  faCalendarCheck,
+  faUserShield,
+} from "@fortawesome/free-solid-svg-icons";
 
-const SocialIcons = () => {
+const AdminNavIcons = ({setActiveTab}) => {
   return (
     <div className="adminNavIcons">
-      <a
-        href="https://www.facebook.com"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <FontAwesomeIcon icon={faFacebook} />
-      </a>
-      <a
-        href="https://www.twitter.com"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <FontAwesomeIcon icon={faTwitter} />
-      </a>
-      <a
-        href="https://www.instagram.com"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <FontAwesomeIcon icon={faInstagram} />
-      </a>
-      <a
-        href="https://www.whatsapp.com"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <FontAwesomeIcon icon={faWhatsapp} />
-      </a>
-      <a
-        href="https://www.linkedin.com"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <FontAwesomeIcon icon={faLinkedin} />
-      </a>
-      <a
-        href="https://www.youtube.com"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <FontAwesomeIcon icon={faYoutube} />
-      </a>
+{/* The icons below will be displayed in on the admins side nav icons */}
+      <ul>
+          <li onClick={()=>setActiveTab("users")} >
+            <FontAwesomeIcon icon={faUsers} />
+          </li>
+
+          <li  onClick={()=>setActiveTab("messages")} >
+            <FontAwesomeIcon icon={faEnvelope} />
+          </li>
+
+          <li onClick={()=>setActiveTab("comments")} >
+            <FontAwesomeIcon icon={faCommentDots} />
+          </li>
+
+          <li onClick={()=>setActiveTab("payments")} >
+            <FontAwesomeIcon icon={faMoneyCheckAlt} />
+          </li>
+
+          <li onClick={()=>setActiveTab("bookings")} >
+            <FontAwesomeIcon icon={faCalendarCheck} />
+          </li>
+
+          <li onClick={()=>setActiveTab("admins")} >
+            <FontAwesomeIcon icon={faUserShield} />
+          </li>
+      </ul>
+
     </div>
   );
 };
 
-export default SocialIcons;
+export default AdminNavIcons;

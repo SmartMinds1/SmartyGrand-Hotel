@@ -1,7 +1,7 @@
 /* This is the main container holding the testimonial messages */
 .MessageMover{
-width:100%;
-height: 40rem;
+width:26rem;
+height:25rem;
 
 }
 .MessageMover div{
@@ -61,76 +61,25 @@ height: 40rem;
     background-color: transparent;
     transform: translate(2.5rem,-14rem);
 }
-.backBtn{
-    float:right;
-    font-size: 2rem;
+.arrowBtn{
+    font-size: 1.5rem;
     color:var(--color-accent-secondary);
     background-color: transparent;
     border:none;
     transition: all 300ms ease-in-out;
+    cursor: pointer;
+}
+.backBtn{
+    float:right;
     margin-right: 20%;
 }
 
 .forwadBtn{
     float:left;
-    font-size: 2rem;
-    color:var(--color-accent-secondary);
-    background-color: transparent;
-    border:none;
-    transition: all 300ms ease-in-out;
     margin-left: 20%;
+
 }
 .backBtn:hover ,.forwadBtn:hover{
     filter: brightness(0.7);
 }
 
-/*......... Sending testimonial section............ */
-.sendTestimonial{
-    background-image: linear-gradient(to bottom right,  rgb(7, 16, 37) , #ff562217);
-    width:100%;
-    height: 15rem;
-    transform: translate(-15rem , -12rem);
- 
-}
-
-.testimonialForm{
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: flex-start;
-
-}
-.testimonialForm input:nth-child(1){
-    margin-top: 0.5rem;
-    background-color: transparent;
-    outline: none;
-    border:none;
-    border-bottom: 1px solid rgb(52, 62, 71);
-    text-align: center;
-    font-size: 1.1rem;
-    color:var(--color-text);
-    margin-left: 2%;
-}
-.testimonialForm textarea{
-    margin-left: 20%;
-    margin-top: 1rem;
-    font-size: 1rem;
-    outline: none;
-    border:1px solid rgb(21, 40, 56);
-    padding:1rem;
-    color:var(--color-text);
-    border-radius: 0.5rem;
-    background-color: transparent;
-    backdrop-filter: blur(3px);
-}
-.testimonialForm button{
-    margin-left: 45%;
-    
-}
-.errorMessage{
-    font-size: 1rem;
-    color:var(--color-accent-primary);
-    margin-left: 15%;
-    margin-top: 1rem;
-}

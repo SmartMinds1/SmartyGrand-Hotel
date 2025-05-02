@@ -1,0 +1,52 @@
+.confirm{
+    min-width:350px;
+    max-width: 25%;
+    height: 25vh;
+    background-color: aliceblue;
+    margin: auto;
+    padding: 0.5rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    z-index: 2000;
+    text-align: center;
+}
+.confirmBtnBox{
+    width: 60%;
+    height: fit-content;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.confirmBtn{
+    width:4rem;
+    height:2rem;
+    border:none;
+    border-radius: 1rem;
+    background-color: var(--color-accent-primary);
+    color:aliceblue;
+    transition: all 200ms;
+    cursor:pointer;
+}
+.confirmBtn:hover{
+    filter:brightness(0.85);
+
+}
+.cancelBtn{
+    width:4rem;
+    height:2rem;
+    border:none;
+    border-radius: 1rem;
+    border: 1px solid var(--color-faded-accent-primary);
+    color:rgb(13, 14, 15);
+    background-color: aliceblue;
+    transition: all 200ms;
+    cursor:pointer;
+}
+.cancelBtn:hover{
+    filter:brightness(0.95);
+
+}

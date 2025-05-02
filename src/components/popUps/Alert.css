@@ -1,0 +1,28 @@
+.alert{
+    min-width:350px;
+    max-width: 25%;
+    height: 25vh;
+    background-color: aliceblue;
+    margin: auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    z-index: 2000;
+    text-align: center;
+}
+.okBtn{
+    width:4rem;
+    height:2rem;
+    border:none;
+    border-radius: 1rem;
+    background-color: var(--color-accent-primary);
+    color:aliceblue;
+    transition: all 200ms;
+    cursor:pointer;
+}
+.okBtn:hover{
+    filter:brightness(0.85);
+
+}

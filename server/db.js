@@ -1,4 +1,4 @@
-// Database connection setup for PostgreSQL
+// Database connection setup for PostgreSQL. it creates a pool of connections
 const { Pool } = require("pg");
 const logger = require("../utils/logger");
 

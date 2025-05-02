@@ -7,7 +7,7 @@ const {
   passwordValidation,
   refreshTokenValidation,
   accessTokenValidation,
-} = require("../middlewares/validators"); // Move validation rules to a separate file
+} = require("../middlewares/validators");
 
 const router = express.Router();
 

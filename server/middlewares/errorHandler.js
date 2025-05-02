@@ -1,3 +1,5 @@
+// if something goes wrong anywhere in your app, this file catches it, logs it, and sends a clean response to the client.
+
 const logger = require("../utils/logger");
 
 // Centralized error-handling middleware

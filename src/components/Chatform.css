@@ -1,10 +1,4 @@
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing: border-box;
-  }
-
 /*  let's first with the main div that holds the form  */
 .Chatform{
 background-image: linear-gradient(to right,  rgb(7, 16, 37) , #ff562217);
@@ -31,7 +25,6 @@ color:rgb(211, 211, 255);
      display:table;
      padding:1rem;
      margin:auto;
-  /*    margin-top:3rem; */
      margin-bottom:1rem; 
      width:20rem;
     
@@ -87,4 +80,8 @@ border:1px solid rgba(211, 211, 255, 0.39);
 margin-top: 3rem;
 
 outline: none;
+}
+.responseMessage{
+  color: black;
+  font-size: 1.2rem;
 }

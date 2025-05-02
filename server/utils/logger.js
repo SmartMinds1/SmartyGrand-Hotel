@@ -1,30 +1,35 @@
-// Handles logging using Winston
+//This file is my loggin utility for both success and error messages
+// Makes logs easier to analyze hence easy to debug errors.
 
+// Centralized logger using Winston
 const { createLogger, format, transports } = require("winston");
 
 const logger = createLogger({
-  level: process.env.LOG_LEVEL || "info", // Default log level
+  level: process.env.LOG_LEVEL || "info", // Default logging level
   format: format.combine(
-    format.timestamp(),
-    format.errors({ stack: true }), // Capture error stack traces
-    format.colorize(), // Adds color coding to console logs
-    format.printf(({ timestamp, level, message, stack }) => {
-      return stack
-        ? `${timestamp} [${level.toUpperCase()}]: ${message}\n${stack}`
-        : `${timestamp} [${level.toUpperCase()}]: ${message}`;
-    })
+    format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" }), // Time formatting
+    format.errors({ stack: true }), // Include stack trace for errors
+    format.colorize(), // Colorize logs by level (info, error, etc.)
+    format.printf(
+      ({ timestamp, level, message, stack }) =>
+        stack
+          ? `${timestamp} [${level}]: ${message}\n${stack}` // Log stack for errors
+          : `${timestamp} [${level}]: ${message}` // Log normal messages
+    )
   ),
+
+  //this basically transport logs to the console/terminal for one to see them.
   transports: [
     new transports.Console({
-      handleExceptions: true, // Handle uncaught exceptions
+      handleExceptions: true, // Log uncaught exceptions
     }),
   ],
-  exitOnError: false, // Prevent process exit on error
+  exitOnError: false, // Prevent logger from crashing the app
 });
 
-// Graceful shutdown
+// Handle graceful shutdown
 process.on("SIGINT", () => {
-  logger.info("Logger shutting down.");
+  logger.info("🔌 Logger shutting down gracefully.");
   process.exit(0);
 });
 

@@ -1,20 +1,24 @@
 /* This is the main container holding the iamge and the image details */
 .bookImgContainer{
-    height: 18rem;
-   
+  /*   height: 18rem; */
+    height: 19.5rem;
     min-width: 6rem; 
     width: 19.7rem;
     background-size: cover;
     background-position-x: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 /* Container div holding room details */
 .roomDetailsBox{
-    height: 100%;
+    height: 94%;
     width: 100%;
     padding-top: 0.5rem;
     background-image: linear-gradient(to top, var(--color-background), rgba(0, 0, 0, 0.5));
-    display: none;
+    display: block;
 }
 .bookImgContainer:hover .roomDetailsBox{
     display: block;
@@ -53,3 +57,23 @@
         filter: blur(0);
     }
 }
+
+
+/* ArrowToggle.css */
+.arrow-icon{
+    color: var(--color-text);
+    transition: ease-in-out 200ms;
+    background: rgba(0, 0, 0, 0.2);
+    width: 4rem;
+    height: 2rem;
+    border: 2px solid  var(--color-text);
+    border-radius: 1rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+  }
+  
+  .arrow-icon:hover {
+    filter:brightness(0.85);
+
+  }
+  

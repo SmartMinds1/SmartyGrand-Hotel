@@ -3,6 +3,7 @@ const pool = require("../utils/pgHelper");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
 
+//ADDING BOOKINGS
 router.post(
   "/",
   [
@@ -72,6 +73,50 @@ router.post(
     } catch (error) {
       console.error("Error reserving room:", error);
       res.status(500).json({ error: "Internal server error" });
+    }
+  }
+);
+
+//RETRIEVING BOOKINGS FROM THE DATABASE
+router.get(
+  "/",
+
+  async (req, res) => {
+    try {
+      const result = await pool.query(
+        "SELECT id, username, email, checkin, checkout, guests, created_at, room FROM smartygrand_bookings ORDER BY id DESC"
+      );
+      res.status(200).json(result.rows);
+    } catch (err) {
+      console.error("Error fetching bookings", err);
+      res
+        .status(500)
+        .json({ error: "Error retrieving bookings. Try again later" });
+    }
+  }
+);
+
+// DELETE a booking by ID
+router.delete(
+  "/:id",
+
+  async (req, res) => {
+    const bookingId = req.params.id;
+    try {
+      const result = await pool.query(
+        "DELETE FROM smartygrand_bookings WHERE id = $1 RETURNING *",
+        [bookingId]
+      );
+
+      if (result.rowCount === 0) {
+        return res.status(404).json({ error: "Booking not found" });
+      }
+      res.status(200).json({ message: "Booking deleted successfully" });
+    } catch (err) {
+      console.error("Error deleting booking", err);
+      res
+        .status(500)
+        .json({ error: "Error deleting booking. Try again later." });
     }
   }
 );

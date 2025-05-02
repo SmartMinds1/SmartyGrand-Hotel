@@ -1,5 +1,4 @@
 // Main entry point for the app
-
 require("dotenv").config();
 const express = require("express");
 
@@ -9,6 +8,7 @@ const messageRoutes = require("./routes/messageRoutes"); //  Added Messages API
 const userRoutes = require("./routes/userRoutes"); //  importing userRoute ... step 1
 const bookingRoutes = require("./routes/bookingRoutes"); //adding booking API
 const testimonialRoutes = require("./routes/testimonialRoutes"); // adding testimonial api
+const paymentRoutes = require("./routes/paymentRoutes"); // adding payments api
 
 const logger = require("./utils/logger");
 const errorHandler = require("./middlewares/errorHandler");
@@ -42,6 +42,7 @@ app.use("/api/messages", messageRoutes); // Added Messages API
 app.use("/api/users", userRoutes); //Registering the user Route ... step 2
 app.use("/api/bookings", bookingRoutes); //registering bookings routes
 app.use("/api/testimonials", testimonialRoutes); //registering testimonial routes
+app.use("/api/payments", paymentRoutes); // registering payment routes
 
 // Health Check Route
 app.get("/", (req, res) => {

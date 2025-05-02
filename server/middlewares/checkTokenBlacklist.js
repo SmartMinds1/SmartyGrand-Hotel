@@ -1,3 +1,5 @@
+//This middleware protects your routes by ensuring a user is not using a token that has already been blacklisted (e.g., after logout).
+
 const jwtHelper = require("../utils/jwtHelper"); // Import jwtHelper
 
 const checkTokenBlacklist = async (req, res, next) => {
