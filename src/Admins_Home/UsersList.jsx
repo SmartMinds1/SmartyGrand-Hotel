@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Confirm from "../components/popUps/Confirm";
 import DeleteModal from "../components/popUps/DeleteModal";
+import useSearch from "../utils/useSearch";
+
 
 const UsersList = () => {
   const [users, setUsers] = useState([]);
@@ -17,6 +19,7 @@ const UsersList = () => {
         const res = await axios.get("http://localhost:5000/api/users");
         setUsers(res.data);
         setLoading(false);
+
       } catch (err) {
         console.error("Error fetching users:", err);
         setLoading(false);
@@ -49,8 +52,10 @@ const UsersList = () => {
         };
       }, []);
 
-      //displaying the loading message
-        if (loading) return <p>Loading users...</p>;
+ // Reusable search hook. This is all we need for our users, search
+  const { query, setQuery, filteredData } = useSearch(users, ["username", "email"]);
+
+  if (loading) return <p>Loading users...</p>;
 
   return (
     <div>
@@ -69,7 +74,12 @@ const UsersList = () => {
               </select>
             </div>
             <div className="searchBox">
-                <p>search</p>
+                <input
+                  type="text"
+                  placeholder="username or email"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                />
             </div>
       </div>
     
@@ -84,7 +94,7 @@ const UsersList = () => {
           </tr>
         </thead>
         <tbody>
-          {users.map((user, idx) => (
+          {filteredData.map((user, idx) => (
             <tr key={user.id}>
               <td>{idx + 1}</td>
               <td>{user.username}</td>
@@ -103,7 +113,7 @@ const UsersList = () => {
       </table>
 
        {/* response message if the table is empty or failed to retrieve */}
-       {users.length===0 ? <p className="emptyTable">No Users found!</p> : ""}
+       {filteredData.length===0 ? <p className="emptyTable">No Users found!</p> : ""}
     </div>
 
 {/*  Displaying the response messsage using a popUP. This is when deleting or updating within  the list */}

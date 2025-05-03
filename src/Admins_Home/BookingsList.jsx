@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Confirm from "../components/popUps/Confirm";
 import DeleteModal from "../components/popUps/DeleteModal";
+import useSearch from "../utils/useSearch";
 
 const BookingsList = () => {
   const [bookings, setBookings] = useState([]);
@@ -48,8 +49,12 @@ const BookingsList = () => {
           window.removeEventListener("listChange", handleListChange);
         };
       }, []);
+
+    // Reusable search hook. This is all we need for our users, search
+       const { query, setQuery, filteredData } = useSearch(bookings, ["username", "email"]);
+
   //displaying the loading message
-  if (loading) return <p>Loading Bookings...</p>;
+     if (loading) return <p>Loading Bookings...</p>;
 
   return (
     <div>
@@ -67,7 +72,12 @@ const BookingsList = () => {
               </select>
             </div>
             <div className="searchBox">
-                <p>search</p>
+                <input
+                  type="text"
+                  placeholder="username or email"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                />
             </div>
       </div>
 
@@ -87,7 +97,7 @@ const BookingsList = () => {
           </tr>
         </thead>
         <tbody>
-          {bookings.map((booking, idx) => (
+          {filteredData.map((booking, idx) => (
             <tr key={booking.id}>
               <td>{idx + 1}</td>
               <td>{booking.username}</td>
@@ -109,7 +119,7 @@ const BookingsList = () => {
         </tbody>
       </table>
        {/* response message if the table is empty or failed to retrieve */}
-       {bookings.length===0 ? <p className="emptyTable">No Bookings found!</p> : ""}
+       {filteredData.length===0 ? <p className="emptyTable">No Bookings found!</p> : ""}
 
 {/*  Displaying the response messsage using a popUP. This is when deleting or updating within  the list */}
       <DeleteModal isOpen={showModal} fetchData={()=>fetchBookings()} onCloseConfirm={() => onCloseConfirm()} onClose={() => {

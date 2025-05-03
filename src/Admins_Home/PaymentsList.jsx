@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import useSearch from "../utils/useSearch";
 
 const PaymentsList = () => {
   const [payments, setPayments] = useState([]);
@@ -39,7 +40,10 @@ const PaymentsList = () => {
         };
       }, []);
 
-      //displaying the loading message
+    // Reusable search hook. Passing payments for search
+       const { query, setQuery, filteredData } = useSearch(payments, ["username", "phone"]);
+
+    //displaying the loading message
         if (loading) return <p>Loading Payments...</p>;
 
   return (
@@ -58,7 +62,12 @@ const PaymentsList = () => {
               </select>
             </div>
             <div className="searchBox">
-                <p>search</p>
+                <input
+                  type="text"
+                  placeholder="username or phone"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                />
             </div>
       </div>
 
@@ -75,7 +84,7 @@ const PaymentsList = () => {
           </tr>
         </thead>
         <tbody>
-          {payments.map((payment, idx) => (
+          {filteredData.map((payment, idx) => (
             <tr key={payment.id}>
               <td>{idx + 1}</td>
               <td>{payment.username}</td>
@@ -95,7 +104,7 @@ const PaymentsList = () => {
       </table>
 
        {/* response message if the table is empty or failed to retrieve */}
-       {payments.length===0 ? <p className="emptyTable">No Payments found!</p> : ""}
+       {filteredData.length===0 ? <p className="emptyTable">No Payments found!</p> : ""}
   </div>    
     </div>
   );

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import DeleteModal from "../components/popUps/DeleteModal";
 import Confirm from "../components/popUps/Confirm";
+import useSearch from "../utils/useSearch";
 
 const MessagesList = () => {
   const [messages, setMessages] = useState([]);
@@ -48,6 +49,9 @@ const MessagesList = () => {
     };
   }, []);
 
+   // Reusable search hook. Search messages
+   const { query, setQuery, filteredData } = useSearch(messages, ["username", "email"]);
+
   if (loading) return <p>Loading messages...</p>;
 
   return (
@@ -67,7 +71,12 @@ const MessagesList = () => {
               </select>
             </div>
             <div className="searchBox">
-                <p>search</p>
+                <input
+                  type="text"
+                  placeholder="username or email"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                />
             </div>
       </div>
   
@@ -84,7 +93,7 @@ const MessagesList = () => {
           </tr>
         </thead>
         <tbody>
-          {messages.map((msg, idx) => (
+          {filteredData.map((msg, idx) => (
           <tr key={msg.id}>
               <td>{idx + 1}</td>
               <td>{msg.username}</td>
@@ -104,7 +113,7 @@ const MessagesList = () => {
       </table>
 
       {/* response message if the table is empty or failed to retrieve */}
-      {messages.length===0 ? <p className="emptyTable">No Messages found!</p> : ""}
+      {filteredData.length===0 ? <p className="emptyTable">No Messages found!</p> : ""}
 
   </div>
 

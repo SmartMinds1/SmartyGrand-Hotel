@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import DeleteModal from "../components/popUps/DeleteModal";
 import Confirm from "../components/popUps/Confirm";
+import useSearch from "../utils/useSearch";
 
 const CommentsList = () => {
   const [comments, setComments] = useState([]);
@@ -49,6 +50,9 @@ const CommentsList = () => {
         };
       }, []);
 
+    // Reusable search hook. This is all we need for our users, search
+       const { query, setQuery, filteredData } = useSearch(comments, ["username"]);
+
       //displaying the loading message
         if (loading) return <p>Loading Comments...</p>;
 
@@ -68,7 +72,12 @@ const CommentsList = () => {
               </select>
             </div>
             <div className="searchBox">
-                <p>search</p>
+                <input
+                  type="text"
+                  placeholder="username"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                />
             </div>
       </div>
   
@@ -84,7 +93,7 @@ const CommentsList = () => {
           </tr>
         </thead>
         <tbody>
-          {comments.map((comment, idx) => (
+          {filteredData.map((comment, idx) => (
             <tr key={comment.id}>
               <td>{idx + 1}</td>
               <td>{comment.username}</td>
@@ -102,7 +111,7 @@ const CommentsList = () => {
         </tbody>
       </table>
        {/* response message if the table is empty or failed to retrieve */}
-       {comments.length===0 ? <p className="emptyTable">No Comments found!</p> : ""}
+       {filteredData.length===0 ? <p className="emptyTable">No Comments found!</p> : ""}
    </div>  
 
 {/*  Displaying the response messsage using a popUP. This is when deleting or updating within  the list */}
