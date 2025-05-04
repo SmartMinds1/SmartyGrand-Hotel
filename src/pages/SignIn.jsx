@@ -127,7 +127,13 @@ const SignIn = ({ onClose , signUpResponse}) => {
               </button>
         </form>
 
-        <p className='authOption'>Don't have an account? <span>sign up</span></p>
+         <p className='authOption'>Don't have an account? <span>sign up</span></p>
+         <div className="auth-forgot-password">
+              <p onClick={() => navigate('/forgot-password')} className="forgot-password-link">
+                Forgot Password?
+              </p>
+          </div>
+
       
       </div>
       

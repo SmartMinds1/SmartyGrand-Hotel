@@ -5,6 +5,10 @@ const redisClient = require("../utils/redisClient");
 const logger = require("../utils/logger");
 const jwtHelper = require("../utils/jwtHelper");
 const { query } = require("../utils/pgHelper");
+const { sendResetEmail } = require("../utils/emailHelper");
+
+//import for resetting password
+const crypto = require("crypto");
 
 // User Registration <-----------------------------------------------
 exports.register = async (req, res) => {
@@ -169,6 +173,97 @@ exports.logout = async (req, res) => {
     res.json({ message: "Logged out successfully." });
   } catch (error) {
     logger.error(`Logout error: ${error.message}`);
+    res.status(500).json({ message: "Internal server error." });
+  }
+};
+
+//FORGOT PASSWORD login <---------------------------------------------------------------
+exports.forgotPassword = async (req, res) => {
+  const email = req.body?.email;
+
+  if (!email || typeof email !== "string") {
+    return res.status(400).json({ message: "A valid email is required." });
+  }
+
+  try {
+    const cleanEmail = email.trim().toLowerCase();
+
+    const userResult = await query(
+      "SELECT id FROM smartygrand_users WHERE email = $1",
+      [cleanEmail]
+    );
+
+    if (userResult.rows.length === 0) {
+      return res.status(404).json({ message: "Email not found." });
+    }
+
+    const token = crypto.randomBytes(32).toString("hex");
+    const expires = new Date(Date.now() + 3600000);
+
+    await query(
+      "UPDATE smartygrand_users SET reset_token = $1, reset_token_expires = $2 WHERE email = $3",
+      [token, expires, cleanEmail]
+    );
+
+    const resetLink = `${process.env.CLIENT_URL}/reset-password/${token}`;
+    console.log("Sending reset email to", cleanEmail, "with link:", resetLink);
+
+    await sendResetEmail(cleanEmail, resetLink); // Only this call is needed
+
+    logger.info(`Password reset token sent to ${cleanEmail}`);
+    res.json({ message: "Password reset link sent to email." });
+  } catch (error) {
+    logger.error(`Forgot password error: ${error.message}`);
+    console.error(error.stack);
+    res.status(500).json({ message: "Internal server error." });
+  }
+};
+
+//RESET PASSWORD LOGIC  <----------------------------------------------------------
+exports.resetPassword = async (req, res) => {
+  const token = req.params?.token;
+  const newPassword = req.body?.newPassword;
+
+  if (!token || typeof token !== "string") {
+    return res.status(400).json({ message: "Invalid or missing token." });
+  }
+
+  if (
+    !newPassword ||
+    typeof newPassword !== "string" ||
+    newPassword.length < 6
+  ) {
+    return res
+      .status(400)
+      .json({ message: "New password must be at least 6 characters long." });
+  }
+
+  try {
+    const result = await query(
+      "SELECT id, reset_token_expires FROM smartygrand_users WHERE reset_token = $1",
+      [token]
+    );
+
+    if (
+      result.rows.length === 0 ||
+      new Date(result.rows[0].reset_token_expires) < new Date()
+    ) {
+      return res.status(400).json({ message: "Invalid or expired token." });
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    await query(
+      `UPDATE smartygrand_users 
+       SET password = $1, reset_token = NULL, reset_token_expires = NULL 
+       WHERE reset_token = $2`,
+      [hashedPassword, token]
+    );
+
+    logger.info(`Password reset successful for token ${token}`);
+    res.json({ message: "Password has been reset successfully." });
+  } catch (error) {
+    logger.error(`Reset password error: ${error.message}`);
     res.status(500).json({ message: "Internal server error." });
   }
 };
