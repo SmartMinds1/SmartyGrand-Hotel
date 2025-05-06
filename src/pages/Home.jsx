@@ -70,7 +70,7 @@ function Home() {
                </StylishBox>
           </div>
 
-          <div className="section1RightImage">
+          <div className="section1RightImage appearOnScroll">
             <div className="style1 mainDivStyle">
                 <div className="style2 mainDivStyle">
                    {/*  <div className="style3 mainDivStyle">
@@ -91,31 +91,31 @@ function Home() {
 
 
  {/*-------------------------------- This is the featured rooms and suits section -----------------------------*/}
-           <div className='featuredRooms'>
+           <div className="featuredRooms">
            {/*  I have used the repeated design in the promo section hence the headers as shown */}
-                <p className="promosHeader">| Featured rooms</p>
+                <p className="promosHeader ">| Featured rooms</p>
                 <h1 className="promoh1Text"><span>Enjoy Memorable Stay </span> from Our Handpicked Rooms <br /> </h1>
                 <div className="promoParagraph">
-                    <p>  Whether you're here for business or leisure, our featured rooms offer the perfect blend of style, comfort, and convenience.
+                    <p>Whether you're here for business or leisure, our featured rooms offer the perfect blend of style, comfort, and convenience.
                     </p>
                 </div>
 
-               <div className="featuredImagesDiv">
+               <div className="featuredImagesDiv ">
                     <ImageTextBox
                             className="featuredRoomContainer"
                        
                             >
-                               <div className="featuredRoom1 divResize">  </div>
+                               <div className="featuredRoom1 divResize slide_right">  </div>
                     </ImageTextBox>
                     <ImageTextBox
                             className="featuredRoomContainer"
                             >
-                               <div className="featuredRoom2 divResize">  </div>
+                               <div className="featuredRoom2 divResize appearOnScroll">  </div>
                     </ImageTextBox>
                     <ImageTextBox
                             btnAction = "submit"
                             >
-                               <div className="featuredRoom3 divResize">  </div>
+                               <div className="featuredRoom3 divResize slide_left">  </div>
                     </ImageTextBox>
                 </div>
           </div>
@@ -128,7 +128,7 @@ function Home() {
           
 
 {/* ...........................This is the Testimonials section................................... */}
-<div className="testimonialSection scrollSnap">
+<div className="testimonialSection">
          {/*  This is the testimonial box to hold the users says */}
           <div className="clientTestimonials">
                 <div className="testimonialsCaption">
@@ -157,7 +157,7 @@ function Home() {
 
 
 {/*.............................. Special offers and promos section .................................*/}
-<div className="promoSection scrollSnap">
+<div className="promoSection">
          <p className="promosHeader">| Special Offers and Promos!</p>
          <h1 className="promoh1Text"><span>Stay in style – </span> unlock exclusive promos for  <br /> <span>unforgettable memories !</span></h1>
 
@@ -185,7 +185,7 @@ function Home() {
 </div>
 
 <div className="promoJoinUs">
-      <p>Create an account or sign in today and start your journey toward relaxation__
+      <p>Create an account or sign in today and start your seamless journey towards relaxation__
       <Button type="submit" btnLabel="sign in"/> 
       <ChatButton 
            btnName= "sign up"     
@@ -200,11 +200,11 @@ function Home() {
 
 
 {/*..................... This is the chatBox section where users can send their feedback................ */}
-<div className="homeChatSection">
-    <div className="chatCaption">
-      <h2><span>| Need help?</span> Start a conversation and let us take care of the rest!</h2>
+<div className="homeChatSection ">
+    <div className="chatCaption ">
+      <h2 className=''><span>| Need help?</span> Start a conversation and let us take care of the rest!</h2>
 
-      <p>Our team is here to help with a smile — fast, friendly, and reliable service every time!</p>
+      <p className=''>Our team is here to help with a smile — fast, friendly, and reliable service every time!</p>
     </div>
   
     <Chatform/>   

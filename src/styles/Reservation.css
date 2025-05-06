@@ -102,20 +102,7 @@
     opacity: 0;
     animation: slide 1s ease-in-out 1.3s forwards;
 }
-.content button {
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    background-color:var(--color-accent-primary);
-    color: var(--color-text);
-    opacity: 0;
-    animation: slide 1s ease-in-out 1.6s forwards;
-    transition:all 200ms;
-}
-.content button:hover,
-.content button:focus {
-    filter: brightness(0.85);
-}
+
 @keyframes slide {
     from {
         transform: translate(0, 100px);
@@ -236,7 +223,8 @@
   border-right:1px solid var(--color-accent-secondary);
   padding-right: 1rem;
   font-weight: 300;
-  font-size: 1.2rem;
+  font-size: 1rem;
+  font-weight: 400;
   transition: all 300ms;
   cursor: pointer;
 }
@@ -251,7 +239,7 @@
 .roomsHolderMover {
   width:100%;
   height: fit-content;
-  background-color: var(--color-faded-background);
+  background-color: var(--color-background);
  
 }
 
@@ -282,31 +270,6 @@
   .duluxe4{
     background-image: url(../assets/Diluxe2.jpg);
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -357,6 +320,32 @@
 
 .reservationGuidlines ::marker{
   color:var(--color-accent-primary);
+}
+
+
+
+/* Now making my website more responsive */
+/*Mobiles*/ 
+@media (max-width: 480px){
+
+}
+
+/* Ipads and Tablets*/
+@media (min-width: 481px) and (max-width: 768px) {
+
+}
+
+
+/* Small Screens and Laptops */
+@media (min-width: 769px) and (max-width: 1024px){
+
+}
+
+
+/* Large Screens and Desktops */
+@media (min-width: 1025px) and (max-width: 1200px) {
+  
+
 }
 
 

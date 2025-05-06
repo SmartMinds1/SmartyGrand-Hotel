@@ -11,13 +11,20 @@ const Header = () => {
   const [showSignIn, setShowSignIn] = useState(false);
   const [signUpMessage, setSignUpMessage] = useState("");
 
+  //setting up toggle button to show mobile nav bar
+  const [showContent, setShowContent] = useState(false);
+  const handleToggle = () => {
+    setShowContent((prev) => !prev);
+  };
+
+  //hadling signIn and signUp popUP switching
   const handleSwitchToSignIn = (message) => {
     setShowSignUp(false);
     setSignUpMessage(message);
     setShowSignIn(true);
   };
 
-  //animating my header
+  //animating my header on scroll
   const [isVisible, setIsVisible] = useState(true);
   const lastScrollY = useRef(0); // Use ref to persist scroll value
 
@@ -45,8 +52,68 @@ const Header = () => {
           <h1 className="headerTitle">
             <span>Smarty</span>Grand
           </h1>
-          <div className="navPages">
-            <nav>
+
+          <button
+            className="dashboard-icon"
+            onClick={handleToggle}
+            aria-label="Toggle Content"
+          >
+            {showContent ? <span>✕</span> : <span>&#9776;</span>}
+          </button>
+
+          {/*  setting up bar for mobile and tablets */}
+          <div>
+            {showContent && (
+              <div className="mobileNavBar">
+                {/* auth list for mobile */}
+                <ul className="mobileAuthNav">
+                  <li onClick={() => setShowSignIn(true)}>Sign In</li>
+                  <li onClick={() => setShowSignUp(true)}>Sign Up</li>
+                </ul>
+
+                {/* nav list for mobile */}
+                <ul className="mobileNavList">
+                  <li onClick={() => setShowContent(false)}>
+                    <Link className="linkStyle" to="/">
+                      Home
+                    </Link>
+                  </li>
+                  <li onClick={() => setShowContent(false)}>
+                    <Link className="linkStyle" to="/contact">
+                      Contact
+                    </Link>
+                  </li>
+                  <li onClick={() => setShowContent(false)}>
+                    <Link className="linkStyle" to="/about">
+                      About
+                    </Link>
+                  </li>
+                  <li onClick={() => setShowContent(false)}>
+                    <Link className="linkStyle" to="/reservations">
+                      Reservation
+                    </Link>
+                  </li>
+                  <li onClick={() => setShowContent(false)}>
+                    <Link className="linkStyle" to="/blog">
+                      blog
+                    </Link>
+                  </li>
+                  <li
+                    className="linkStyle"
+                    onClick={() => {
+                      setShowSignIn(true);
+                      setShowContent(false);
+                    }}
+                  >
+                    Admin
+                  </li>
+                </ul>
+              </div>
+            )}
+          </div>
+
+          {
+            <div className="navPages">
               <ul className="navListDesign">
                 <li>
                   <Link className="linkStyle" to="/">
@@ -77,22 +144,24 @@ const Header = () => {
                   Admin
                 </li>
               </ul>
-            </nav>
 
-            <div className="introhr"></div>
-          </div>
+              <div className="introhr"></div>
+            </div>
+          }
 
-          <div className="navProfile"></div>
+          {
+            <div className="navAcc">
+              <ul className="navListDesign">
+                <li onClick={() => setShowSignIn(true)}>Sign In</li>
+                <li>
+                  <span>|</span>
+                </li>
+                <li onClick={() => setShowSignUp(true)}>Sign Up</li>
+              </ul>
 
-          <div className="navAcc">
-            <ul className="navListDesign">
-              <li onClick={() => setShowSignIn(true)}>Sign In</li>
-              <li>
-                <span>|</span>
-              </li>
-              <li onClick={() => setShowSignUp(true)}>Sign Up</li>
-            </ul>
-          </div>
+              <div className="navProfile"></div>
+            </div>
+          }
         </div>
       </div>
 

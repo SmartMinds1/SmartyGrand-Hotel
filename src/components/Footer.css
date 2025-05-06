@@ -1,8 +1,4 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing: border-box;
-  }
+
   .FooterHr{
     width:100%;
     height:1px;
@@ -65,3 +61,55 @@ h1{
     font-size: 0.9rem;
     margin-bottom: 2rem;
   }
+
+
+/* Now making my website more responsive */
+/*Mobiles and Tablets*/ 
+@media (max-width: 767px){
+  .Footer{
+    height: fit-content;
+   }
+
+   .FooterItems{
+     height: fit-content;
+   }
+ 
+   .socialIconsBar{
+     margin-bottom: 7rem;
+   }
+ 
+   .FooterCopyrights{
+     font-size: 0.9rem;
+     margin-bottom: 2rem;
+   }
+ 
+}
+
+
+/* Small Screens and Laptops */
+@media (min-width: 768px) and (max-width: 1024px){
+  .Footer{
+    height: fit-content;
+   }
+
+   .FooterItems{
+     height: fit-content;
+   }
+ 
+   .socialIconsBar{
+     margin-bottom: 7rem;
+     
+   }
+ 
+   .FooterCopyrights{
+     margin-bottom: 2rem;
+     
+   }
+}
+
+
+/* Large Screens and Desktops */
+@media (min-width: 1025px) {
+  
+
+}

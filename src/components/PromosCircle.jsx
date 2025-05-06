@@ -3,7 +3,7 @@ import './promosCircle.css';
 
 const PromosCircle = ({discountTitle, discountPercentage})=>{
     return(
-        <div>
+        <div className="appearOnScroll">
             <div className="outerCircle">
                 <p className="outerCircleTitle">{discountTitle}</p>
                 <div className="innerCircle">

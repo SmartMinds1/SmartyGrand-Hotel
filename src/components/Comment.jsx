@@ -62,7 +62,7 @@ const handleSubmit = async (e) => {
                     />
 
                     <textarea
-                    cols="30" 
+                    cols="40" 
                     rows="6"
                     id="comment"
                     name="comment" 
@@ -70,6 +70,7 @@ const handleSubmit = async (e) => {
                     value={formdata.comment}
                     onChange={handleChange}
                     required
+                    resizable="false"
                     >
                     </textarea>
                 

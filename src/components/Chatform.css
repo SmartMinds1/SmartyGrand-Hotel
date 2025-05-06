@@ -4,7 +4,7 @@
 background-image: linear-gradient(to right,  rgb(7, 16, 37) , #ff562217);
 height: fit-content;
 padding: 2rem;
-width: 30%;
+width: 24rem;
 border-radius: 1rem;
 
 
@@ -84,4 +84,18 @@ outline: none;
 .responseMessage{
   color: black;
   font-size: 1.2rem;
+}
+
+/* Now making my website more responsive */
+/*Mobiles and Tablets*/ 
+@media (max-width: 767px){
+.Chatform{
+  padding: 1rem;
+  width: 19rem;
+  }
+  .formtable{
+       width:100%;
+       padding: 0;
+    }
+
 }

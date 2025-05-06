@@ -46,7 +46,7 @@ const handleSubmit = async (e) => {
 
 return (
 //main div
-<div className="Chatform">
+<div className="Chatform ">
     <div className="chatFormCaption">
           <h1>One call away!</h1>
     </div>

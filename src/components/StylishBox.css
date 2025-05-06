@@ -1,8 +1,3 @@
-*{
-    padding: 0;
-    margin:0;
-    box-sizing: border-box;
-}
 
 /* textbox widh to be defined where its rendered */
 .stylishTextBox{
@@ -11,6 +6,7 @@
     width: 80%;
     height:12rem;
     margin: auto;
+    text-align: center;
     
 }
 
@@ -20,6 +16,7 @@
     filter:brightness(0.85);
     text-align: left;
     line-height: 1.8rem;
+
    
    
 }
@@ -33,7 +30,15 @@
     float:right;
     margin-right: -1rem;
     margin-top: 2rem;
-
     box-shadow: -70px -50px 70px 10px  var(--color-accent-secondary);
 }
 
+/* Now making my website more responsive */
+/*Mobiles and Tablets*/ 
+@media (max-width: 767px){
+    .TextDesign{
+        height: fit-content;
+        width: 90%;
+    }
+  
+}

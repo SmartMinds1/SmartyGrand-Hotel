@@ -73,7 +73,7 @@ const Reservations = ()=>{
         {
           id: 6,
           name: 'Gym Solutions',
-          description: 'Focus on your business objectives while we handle all the logistics.',
+          description: 'Modern gym with modern equipments to help you flex and refresh',
           className: 'imageDiv6',
         },
         {
@@ -99,7 +99,6 @@ const Reservations = ()=>{
                     <div className="content">
                         <div className="booking_name">| {item.name}</div>
                         <div className="booking_Des">{item.description}</div>
-                        <button>View More</button>
                     </div>
                 </div>
             ))}
@@ -163,6 +162,7 @@ const Reservations = ()=>{
                               
                           </Button>
                       ))} */}
+                      
 
                   {/* 1. Deluxe Rooms Container */}
                           {activeTab === 'DELUXE' && (
@@ -465,7 +465,7 @@ const Reservations = ()=>{
                                 
                                       <div className="bookImgContainer duluxe2">
                                             <BookImgDesign className="roomDetails">
-                                                <h4>Full body massage</h4>
+                                                <h4>body massage</h4>
                                                 <ul>
                                                     <li>Plush king-size bed</li>
                                                     <li>High-speed Wi-Fi</li>
@@ -667,8 +667,8 @@ const Reservations = ()=>{
 
 
 {/*......................... Reserve room SECTION 3....................... */}
-<div className="reserveSection3  scrollSnap">
-          <h2>| Our Booking <span>Guidlines</span></h2>
+<div className="reserveSection3">
+          <h2 className="slide_right">| Our Booking <span>Guidlines</span></h2>
           <div className="reservationGuidlines">
             <ul>
               <li>Make sure to have your original ID/PASSPORT</li>

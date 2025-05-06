@@ -32,3 +32,78 @@ html, body {
 .clear{
   clear: both;
 }
+
+
+/*-------------------- Incredible scrolling effect on my website-------------------- */
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.appearOnScroll {
+  animation: appear linear;
+  animation-timeline: view(); /* CSS Scroll-Linked Animations */
+  animation-range: entry 0% cover 40%;
+}
+
+/* slide right */
+@keyframes slideright {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide_right {
+  animation: slideright  linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
+}
+
+/* slide left */
+@keyframes slideleft {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide_left {
+  animation: slideleft linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
+}
+
+/* Now making my website more responsive */
+/*Mobiles and Tablets*/ 
+@media (max-width: 767px){
+
+}
+
+/* Small Screens and Laptops */
+@media (min-width: 768px) and (max-width: 1024px){
+
+}
+
+/* Large Screens and Desktops */
+@media (min-width: 1025px) {
+  
+
+}
+.hide{
+  display: none;
+}

@@ -215,10 +215,15 @@ font-weight: bold;
 color: var(--color-faded-accent-primary);
 text-align: left;
 margin-bottom: 2rem;
+
+box-shadow: 100px 250px 400px 10px #ec3d07ee;
+width:fit-content;
+height: 4rem;
 }
 .h1Text{
     font-size: 2.3rem;
     font-weight: 300;
+
 }
 .h1Text span{
   font-size: 2.5rem;
@@ -228,8 +233,6 @@ margin-bottom: 2rem;
   margin: auto;
   width:80%;
 
-  box-shadow: 1100px 100px 400px -10px #ff56222d,
-  -200px -100px 400px -10px #ff56222d;
 }
 
 /* the styled images */
@@ -263,7 +266,6 @@ margin-bottom: 2rem;
 .style2{
   transform: rotateZ(-25deg) translate(-5rem, -4rem);
   background-image: linear-gradient(to right,var(--color-background),#ff562217);
-/*   background-image: url(../assets/animeReservation/pexels-houzlook-3797991.jpg); */
   background-position-x: 90%;
   display: flex;
   flex-direction: column;
@@ -336,8 +338,6 @@ transition: all 200ms;
   color: var(--color-faded-accent-primary);
 
 }
-
-
 
 /* .................This is the testimonials section.............. */
 .testimonialSection{
@@ -447,15 +447,19 @@ margin-bottom: 2rem;
 
 /* .............................Now moving to the chat form section................  */
   .homeChatSection{
+    width: 100%;
+    height: fit-content;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     padding:0.5rem;
     margin:5rem 0 5rem 0;
-
+    flex-wrap: wrap;
   }
   .chatCaption{
-    width: 40%;
+    width: 80%;
+    max-width:30rem;
+    min-width: 16rem;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -501,3 +505,147 @@ margin-bottom: 2rem;
     animation: pulse 2.5s ease-in-out infinite;
   }
   
+
+/* Now making my website more responsive */
+/*Mobiles and tablets*/ 
+@media (max-width: 767px){
+  .captionTextBox{
+    width: 80%;
+    height: 100%;
+  }
+  .captionHeaderText{
+    width: 100%;
+  }
+  .captionHeaderText h1{
+    height: fit-content;
+    margin-top: 3rem;
+    font-size: 3rem;
+    text-align: center;
+  
+  }
+  .captionHeaderText h1 span{
+    font-size: 2.5rem;
+   
+   }
+
+  .captionMessage{
+    width:100%;
+    height: 10rem;
+
+  
+  }
+  .captionMessage p{
+    display: none;
+  }
+  
+
+  /* this is home section 0 */
+.homeSection0{
+  height: fit-content;
+  
+  flex-direction: column;
+}
+.WelcomeParagraph{
+margin-bottom: 2rem;
+
+}
+
+/* searchBar */
+.searchBar{
+margin-right: 10%;
+width:90%;
+}
+
+
+/*-------------------- Section 1 */
+.homeSection1{
+  float:none;
+  width:90%;
+  height:fit-content;
+  margin: auto;
+}
+.h1Text{
+  font-size: 2rem;
+}
+.h1Text span{
+font-size: 2.2rem;
+}
+
+/*------------------------ the styled images */
+.section1RightImage{
+ width: 80%;
+ float:none;
+ margin: auto;
+ margin-top: 8rem;
+
+}
+
+.style1{
+  width: 5rem;
+  margin-left: 0;
+  transform: translateX(0);
+  
+}
+.style2{
+  margin-left: 2rem;
+  width: 14rem;
+  transform: translateX(0);
+}
+
+
+/*----------------------------- promo section design */
+  .promoh1Text{
+    text-align: center;
+  }
+  .promoParagraph p{
+    width:100%;
+    text-align: center;
+  }
+
+  .comments{
+    width: 90%;
+    height: 20rem;
+}
+
+
+/*---------------------- MESSAGE BOX SECTION */
+.chatCaption{
+  width: 80%;
+}
+.chatCaption p{
+  font-size: 0.7rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+}
+/* Small Screens and Laptops */
+@media (min-width: 768px) and (max-width: 1024px){
+  .homeSection1{
+    float:none;
+    width:70%;
+    height:fit-content;
+    margin: auto;
+  }
+
+  /* the styled images */
+.section1RightImage{
+ width: 95%;
+ float:none;
+ margin: auto;
+ margin-top: 8rem;
+
+}
+.style1{
+  width: 15rem;
+  
+}
+
+}
+
+
+/* Large Screens and Desktops */
+@media (min-width: 1025px) and (max-width: 1200px) {
+  
+
+}

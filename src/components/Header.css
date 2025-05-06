@@ -3,11 +3,12 @@
   position: sticky;
   top: 0;
   left: 0;
-  width: 100%;
+  max-width: 100%;
   height:3rem;
   background-color: rgb(4, 11, 29, 0.5);
   transition: transform 0.3s ease-in-out; /* Smooth transition */
   z-index: 1;
+
 }
 
 /* When the header is hidden (moving up out of view) */
@@ -20,10 +21,10 @@
   transform: translateY(0);
 }
 
-
 .headerTitle{
-float:left;
 width:10rem;
+padding-top: 0.8rem;
+height: 100%;
 font-size: 1.5rem;
 }
 .headerTitle span{
@@ -32,18 +33,26 @@ font-size: 1.5rem;
 }
 .navBar{
 height: 3rem;
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: space-evenly;
+flex-wrap: wrap;
+
 }
 
-.navBar div{
-display:inline-block;
+.navListDesign{
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: space-evenly;
+height: 2.9rem;
+width: 70%;
 }
-
 .navListDesign li{
 color:var(--color-text);
 list-style-type: none;
-display:inline-block;
 font-size: 0.9rem;
-margin-inline: 3%;
 cursor: pointer;
 }
 .navListDesign li:nth-child(2) span{
@@ -63,19 +72,26 @@ color: var(--color-faded-accent-primary);
 }
 .navPages{
 width:50%;
-height:2rem;
-text-align: center;
-margin-left: 1%;
+height:100%;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: space-between;
 
 }
 .navAcc{
-width:15%;
-height:2rem;
-float:right;
-text-align: right;
-margin-right: 0.5%;
+width:13rem;
+height:fit-content;
+display: flex;
+flex-direction: row;
+justify-content: space-evenly;
+align-items: center;
 
 }
+.navAcc ul{
+  width: 70%;
+}
+
 .navAcc li{
   transition: all 200ms ease-in-out;
 }
@@ -89,14 +105,13 @@ width: 2.5rem;
 height: 2.5rem;
 padding:1rem;
 border-radius: 50%;
-float:right;
-margin: 0.2% 1% 0 0;
 
 }
 
 h1{
   color:var(--color-text);
   font-size: 1.2rem;
+
 
 }
 
@@ -105,5 +120,149 @@ h1{
   height:1px;
   background-image: linear-gradient(to right,rgb(4, 11, 29), #FF5722, rgb(4, 11, 29));
   margin: auto;
-  transform: translateY(-0.5rem);
 }
+
+
+/* Setting uP NAVBAR FOR MOBILE */
+.dashboard-icon{
+  font-size: 1.5rem;
+  width: 2.5rem;
+  height: 2.3rem;
+  margin-right: 4%;
+  border-radius: 0.3rem;
+  border: none;
+  background-color: var(--color-faded-background);
+  color:aliceblue;
+  border:1px solid rgba(240, 248, 255, 0.2);
+  display: none;
+}
+.mobileNavBar{
+  width: 100%;
+  height: 100vh;
+  background-color:var(--color-background);
+  position: fixed;
+  top:3rem;
+  left: 0;
+  display: none;
+
+  }
+
+  .mobileAuthNav{
+    width:85%;
+    height: 26vh;
+    margin: auto;
+    margin-bottom: 1.1rem;
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: space-evenly;
+
+  }
+  .mobileAuthNav li{
+      list-style-type: none;
+      font-weight: bold;
+      width: 100%;
+      height: 3rem;
+      font-size: 1rem;
+      font-weight: bold;
+      padding-top: 0.7rem;
+      border-radius: 5px;
+  }
+  .mobileAuthNav li:nth-child(1){
+      background-color: var(--color-faded-background);
+      border: 1px solid rgba(240, 248, 255, 0.2);
+  }
+  .mobileAuthNav li:nth-child(2){
+    background-color: var(--color-text);
+    color: black;
+  }
+
+  .mobileNavList{
+    width:85%;
+    height: 62vh;
+    margin: auto;
+
+  }
+  .mobileNavList li{
+    width: 100%;
+    height: 3.5rem;
+    text-align: left;
+    padding-top: 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: transparent;
+    list-style-type: none;
+    border-bottom: 1px solid rgba(240, 248, 255, 0.2);
+
+
+  }
+  .mobileNavList li:nth-child(6){
+    border-bottom: none;
+  }
+
+/* Now making my website more responsive */
+/*Mobiles*/ 
+@media (max-width: 767px){
+  .navBar{
+    height: 3rem;
+    justify-content: flex-end;
+
+    }
+    .navBar h1{
+      margin-right: 30%;
+      position: fixed;
+      top:0;
+      left:0;
+    }
+    .mobileNavBar{
+      display: block;
+    }
+    .dashboard-icon{
+      display: block;
+    }
+
+    .navListDesign{
+    display: none;
+    }
+
+    .navPages{
+    display: none;
+    
+    }
+    .navAcc{
+    width:6rem;
+    height:fit-content;
+    display: none;
+    
+    }
+    .navAcc ul{
+      width: 70%;
+    }
+    
+    .navProfile{
+    display: none;
+    
+    } 
+
+}
+
+/* laptops and small screens*/
+@media (min-width: 768px) and (max-width: 1024px) {
+  .navListDesign{
+    gap: 10PX;
+    width: 100%;
+    }
+    .navAcc{
+    width:11rem;
+    margin-left: 3rem;
+    height:fit-content;
+    
+    }
+    .navAcc ul{
+      width: 70%;
+    }
+    
+}
+
+

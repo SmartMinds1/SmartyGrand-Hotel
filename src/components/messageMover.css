@@ -83,3 +83,32 @@ height:25rem;
     filter: brightness(0.7);
 }
 
+/* Now making my website more responsive */
+/*Mobiles and Tablets*/ 
+@media (max-width: 767px){
+    .MessageMover{
+        width:95%;
+        margin-top: 5rem;
+        padding-top: 2rem;
+        }
+        /* ..................The three message display divs............. */
+        .movingDiv1{
+            height: 0;
+            width:0; 
+        }
+        
+        .movingDiv2{
+            height:0;
+            width:0;   
+        }
+        .movingDiv3{
+            transform: translate(0);
+          
+        }
+        .arrowHeadsContainer{
+            transform: translate(0);
+        }
+     
+}
+
+

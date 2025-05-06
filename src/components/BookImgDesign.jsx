@@ -14,7 +14,7 @@ const BookImgDesign = ({children})=>{
        
 
 return(
-    <div className="bookImgContainer">
+    <div className="bookImgContainer ">
           <button 
             className="arrow-icon"
             onClick={handleToggle} 
