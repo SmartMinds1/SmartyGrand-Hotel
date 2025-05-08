@@ -2,23 +2,22 @@
 .reserveSection1{
     width:100%;
     height: fit-content;
-    margin-bottom: 20vh;
+    margin-bottom: 4rem;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
-    
 }
 
 /* IMAGE SLIDER */
   .section1ImageSlider{
-    width:50%;
-    min-width: 30rem;
-    height: 84vh;
+    width:clamp(300px,90%,30rem);
+    height: 68vh;
     border-left: none;
     margin:1rem;
     position:relative;
+   
 
   }
 
@@ -27,15 +26,12 @@
     height: 15vh;
     overflow: hidden;
     position: absolute;
-    top:70%;
+    top:60%;
     left:5%;
     transform: translate(0, 50%);
     border-radius: 1rem;
     display: inline-block;
     transition: ease-in 1s;
-
-
-
     background-repeat: no-repeat;
     background-size: cover;
   }
@@ -52,13 +48,13 @@
   }
 
 .sliderItem:nth-child(3) { 
-    left:40%;
+    left:35%;
 }
 .sliderItem:nth-child(4) {
-    left: 65%;
+    left: 60%;
 }
 .sliderItem:nth-child(n + 5) {
-    left: 90%;
+    left: 85%;
     opacity: 0;
        
 }
@@ -144,14 +140,13 @@
 
 /* CAPTION PARAGRAPH */
   .Section1TextCaption{
-    width:40%;
-    min-width: 21rem;
-    height: 70vh;
+    height: fit-content;
+    width:clamp(300px,90%,35rem);
+    
   }
 
 
   .Section1TextCaption h1{
-    /*   background-color: brown; */
       font-size: 2.5rem;
       font-weight: 300;
   }
@@ -159,6 +154,7 @@
     color:var(--color-accent-secondary);
     letter-spacing: 0.5rem;
     font-size: 2rem;
+    
   }
   
   .reserveMessage1{
@@ -187,6 +183,7 @@
   color: var(--color-text);
   text-align: left;
   margin-bottom: 2rem;
+  margin-left: 2%;
 
 }
 .reserveSection2 h3 span{
@@ -199,7 +196,6 @@
   width:100%;
   height: fit-content;
   min-height: 15%;
- /*  border: 1px solid rgb(78, 29, 62); */
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -209,24 +205,26 @@
 }
 .selectRoomBar ul{
   height: fit-content;
-  width: 60%;
-  min-width: 35rem;
+  width: clamp(300px,90%,35rem);
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   gap:5%;
+  margin-top: 2rem;
   list-style-type: none;
 
 }
 .selectRoomBar ul li{
   border-right:1px solid var(--color-accent-secondary);
-  padding-right: 1rem;
+  padding-right: 1.5rem;
   font-weight: 300;
   font-size: 1rem;
   font-weight: 400;
   transition: all 300ms;
   cursor: pointer;
+  margin-top: 1rem;
 }
 
 .selectRoomBar ul li:hover, .selectRoomBar ul li:focus{
@@ -254,21 +252,26 @@
   align-items: flex-end;
   flex-wrap: wrap;
   gap:1%;
+
   
 }
 
 /*.............. Delux room images......... */
   .duluxe1{
     background-image: url(../assets/animeReservation/introAnimation7.jpg);
+    margin-bottom: 3rem;
   }
   .duluxe2{
     background-image: url(../assets/animeReservation/pexels-charlotte-may-5825536.jpg);
+    margin-bottom: 3rem;
   }
   .duluxe3{
     background-image: url(../assets/animeReservation/pexels-houzlook-3797991.jpg);
+    margin-bottom: 3rem;
   }
   .duluxe4{
     background-image: url(../assets/Diluxe2.jpg);
+    margin-bottom: 3rem;
   }
 
 
@@ -277,7 +280,7 @@
 /*--------------------------- SECTION 3------------------- */
 .reserveSection3{
     width:100%;
-    height: 80vh;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -302,16 +305,19 @@
   
   
 }
-
 .reservationGuidlines ul li{
   text-align: left;
   line-height: 2rem;
   font-size: 1.1rem;
+
   
 }
 .reservationGuidlinesp{
-  
   font-size: 1.5rem;
+  filter:brightness(0.85);
+  margin-top: 3rem;
+  width: 80%;
+
 }
 .reservationGuidlinesp span{
   color:var(--color-faded-accent-primary);
@@ -326,27 +332,31 @@
 
 /* Now making my website more responsive */
 /*Mobiles*/ 
-@media (max-width: 480px){
-
+@media (max-width: 767px){
+  .section1ImageSlider{
+    height: 60vh;
+    margin-bottom: 5rem;
+  }
+  .content {
+    position: absolute;
+    top: 40%;
+    left: 20px;
+    width: 250px;
+    height:190px;
+  }
+  .reservationGuidlines{
+    margin:auto;
+    width: 85%;
+    margin-bottom: 3rem;
+    margin-left: 10%;
+    padding:1rem;
+  }
+  .reservationGuidlinesp{
+    width:80%;
+    
+  }
 }
 
-/* Ipads and Tablets*/
-@media (min-width: 481px) and (max-width: 768px) {
-
-}
-
-
-/* Small Screens and Laptops */
-@media (min-width: 769px) and (max-width: 1024px){
-
-}
-
-
-/* Large Screens and Desktops */
-@media (min-width: 1025px) and (max-width: 1200px) {
-  
-
-}
 
 
 

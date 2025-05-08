@@ -26,3 +26,10 @@
     filter:brightness(0.85);
 
 }
+/* Now making my website more responsive */
+/*Mobiles and Tablets*/ 
+@media (max-width: 767px){
+    .alert{
+        min-width:270px;
+    }
+}

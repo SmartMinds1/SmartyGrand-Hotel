@@ -257,7 +257,7 @@ height: 4rem;
   transform: rotateZ(25deg) translateY(3rem);
   margin-left: 30%;
 /*   background-image: url(../assets/animeReservation/introAnimation7.jpg); */
-    background-image: linear-gradient(to left,var(--color-background),#ff562217);
+    background-image: linear-gradient(to left,var(--color-faded-background),#ff562217);
   background-position-x: 64%;
 
   
@@ -265,7 +265,7 @@ height: 4rem;
 }
 .style2{
   transform: rotateZ(-25deg) translate(-5rem, -4rem);
-  background-image: linear-gradient(to right,var(--color-background),#ff562217);
+  background-image: linear-gradient(to right,var(--color-faded-background),#ff562217);
   background-position-x: 90%;
   display: flex;
   flex-direction: column;
@@ -311,13 +311,15 @@ transition: all 200ms;
 
 /* ...............This is the featured rooms section just below the first section ..........*/
 .featuredRooms{
-  width:90%;
+  width:100%;
   height:fit-content;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   margin: 5rem auto 20vh auto;
+  padding: min(2rem, 5%);
+ /*  background-color: #001c2c; */
 
   
 }
@@ -429,21 +431,20 @@ margin-bottom: 2rem;
   display: inline-block;
   margin-inline: 3%;  
 
+
 }
 .promoJoinUs{
   width: 100%;
   height: fit-content;
   color:var(--color-text);
   font-size: 1.1rem;
+  line-height: 1.5rem;
   margin-top: 4rem;
   text-align: left;
   display: flex;
   justify-content: center;
 
-}
-  
-  
-
+} 
 
 /* .............................Now moving to the chat form section................  */
   .homeChatSection{

@@ -60,7 +60,7 @@ const SignIn = ({ onClose , signUpResponse}) => {
               
         }catch(error){
           setResponseMessage(
-            error.response?.data?.message || "Login failed. Please try again."
+            error.response?.data?.message || <p className='loginFailed'><span>Login failed!</span> Please try again</p> 
           );
           
         }

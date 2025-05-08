@@ -4,24 +4,25 @@
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: 2rem;
+  
 }
 .ImageContainer{
-    width:40rem;
-    height: 70vh;
+    width:34rem;
+    height: 28rem;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    position: relative;
-    margin-top: 2rem;
+    position: absolute;
+    padding-top: 3rem;
     
 }
 
 .ImageShadder{
     background-color: rgba(0, 0, 0, 0.5);
-    position:absolute;
-    left:56%;
-    top:40%; 
+    position:relative;
+    left:6rem;
+    top:12rem; 
     width:20rem;
     overflow: hidden;
     animation: shadeSlider 2s ease 0s forwards;
@@ -36,7 +37,7 @@
 
 .containerSection1{
     height:100%;
-    width:48%;
+    width:14rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -44,23 +45,24 @@
 }
 .containerSection2{
     height:90%;
-    width:48%;
+    width:18rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin-left: 1rem;
 }
 
 .TwinBeds1{
     background-image: url(../assets/TwinBeds1.jpg);
-    width:55%;
-    height:67%;
+    width:11rem;
+    height:17rem;
     animation: slide1 2.5s ease-in-out 0s forwards;
 }
 
 .Swimming2{
     background-image: url(../assets/Swimming2.jpg);
-    width:70%;
-    height:29%;
+    width:14rem;
+    height:7rem;
 
     animation: moveIn2 2s ease-in-out 0s forwards;
 }
@@ -144,5 +146,31 @@
         filter: blur(0);
     }
 }
+
+/* Now making my website more responsive */
+/*Mobiles and Tablets*/ 
+@media (max-width: 767px){
+    .ImageContainer{
+        width:100%;
+        margin: auto;  
+    }
+    .containerSection1{
+        height: 27rem;
+       }
+    .containerSection2{
+     display: none;
+    }
+
+    .Swimming2{
+        background-image: url(../assets/modernOneBed.png);
+        width:16rem;
+        height:8rem;
+        background-position-y:60% ;
+    }
+    .ImageShadder{
+       display: none;
+    }
+}
+
 
 

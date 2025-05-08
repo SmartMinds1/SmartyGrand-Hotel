@@ -1,21 +1,24 @@
+
 /* SECTION 1 */
 .abt_Us{
-    color:rgb(211, 211, 255);
+    color:var(--color-text);
     text-align: left;
     margin-bottom: 4rem;
     font-weight: 400;
+    margin-left: 3%;
 }
 .aboutSection1{
-height: 80vh;
-width:100%;
-display:flex;
-flex-direction: row;
-justify-content: flex-start;
-margin:2rem 0 5rem 0;
-padding-left: 7%;
+    height: fit-content;
+    width:100%;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin:2rem 0 5rem 0;
+    flex-wrap: wrap;
 }
 .aboutHighlights{
-    width:38%;
+    width:30%;
+    margin: auto;
 } 
 .aboutHighlights ul {
     margin-left: 20%;
@@ -40,7 +43,13 @@ color:rgb(211, 211, 255);
     font-weight: 300;
     color:rgb(211, 211, 255);
 }
-
+.aboutGigImages{
+    width:36rem;
+    height: 28rem;
+    margin-left: 1rem;
+    margin-right: 5%;
+    
+}
 
 
 /* SECTION 2 */
@@ -51,6 +60,7 @@ color:rgb(211, 211, 255);
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+    flex-wrap: wrap;
     margin: 3rem 0 5rem 0;
 }
 .aboutTextBoxContainer{
@@ -73,6 +83,14 @@ color:rgb(211, 211, 255);
 
 }
 /* This is the graph section */
+.hotelGrapn{
+    width: 500px;
+    height: 400px;
+    background-image: url(../assets/hotel_growth_graph.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+ 
+}
 .graphCaption{
     font-size: 1rem;
     color:aliceblue;
@@ -85,16 +103,26 @@ color:rgb(211, 211, 255);
 .aboutSection3{
     width:100%;
     height: fit-content;
+    margin-left: 20%;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    flex-wrap: wrap;
+    justify-content:space-evenly;
     align-items: center;
-    margin: 3rem 0 5rem 0;
+    margin: auto;
+    margin: 3rem 0 2rem 0;
 }
+.section3Div2{
+width: 49%;
+font-size: 1rem;
+filter: brightness(0.85);
+text-align: left;
+line-height: 1.7rem;
+}
+
 .aboutTrustMessage{
     width:50%;
 }
-
 
 /* .............SECTION 4............*/
 .aboutSection4{
@@ -105,7 +133,7 @@ color:rgb(211, 211, 255);
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
-    margin:15rem 0 5rem 0;
+    margin:5rem 0 5rem 0;
     color:rgb(211, 211, 255);
 }
 .our_services_intro span{
@@ -147,4 +175,92 @@ color:rgb(211, 211, 255);
     margin:auto;
     
 }
- 
+ /* Now making my website more responsive */
+/*Mobiles and Tablets*/ 
+@media (max-width: 767px){
+    .aboutSection1{
+     flex-direction: column;
+     align-items: center;
+     justify-content: space-evenly;
+
+    }
+    .aboutHighlights{
+        width:100%;
+        margin: auto;
+    }
+    .aboutGigImages{
+        width:100%;
+        margin:auto
+    }
+
+ /*    section 2----------------------- */
+ .aboutTextBoxContainer{
+    width:90%;
+    height: fit-content;
+    margin:auto;
+}
+
+.aboutMessage{
+    margin: auto;
+    width:90%;
+
+}
+
+/* This is the graph section */
+.hotelGrapn{
+    width: 300px;
+    height: 220px;
+    background-size: contain;
+    margin-top: 3rem;
+}
+.graphCaption{
+    font-size: 1rem;
+}
+
+/* .............SECTION 3............*/
+.section3Div2{
+    width: 80%;
+    margin: auto;
+   
+    }
+
+/*  section 4 */
+.our_services{
+    transform: translateY(0);
+}
+.servicesMessage{
+    width: 100%;
+}
+.finalAboutComment{
+    width:80%;
+}
+
+}
+
+/* Small Screens and Laptops */
+@media (min-width: 768px) and (max-width: 1024px){
+    .abt_Us{
+        margin-left: 5%;
+    }
+    .aboutSection1{
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+       }
+       .aboutHighlights{
+           width:100%;
+           margin: auto;
+       }
+       .aboutGigImages{
+        width:90%;
+        padding-left: 15%;
+    }
+    .our_services{
+        transform: translateY(-3rem);
+    }
+    .finalAboutComment{
+        width:70%;
+    }
+
+
+}

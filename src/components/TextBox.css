@@ -10,9 +10,7 @@
 
 .TextDesign p{
     font-size: 1rem;
- /* filter:brightness(0.85); */
     text-align: left;
-/*     line-height: 5rem; */
     letter-spacing: 1px;
     color: hsl(0, 0%, 80%);
 

@@ -109,7 +109,7 @@ const Reservations = ()=>{
 
 {/* CAPTION PARAGRAPH */}
     <div className="Section1TextCaption">
-               <h1>| Enjoy seemless bookings! <br />&nbsp; create,  
+               <h1>| Enjoy seemless bookings! create,  
                    <span> unforgettable <br />&nbsp;  memories. </span> 
                </h1>
    
@@ -125,7 +125,7 @@ const Reservations = ()=>{
 
 
 {/*......................... Reserve room SECTION 2....................... */}
-  <div className="reserveSection2  scrollSnap">
+  <div className="reserveSection2">
 
   {/*   SECTION 2 PART 1 */}
           <h3><span>| Seamless booking,</span> it's never been this Quick!</h3>

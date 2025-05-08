@@ -50,7 +50,7 @@ const Modal = ({ isOpen, onClose, children}) => {
         className="modal-content"
         style={{
           padding: "0",
-          minWidth: "300px",
+          minWidth: "290px",
           maxWidth: "90%",
         }}
       >

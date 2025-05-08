@@ -62,8 +62,8 @@ const handleSubmit = async (e) => {
                     />
 
                     <textarea
-                    cols="40" 
-                    rows="6"
+                 /*    cols="30" 
+                    rows="6" */
                     id="comment"
                     name="comment" 
                     placeholder="Leave us a comment"

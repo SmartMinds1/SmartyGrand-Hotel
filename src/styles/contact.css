@@ -1,3 +1,137 @@
+.contact_Us{
+    width: 55%;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color:var(--color-text);
+    text-align: left;
+    padding:0.5rem;
+    letter-spacing: 0.3rem;
+    border-left: 1px solid var(--color-text);
+    
+}
+/* .............................Now moving to the chat form section................  */
+.contactChatSection{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding:0.5rem;
+    margin:5rem 0 5rem 0;
+    flex-wrap: wrap;
+
+  }
+
+  .chatCaption{
+ /*    width: 40%; */
+    width: 80%;
+    max-width:30rem;
+    min-width: 16rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    color:rgb(211, 211, 255);
+  }
+
+  .chatCaption h2{
+    font-weight: 300;
+    font-size: 2.3rem;
+  }
+  .chatCaption h2 span{
+    color:var(--color-faded-accent-primary);
+  }
+  .chatCaption p{
+    font-size: 1.1rem;
+  }
+
+ /*  section 2 message and image*/
+  .contactIntroImg{
+    background-image: linear-gradient(to right,  rgb(7, 16, 37) , #ff5622);
+    border-radius: 50%;
+    width:15rem;
+    height: 15rem;
+    float:left;
+    position:relative;
+    margin-top: 13rem;
+    margin-left: 15%;
+}
+
+.phoneImageShadder{
+    width:60%;
+    height:18rem;
+    background-color:#c3d8ff0e;
+    position:absolute;
+    top:-6rem;
+    left: 14%;
+    backdrop-filter: blur(3px);
+    border:1px solid rgba(211, 211, 255, 0.39);
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+
+}
+.phoneImageShadder p{
+    color:aliceblue;
+    margin-top: 8rem;
+    font-size: 1.5rem;
+    letter-spacing: 0.3rem;
+}
+.OfficeTelephone{
+    margin:auto;
+    margin-top: 3rem;
+    height:3rem;
+    transform: translateY(-10rem);  
+}
+.clear{
+    clear:both;
+}
+
+.contactIntro{
+    float:right;
+    width:50%;
+    height:25rem;
+    margin-right: 10%;
+    margin-top: 4rem;
+}
+
+
+.contactIntro h1{
+    font-size: 2.3rem;
+    font-weight: 300;
+}
+.contactIntro h1 span{
+    font-size: 2.5rem;
+    font-weight: 800;
+}
+
+.contactMessage1{
+    margin: auto;
+    width:80%;
+
+}
+
+/* checked boxes */
+.contactCheckBox1{
+    height: fit-content;
+    width:60%;
+    margin: auto;
+    margin: 6rem 0 6rem 3%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.whiteBox{ 
+    color: var(--color-text);
+    font-size: 2rem;
+
+}
+
+.yellowBox{ 
+    color: var(--color-accent-secondary);
+    font-size: 2rem;
+
+}
+
 
 /* This is the main container div */
 .locationSection{
@@ -29,153 +163,29 @@ margin-bottom: 4rem;
     font-size: 2rem;   
 }
 
+
 /* This is the contact map section */
 .mapContainer{
         width: 30%; 
         height: fit-content;
         background-image: linear-gradient(to right,  rgb(7, 16, 37) , #ff562217);
-
         box-shadow: 300px 300px 400px -10px #ff56222d,
-        -800px -1px 400px -10px #ff56222d;
-      
-}
-
-.contactIntroImg{
-    background-image: linear-gradient(to right,  rgb(7, 16, 37) , #ff5622);
-    border-radius: 50%;
-    width:30%;
-    height: 15rem;
-    float:left;
-    position:relative;
-    margin-top: 13rem;
-    margin-left: 15%;
-}
-
-.phoneImageShadder{
-    width:60%;
-    height:18rem;
-    background-color:#c3d8ff0e;
-    position:absolute;
-    top:-6rem;
-    left: 14%;
-    backdrop-filter: blur(3px);
-    border:1px solid rgba(211, 211, 255, 0.39);
-   /*  border-radius: 1rem; */
-    border-top-right-radius: 1rem;
-    border-bottom-right-radius: 1rem;
-
-}
-.phoneImageShadder p{
-    color:aliceblue;
-    margin-top: 8rem;
-    font-size: 1.5rem;
-    letter-spacing: 0.3rem;
-}
-.OfficeTelephone{
-   /*  filter: blur(3px); */
-    margin:auto;
-    margin-top: 3rem;
-    height:3rem;
-    transform: translateY(-10rem);  
-}
-
-.clear{
-    clear:both;
-}
-
-.contactIntro{
-    float:right;
-    width:40%;
-    height:25rem;
-    margin-right: 10%;
-    margin-top: 4rem;
-}
-.contact_Us{
-    width: 55%;
-    font-size: 1.1rem;
-    font-weight: bold;
-    color:var(--color-text);
-    text-align: left;
- /*    margin-bottom: 5rem; */
-    padding:0.5rem;
-    letter-spacing: 0.3rem;
-    border-left: 1px solid var(--color-text);
-    
-}
-
-.contactIntro h1{
-  /*   background-color: brown; */
-    font-size: 2.3rem;
-    font-weight: 300;
-}
-.contactIntro h1 span{
-    font-size: 2.5rem;
-    font-weight: 800;
-}
-
-.contactMessage1{
-    margin: auto;
-    width:80%;
-
-}
-.contactCheckBox1{
-      height: fit-content;
-      width:60%;
-      margin: auto;
-      margin: 6rem 0 6rem 3%;
-      padding: 1rem;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-  }
-
-/* .............................Now moving to the chat form section................  */
-.contactChatSection{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    padding:0.5rem;
-    margin:0 0 5rem 0;
-
-  }
-  .chatCaption{
-    width: 40%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-
-    color:rgb(211, 211, 255);
-  }
-  .chatCaption h2{
-    font-weight: 300;
-    font-size: 2.5rem;
-  }
-  .chatCaption h2 span{
-    color:var(--color-faded-accent-primary);
-  }
-  .chatCaption p{
-    font-size: 1.1rem;
-  }
-
-
-
-
-
-.singInBtn{
-    margin:'2rem auto 4rem auto';
+        -800px -1px 400px -10px #ff56222d;    
 }
 
 .callEmailChat  {
     width:100%;
     height: fit-content;
     padding:1rem;
-    margin:10rem 0 8rem 0;
-   
+    margin:1rem 0 8rem 0;
+    
 }
 
 .callEmailChat div{
     display:inline-block;
     margin-inline:5%;
+    margin-top: 3rem;
+  
 }
 .call_E_ChatDesign{
     width: 15rem;
@@ -183,86 +193,133 @@ margin-bottom: 4rem;
     text-align: left;
     
 }
-
-.emailBox{
-    /* background-color: blue; */
-    animation: email_slide 10s ease-in-out 0.1s infinite;
-   
+.contactIcon{
+    color: aliceblue;
+    font-size: 19px;
+    transition: all 200ms ease-in-out;
+    padding:0.5rem;
+    cursor:pointer;
 }
-.callBox{
-  /*   background-color: blueviolet; */
-    animation: call_slide 10s ease-in-out 0.1s infinite;
- 
-}
-.chatBox{
-   /*  background-color: black; */
-    animation: chat_slide 10s ease-in-out 0.1s infinite;
- 
-}
-
- @keyframes email_slide {
-    0%{
-        transform: translateY(0);
-    }
-    25%{
-        transform: translateY(2rem);
-    }
-    50%{
-        transform: translateY(0);
-    }
-    75%{
-        transform: translateY(-2rem);
-    }
-    100%{ 
-        transform: translateY(0rem);
-    }
- }
-
- @keyframes call_slide {
-    0%{
-        transform: translateY(0);
-    }
-    25%{
-        transform: translateY(-2rem);
-    }
-    50%{
-        transform: translateY(0);
-    }
-    75%{
-        transform: translateY(2rem);
-    }
-    100%{ 
-        transform: translateY(0rem);
-    }
- }
-
- @keyframes chat_slide {
-    0%{
-        transform: translateY(0);
-    }
-    25%{
-        transform: translateY(2rem);
-    }
-    50%{
-        transform: translateY(0);
-    }
-    75%{
-        transform: translateY(-2rem);
-    }
-    100%{ 
-        transform: translateY(0rem);
-    }
- }
-
- 
 .finalContactComment{
     width:60%;
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 300;
-    letter-spacing: 0.2rem;
+    letter-spacing: 0.1rem;
     margin:auto;
     margin-top: 4rem;
+}
+
+/* Now making my website more responsive */
+/*Mobiles and Tablets*/ 
+@media (max-width: 767px){
+/*---------------------- MESSAGE BOX SECTION */
+.chatCaption{
+    width: 90%;
+    margin-top: -4rem;
+  }
+  .chatCaption p{
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+  }
+
+/*   section 2 message and image */
+.contactIntroImg{
+   display: none;  
+}
+.contactIntro{
+    float:none;
+    width:90%;
+    height:fit-content;
+    margin: auto;
+}
+.contactIntro h1{
+    text-align: center;
+}
+.contactMessage1{
+    width:90%;
+}
+
+
+/* checked boxes */
+.contactCheckBox1{
+    flex-direction: column;
+    width:50%;
+    margin: 4rem auto 6rem auto;
+}
+
+/* This is the main container div */
+   .locationSection{
+    flex-direction: column;
+    flex-wrap: wrap;
+    width:100%;
+    margin-top: -3rem;
+    }
+    
+    /* Name and location Address */
+    .nameAndLocation{
+        margin-bottom: 2rem;
+        }
+    .nameAndLocation p:nth-child(1){
+        margin-bottom: 1rem;
+    }
+    .nameAndLocation p:nth-child(2){
+        margin:auto;
+        width:80%;
+        line-height: 1.7rem; 
+    }
+    
+    /* This is the contact map section */
+    .mapContainer{
+            width: 80%; 
+    }
+
+    .callEmailChat  {
+        margin-top:0;
+        padding-top: 0;
+    }
+    .finalContactComment{
+        width:90%;
+        text-align: left;
+        font-size: 1.2rem;
+    }
+
+}
+
+/* Small Screens and Laptops */
+@media (min-width: 768px) and (max-width: 1024px){
+    .chatCaption{
+        width: 40%;
+      }
+      .chatCaption p{
+        font-size: 1.1rem;
+      }
+/*   section 2 message and image */
+    .contactIntro{
+        width:50%;
+        height:fit-content;
+        margin: auto;
+    }
+    .contactIntro h1{
+        text-align: right;
+        margin-right: 10%;
+        height: fit-content;
+    }
+    .contactMessage1{
+        width:90%;
+    } 
+    .phoneImageShadder{
+        width:70%;
+    
+    
+    }
+}
+
+/* Large Screens and Desktops */
+@media (min-width: 1025px) {
+  
+
 }
 
 

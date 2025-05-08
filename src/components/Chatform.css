@@ -76,7 +76,7 @@ padding:1rem;
 width: 100%;
 backdrop-filter: blur(2px);
 border:1px solid rgba(211, 211, 255, 0.39);
-
+resize: none;
 margin-top: 3rem;
 
 outline: none;
