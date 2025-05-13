@@ -9,6 +9,7 @@ const userRoutes = require("./routes/userRoutes"); //  importing userRoute ... s
 const bookingRoutes = require("./routes/bookingRoutes"); //adding booking API
 const testimonialRoutes = require("./routes/testimonialRoutes"); // adding testimonial api
 const paymentRoutes = require("./routes/paymentRoutes"); // adding payments api
+const mpesaRoutes = require("./routes/mpesaRoutes"); //adding MPESA api
 
 const logger = require("./utils/logger");
 const errorHandler = require("./middlewares/errorHandler");
@@ -16,6 +17,9 @@ const commonMiddleware = require("./middlewares/common");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+// Trust the first proxy (e.g., Ngrok)
+app.set("trust proxy", 1);
 
 // Apply common middleware
 commonMiddleware(app);
@@ -43,6 +47,7 @@ app.use("/api/users", userRoutes); //Registering the user Route ... step 2
 app.use("/api/bookings", bookingRoutes); //registering bookings routes
 app.use("/api/testimonials", testimonialRoutes); //registering testimonial routes
 app.use("/api/payments", paymentRoutes); // registering payment routes
+app.use("/api/mpesa", mpesaRoutes); //registering the MPESA route
 
 // Health Check Route
 app.get("/", (req, res) => {

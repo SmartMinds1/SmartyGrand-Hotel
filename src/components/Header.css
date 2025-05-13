@@ -118,8 +118,9 @@ h1{
 .introhr{
   width:80%;
   height:1px;
-  background-image: linear-gradient(to right,rgb(4, 11, 29), #FF5722, rgb(4, 11, 29));
+  background-image: linear-gradient(to right, transparent, #FF5722, transparent);
   margin: auto;
+  transform: translateY(-6px);
 }
 
 
@@ -144,7 +145,17 @@ h1{
   top:3rem;
   left: 0;
   display: none;
+  animation: mobileSlide 0.8s ease-in-out 0s forwards;
 
+  }
+  @keyframes mobileSlide {
+    from{
+      transform: scaleX(0)
+    }
+    to{
+      transform: scaleX(1);
+    }
+    
   }
 
   .mobileAuthNav{

@@ -144,7 +144,9 @@
  .loginFailed span{
   font-weight: bold;
  }
-
+.forgotH2{
+  margin-bottom: 1.5rem;
+}
   /* Now making my website more responsive */
 /*Mobiles and Tablets*/ 
 @media (max-width: 767px){

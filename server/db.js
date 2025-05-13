@@ -1,6 +1,6 @@
 // Database connection setup for PostgreSQL. it creates a pool of connections
 const { Pool } = require("pg");
-const logger = require("../utils/logger");
+const logger = require("./utils/logger");
 
 const pool = new Pool({
   user: process.env.PG_USER || "smartminds",

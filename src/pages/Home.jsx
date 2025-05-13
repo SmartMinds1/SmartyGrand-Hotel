@@ -2,7 +2,6 @@ import React from 'react';
 import "../styles/home.css";
 import Button from "../components/Button";
 import { formatDate } from '../utils/formatDate';
-/* import ContentBox from "../components/ContentBox"; */
 import MessageMover from '../components/MessageMover';
 import StylishBox from "../components/StylishBox";
 import ImageTextBox from '../components/Image_Text_Box';
@@ -86,10 +85,6 @@ function Home() {
             </div>
           <div className="clear"></div>
 
-
-
-
-
  {/*-------------------------------- This is the featured rooms and suits section -----------------------------*/}
            <div className="featuredRooms">
            {/*  I have used the repeated design in the promo section hence the headers as shown */}
@@ -119,8 +114,6 @@ function Home() {
                     </ImageTextBox>
                 </div>
           </div>
-
-      {/*     <LayoutTest/> */}
 
 
       
@@ -192,12 +185,10 @@ function Home() {
        />
       </p>     
 </div>
-
         
 </div>
 
 <div className="bodyHr"></div>
-
 
 {/*..................... This is the chatBox section where users can send their feedback................ */}
 <div className="homeChatSection ">

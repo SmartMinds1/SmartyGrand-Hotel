@@ -8,14 +8,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 
-const SignIn = ({ onClose , signUpResponse}) => {
+const SignIn = ({signUpResponse, closeSignIn, onDontHaveAccount, onForgotPass}) => {
 //setting up the initial states ot the form
   const [formData, setFormData] = useState({
       username:"",
       password:""
       });
 
-//for page navigation
+//for page navigation to protected page after successfull singIn
   const navigate = useNavigate();
 
 //Setting up our feedback popUp
@@ -83,7 +83,7 @@ const SignIn = ({ onClose , signUpResponse}) => {
                 <div>
                   {signUpResponse ? <div className='headerMessage'><h3>{signUpResponse}</h3> <p> Now log in</p></div> : <h2>Welcome Back!</h2>}
                 </div>
-                <button onClick={onClose} className="auth-close-btn">
+                <button onClick={closeSignIn} className="auth-close-btn">
                   ✕ 
                 </button>
             </div>
@@ -127,14 +127,13 @@ const SignIn = ({ onClose , signUpResponse}) => {
               </button>
         </form>
 
-         <p className='authOption'>Don't have an account? <span>sign up</span></p>
+         <p className='authOption'>Don't have an account? <span onClick={() => onDontHaveAccount()}>sign up</span></p>
          <div className="auth-forgot-password">
-              <p onClick={() => navigate('/forgot-password')} className="forgot-password-link">
+              <p onClick={() => onForgotPass()} className="forgot-password-link">
                 Forgot Password?
               </p>
           </div>
-
-      
+          
       </div>
       
     {/*  Displaying the response messsage using a popUP */}

@@ -26,6 +26,11 @@
     filter:brightness(0.85);
 
 }
+.alertMessage{
+    width: 80%;
+    text-align: center;
+    margin: auto;
+}
 /* Now making my website more responsive */
 /*Mobiles and Tablets*/ 
 @media (max-width: 767px){

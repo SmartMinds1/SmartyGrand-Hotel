@@ -6,6 +6,7 @@ import Button from "../components/Button";
 import PayPopUp from "../components/popUps/PayPopUp";
 import BookImgDesign from "../components/BookImgDesign";
 import Modal from "../components/popUps/Modal";
+import MpesaPaymentForm from "./MpesaPaymentForm";
 
 
 
@@ -665,6 +666,14 @@ const Reservations = ()=>{
   </div>
 
 
+{/* MPESA PAYMENT OPTION */}
+    <div className="reserveSection3">
+          <h2 className="slide_right">| Payment <span>Options</span></h2>
+          <div className="reservationGuidlinesp">
+                <p>___You are free to PAY NOW or pay on Arrival___</p>
+          </div>
+    </div>
+     <MpesaPaymentForm/>
 
 {/*......................... Reserve room SECTION 3....................... */}
 <div className="reserveSection3">

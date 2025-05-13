@@ -4,11 +4,13 @@ import { React, useState, useEffect, useRef } from "react";
 import Modal from "./popUps/Modal";
 import SignUp from "../pages/SignUp";
 import SignIn from "../pages/SignIn";
+import ForgotPassword from "../pages/ForgotPassword";
 
 //PROPS EXAMPLE
 const Header = () => {
   const [showSignUp, setShowSignUp] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
+  const [showForgotPass, setShowForgotPass] = useState(false);
   const [signUpMessage, setSignUpMessage] = useState("");
 
   //setting up toggle button to show mobile nav bar
@@ -17,11 +19,23 @@ const Header = () => {
     setShowContent((prev) => !prev);
   };
 
-  //hadling signIn and signUp popUP switching
+  //hadling switch to signIn
   const handleSwitchToSignIn = (message) => {
     setShowSignUp(false);
     setSignUpMessage(message);
     setShowSignIn(true);
+  };
+
+  //hadling switch to signUp
+  const handleSwitchToSignUp = () => {
+    setShowSignIn(false);
+    setShowSignUp(true);
+  };
+
+  //hadling switch to forgot password
+  const handleSwitchToForgotPassword = () => {
+    setShowSignIn(false);
+    setShowForgotPass(true);
   };
 
   //animating my header on scroll
@@ -67,8 +81,22 @@ const Header = () => {
               <div className="mobileNavBar">
                 {/* auth list for mobile */}
                 <ul className="mobileAuthNav">
-                  <li onClick={() => setShowSignIn(true)}>Sign In</li>
-                  <li onClick={() => setShowSignUp(true)}>Sign Up</li>
+                  <li
+                    onClick={() => {
+                      setShowSignIn(true);
+                      setShowContent(false);
+                    }}
+                  >
+                    Sign In
+                  </li>
+                  <li
+                    onClick={() => {
+                      setShowSignUp(true);
+                      setShowContent(false);
+                    }}
+                  >
+                    Sign Up
+                  </li>
                 </ul>
 
                 {/* nav list for mobile */}
@@ -93,11 +121,7 @@ const Header = () => {
                       Reservation
                     </Link>
                   </li>
-                  <li onClick={() => setShowContent(false)}>
-                    <Link className="linkStyle" to="/blog">
-                      blog
-                    </Link>
-                  </li>
+
                   <li
                     className="linkStyle"
                     onClick={() => {
@@ -135,11 +159,7 @@ const Header = () => {
                     Reservation
                   </Link>
                 </li>
-                <li>
-                  <Link className="linkStyle" to="/blog">
-                    blog
-                  </Link>
-                </li>
+
                 <li className="linkStyle" onClick={() => setShowSignIn(true)}>
                   Admin
                 </li>
@@ -171,7 +191,9 @@ const Header = () => {
           {/*Any popUP right here */}
           <SignIn
             signUpResponse={signUpMessage}
-            onClose={() => setShowSignIn(false)}
+            closeSignIn={() => setShowSignIn(false)}
+            onForgotPass={() => handleSwitchToForgotPassword()}
+            onDontHaveAccount={() => handleSwitchToSignUp()}
           />
         </Modal>
       )}
@@ -179,11 +201,19 @@ const Header = () => {
       {/* showing signUp popUp */}
       {showSignUp && (
         <Modal isOpen={showSignUp} onClose={() => setShowSignUp(false)}>
-          {/*Any popUP right here */}
+          {/* Any popUP right here */}
           <SignUp
             onSuccess={handleSwitchToSignIn}
             closeSignUp={() => setShowSignUp(false)}
           />
+        </Modal>
+      )}
+
+      {/* showing forgotPassword popUp */}
+      {showForgotPass && (
+        <Modal isOpen={showForgotPass} onClose={() => setShowForgotPass(false)}>
+          {/*Any popUP right here */}
+          <ForgotPassword closeForgotPass={() => setShowForgotPass(false)} />
         </Modal>
       )}
     </>

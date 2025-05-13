@@ -20,6 +20,17 @@
     height: 40vmin;
     pointer-events: none;
   }
+  .whiteIcons{
+    font-size: 2rem;
+    margin: 1rem;
+    color:var(--color-text);
+  }
+  .redIcons{
+    font-size: 2rem;
+    margin: 1rem;
+    color:var(--color-faded-accent-primary);
+  }
+
 
 /* .................hero section animation images...................... */
 .homeCaptionImage1{

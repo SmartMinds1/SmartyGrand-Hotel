@@ -125,7 +125,7 @@ const SignUp = ({ closeSignUp, onSuccess }) => {
           </button>
         </form>
 
-        <p className='authOption'>Already have an account? <span>sign in</span></p>
+        <p className='authOption'>Already have an account? <span onClick={()=>onSuccess()}>sign in</span></p>
         
       </div>
 

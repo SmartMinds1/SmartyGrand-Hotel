@@ -6,7 +6,7 @@ const Alert = ({children, onClose})=>{
     return(
         <div className="alert">
            <div>
-           {children}
+               <p className="alertMessage"> {children} </p>
            </div>
             <button className="okBtn" onClick={onClose} >OK</button>
         </div>
