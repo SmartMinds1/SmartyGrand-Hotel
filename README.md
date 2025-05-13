@@ -1,4 +1,24 @@
-# How to run this React App
+# SmartyGrand Hotel Overview
+
+## 📸 Screenshots
+
+### Home Page
+
+![Home Page](./Screenshots/HOME.png)
+
+### Reservation page
+
+![Reservation Page](./Screenshots/RESERVATION.png)
+
+### Contact Page
+
+![Contact Page](./Screenshots/CONTACT.png)
+
+### About Page
+
+![About Page](./Screenshots/ABOUT.png)
+
+# how to run this app
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
