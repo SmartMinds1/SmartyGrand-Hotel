@@ -43,7 +43,7 @@ A modern hotel website built using the **MERN stack (React + Node.js + PostgreSQ
 ### 📁 Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
+git clone https://github.com/SmartMinds1/SmartyGrand-Hotel.git
 cd your-repo-name
 ```
 
