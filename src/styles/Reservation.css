@@ -273,6 +273,40 @@
     background-image: url(../assets/Diluxe2.jpg);
     margin-bottom: 3rem;
   }
+/*.............. Family room images......... */
+  .family1{
+    background-image: url(../assets/BalconyNature.jpg);
+    margin-bottom: 3rem;
+  }
+  .family2{
+    background-image: url(../assets/modernOneBed.png);
+    margin-bottom: 3rem;
+  }
+  .family3{
+    background-image: url(../assets/TwinBeds1.jpg);
+    margin-bottom: 3rem;
+  }
+  .family4{
+    background-image: url(../assets/Deluxe1.jpg);
+    margin-bottom: 3rem;
+  }
+/*.............. conference room images......... */
+  .conference1{
+    background-image: url(../assets/BalconyNature.jpg);
+    margin-bottom: 3rem;
+  }
+  .conference2{
+    background-image: url(../assets/animeReservation/introAnimation2.jpg);
+    margin-bottom: 3rem;
+  }
+  .conference3{
+    background-image: url(../assets/TwinBeds1.jpg);
+    margin-bottom: 3rem;
+  }
+  .conference4{
+    background-image: url(../assets/animeReservation/smart8.jpg);
+    margin-bottom: 3rem;
+  }
 
 
 

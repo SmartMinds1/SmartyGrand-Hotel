@@ -96,6 +96,7 @@
   .popup-input-row {
     display: flex;
     gap: 16px;
+    overflow-x: scroll;
   }
   
   /* Submit Button for the popUp */

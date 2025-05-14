@@ -267,7 +267,7 @@ const Reservations = ()=>{
                           {activeTab === 'FAMILY' && (
                               <div className="roomImagesContainer">
 
-                                      <div className="bookImgContainer duluxe2">
+                                      <div className="bookImgContainer family1">
                                             <BookImgDesign className="roomDetails">
                                                 <h4>Family SMALL</h4>
                                                 <ul>
@@ -290,7 +290,7 @@ const Reservations = ()=>{
                                             </BookImgDesign>
                                       </div>
 
-                                      <div className="bookImgContainer duluxe1">
+                                      <div className="bookImgContainer family2">
                                               <BookImgDesign className="roomDetails">
                                                   <h4>Family BIG</h4>
                                                   <ul>
@@ -312,7 +312,7 @@ const Reservations = ()=>{
                                               </BookImgDesign>
                                       </div>
 
-                                      <div className="bookImgContainer duluxe3">
+                                      <div className="bookImgContainer family3">
                                           <BookImgDesign className="roomDetails">
                                               <h4>Family Medium</h4>
                                               <ul>
@@ -334,7 +334,7 @@ const Reservations = ()=>{
                                           </BookImgDesign>
                                       </div>
 
-                                      <div className="bookImgContainer duluxe4">
+                                      <div className="bookImgContainer family4">
                                           <BookImgDesign className="roomDetails">
                                               <h4>Family Classic</h4>
                                               <ul>
@@ -364,7 +364,7 @@ const Reservations = ()=>{
                           {activeTab === 'CONFERENCE' && (
                               <div className="roomImagesContainer">
 
-                                       <div className="bookImgContainer duluxe2">
+                                       <div className="bookImgContainer conference1">
                                             <BookImgDesign className="roomDetails">
                                                 <h4>Medium Hall</h4>
                                                 <ul>
@@ -387,7 +387,7 @@ const Reservations = ()=>{
                                             </BookImgDesign>
                                       </div>
 
-                                      <div className="bookImgContainer duluxe1">
+                                      <div className="bookImgContainer conference2">
                                               <BookImgDesign className="roomDetails">
                                                   <h4>Mega Hall</h4>
                                                   <ul>
@@ -410,7 +410,7 @@ const Reservations = ()=>{
                                               </BookImgDesign>
                                       </div>
 
-                                      <div className="bookImgContainer duluxe3">
+                                      <div className="bookImgContainer conference3">
                                           <BookImgDesign className="roomDetails">
                                               <h4>small meeting room</h4>
                                               <ul>
@@ -433,9 +433,9 @@ const Reservations = ()=>{
                                           </BookImgDesign>
                                       </div>
 
-                                      <div className="bookImgContainer duluxe4">
+                                      <div className="bookImgContainer conference4">
                                           <BookImgDesign className="roomDetails">
-                                              <h4>Classic Board Room</h4>
+                                              <h4>Outdoor Meetings</h4>
                                               <ul>
                                                   <li>Plush king-size bed</li>
                                                   <li>High-speed Wi-Fi</li>

@@ -74,14 +74,38 @@ Create a `.env` file in the `server` folder:
 
 ```env
 PORT=5000
-DB_HOST=localhost
-DB_PORT=5432
-DB_USER=your_pg_user
-DB_PASSWORD=your_pg_password
-DB_NAME=your_database_name
+PG_HOST=localhost
+PG_PORT=5432
+PG_USER=your_pg_user
+PG_PASSWORD=your_pg_password
+PG_DATABASE=your_database_name
+
 JWT_SECRET=your_jwt_secret
 EMAIL_USER=your_email@example.com
 EMAIL_PASS=your_email_password_or_app_token
+CLIENT_URL=http://localhost:3000
+
+
+NODE_ENV=production
+REDIS_HOST=127.0.0.1
+REDIS_PORT=6379
+RATE_LIMIT_WINDOW_MS=900000
+RATE_LIMIT_MAX=100
+ALLOWED_ORIGINS=http://localhost:3000
+
+# Google OAuth2 Credentials for Gmail sending
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+GOOGLE_REDIRECT_URI=
+GOOGLE_REFRESH_TOKEN=
+GMAIL_SENDER_EMAIL= your verified google cloud email
+
+#MPESA credintials
+MPESA_CONSUMER_KEY=
+MPESA_CONSUMER_SECRET=
+MPESA_PASSKEY=
+MPESA_SHORTCODE=174379
+MPESA_CALLBACK_URL=
 ```
 
 > Don’t commit `.env` to GitHub – it contains sensitive info.

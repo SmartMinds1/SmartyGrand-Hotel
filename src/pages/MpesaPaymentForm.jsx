@@ -40,11 +40,6 @@ const MpesaPaymentForm = () => {
 {/* my home Icons */}
 <div className='testIcon'>
 
-{/* <FontAwesomeIcon className="redIcons" icon={faHotel} title="Welcome"/>
-<FontAwesomeIcon className="whiteIcons" icon={faHouseUser} title="Home"/>
-<FontAwesomeIcon className="redIcons" icon={faClipboard} title="Features"/>
-<FontAwesomeIcon className="whiteIcons" icon={faStar} title="Reviews"/>
-<FontAwesomeIcon className="redIcons" icon={faBellConcierge} title="Amenities"/> */}
 </div>
 
     <div className='payform'>
@@ -57,7 +52,7 @@ const MpesaPaymentForm = () => {
           onChange={(e) => setPhoneNumber(e.target.value)}
           placeholder="2547XXXXXXXX"
           required
-          style={{ width: '100%', padding: '8px', margin: '8px 0' }}
+          style={{ width: '100%', padding: '8px', outline:'none', margin: '8px 0' }}
         />
 
         <label>Amount (KES):</label>
@@ -67,13 +62,13 @@ const MpesaPaymentForm = () => {
           onChange={(e) => setAmount(e.target.value)}
           placeholder="e.g. 100"
           required
-          style={{ width: '100%', padding: '8px', margin: '8px 0' }}
+          style={{ width: '100%', outline:'none', padding: '8px', margin: '8px 0' }}
         />
 
         <button
           type="submit"
           disabled={loading}
-          style={{ padding: '10px 20px', background: '#28a745', color: '#fff' }}
+          style={{ padding: '10px 20px', outline:'none', border:'none', width:'200px', background: '#28a745', color: '#fff' }}
         >
           {loading ? 'Processing...' : 'Pay Now'}
         </button>

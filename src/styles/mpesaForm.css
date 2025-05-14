@@ -6,6 +6,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     margin: 5rem auto 8rem auto;
 
 }
@@ -25,4 +26,15 @@
     padding:1rem;
     height: 20rem;
     margin-right: 25%;
+  }
+  @media (max-width: 767px){
+    .payform{
+    width:clamp(300px, 90%, 400px);
+    margin: auto;
+    }
+
+    .paymentForm{
+      margin-bottom: 2rem;
+  
+  }
   }
