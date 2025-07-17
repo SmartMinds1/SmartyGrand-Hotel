@@ -131,7 +131,7 @@ const PayPopUp = ({Amount, title, onClose }) => {
               </div>
           </div>
 
-          <div className="popup-input-group">
+{          <div className="popup-input-group">
                 <label>Paste Mpesa code</label>
                 <input
                   type="text"
@@ -144,10 +144,13 @@ const PayPopUp = ({Amount, title, onClose }) => {
                   minLength="10"
                   required
                 />
-          </div>
+          </div>}
+
+          <br />
           <div className="popup-input-row">
                 <div className="popup-input-group">
                   <label>Check-In</label>
+                  
                   <input
                     type="date"
                     name="checkin"

@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import useSearch from "../utils/useSearch";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+
 
 const PaymentsList = () => {
   const [payments, setPayments] = useState([]);
@@ -61,7 +64,8 @@ const PaymentsList = () => {
                     <option value="Frequent">Frequent</option>
               </select>
             </div>
-            <div className="searchBox">
+            <div className="searchBar">
+              <FontAwesomeIcon icon={faSearch} className="search-icon"></FontAwesomeIcon> 
                 <input
                   type="text"
                   placeholder="username or phone"

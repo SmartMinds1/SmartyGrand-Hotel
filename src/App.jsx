@@ -18,6 +18,7 @@ const ProtectedRoute = ({ children }) => {
   return isAuthenticated ? children : <Navigate to="/login" replace />;
 };
 
+//This is the main app component for routing
 const App = () => {
   return (
     <Router>
@@ -35,7 +36,6 @@ const App = () => {
         <Route path="/register" element={<SignUp />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password/:token" component={ResetPassword} />
-
 
         {/* Protected admin route */}
         <Route

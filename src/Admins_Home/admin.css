@@ -48,9 +48,9 @@
     width:3rem;
     height:3rem;
     border-radius: 50%;
-    background-image: url(../assets/favicon.ico);
+    background-image: url(../assets/animeReservation/pexels-houzlook-3797991.jpg);
     background-size: contain;
-    border:1px solid #55ddf5;
+  
 }
 .adminDiv p{
     font-size: 1rem;
@@ -95,6 +95,7 @@
     width:2.5rem;
     height: 100%;
     cursor:pointer;
+
 }
 /* nav links div */
 .navDiv{
@@ -117,8 +118,6 @@
         flex-direction: column;
         justify-content: center;
         
-         
-
        p{
         font-weight: bold;
         margin-bottom: 5%;
@@ -241,7 +240,6 @@ background-color: #0c1731;
     justify-content: space-evenly;
     align-items: center;
     margin-bottom: 1rem;
- /*    background-color: green; */
     position: absolute;
   
 }
@@ -255,10 +253,60 @@ background-color: #0c1731;
     background-color: var(--color-faded-background);
 }
 
-.searchBox{
+
+/* This is the searchBar section */
+.searchBar{
     width:40%;
-    height: 2rem;
-    background-color: var(--color-faded-background);
+    height: 1.8rem;
+    background-color: var(--color-text);
+    padding-left: 1rem;
+    border-radius: 1rem;
+   
+ 
+    
+  }
+  .searchBar input{
+    width:80%;
+    height:1.5rem;
+    background-color: transparent;
+    font-size: 1rem;
+    border:none;
+    /* border-bottom: 1px solid rgba(211, 211, 255, 0.4); */
+    color:black;
+    padding: 15px;
+    padding-bottom: 0.3rem;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    
+  }
+  .searchBar input[type="text"]:focus{
+    border-color:rgb(4, 11, 29);
+   
+  }
+  .search-icon {
+    font-size: 15px;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .search-icon:hover {
+    color: #d13e12 
+  }
+  
+
+
+
+
+.searchBox input{
+    border:none;
+    outline: none;
+    width:70%;
+    float:right;
+    height: 100%;
+    padding-left: 2rem;
+    font-size: 1.1rem;
 }
 .sortBy{
     width:11rem;

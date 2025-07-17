@@ -3,6 +3,8 @@ import axios from "axios";
 import Confirm from "../components/popUps/Confirm";
 import DeleteModal from "../components/popUps/DeleteModal";
 import useSearch from "../utils/useSearch";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 
 const UsersList = () => {
@@ -73,7 +75,8 @@ const UsersList = () => {
                     <option value="Frequent">Frequent</option>
               </select>
             </div>
-            <div className="searchBox">
+            <div className="searchBar">
+              <FontAwesomeIcon icon={faSearch} className="search-icon"></FontAwesomeIcon>
                 <input
                   type="text"
                   placeholder="username or email"

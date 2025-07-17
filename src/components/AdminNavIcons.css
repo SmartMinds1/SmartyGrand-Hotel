@@ -1,8 +1,4 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing: border-box;
-}
+
 
 .adminNavIcons{
     background-color: transparent;
@@ -11,7 +7,13 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    align-items: center;
+    align-items: flex-start;
+    margin-top: 1rem;
+  
+}
+.adminNavIcons ul{
+  height: 100%;
+
 }
   .adminNavIcons li {
     color: aliceblue;
@@ -20,8 +22,9 @@
     transition: all 200ms ease-in-out;
     padding:0.5rem;
     cursor:pointer;
-
     list-style-type: none;
+    height: 15%;
+  
   }
   
   .adminNavIcons li:hover {

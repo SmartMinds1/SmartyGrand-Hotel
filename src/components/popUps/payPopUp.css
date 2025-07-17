@@ -8,6 +8,7 @@
     width: 100%;
     max-width: 500px;
     backdrop-filter: blur(20px);
+
   }
   
   /* Header */
@@ -96,7 +97,7 @@
   .popup-input-row {
     display: flex;
     gap: 16px;
-    overflow-x: scroll;
+    
   }
   
   /* Submit Button for the popUp */
@@ -118,3 +119,9 @@
     filter: brightness(0.9);
   }
   
+  @media (max-width:480px) {
+    .popup-input-row {
+      overflow-x: scroll;
+    }
+    
+  }

@@ -9,8 +9,6 @@ import Modal from "../components/popUps/Modal";
 import MpesaPaymentForm from "./MpesaPaymentForm";
 
 
-
-
 const Reservations = ()=>{
   /* create an array of tabs to help in navigation */
   const tabs = ['DELUXE', 'FAMILY', 'CONFERENCE', 'SPA', 'GYM'];
@@ -141,6 +139,7 @@ const Reservations = ()=>{
                               className={`tab-item ${activeTab === tab ? 'active' : ''}`}
                               >
                               {tab}
+                              
                           </li>
                       ))}
                 </ul>
