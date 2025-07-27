@@ -5,7 +5,6 @@ import { formatDate } from '../utils/formatDate';
 import MessageMover from '../components/MessageMover';
 import StylishBox from "../components/StylishBox";
 import ImageTextBox from '../components/Image_Text_Box';
-import SearchBar from '../components/SearchBar';
 import PromosCircle from '../components/PromosCircle';
 import Chatform from '../components/Chatform';
 import ChatButton from '../components/ChatButton';
@@ -26,7 +25,7 @@ function Home() {
          
 {/* This is the intro shade and the catption text */}
           <div className="captionShader">
-            <div className="captionFilter"></div>
+              <div className="captionFilter"></div>
             
               <div className="captionTextBox">
                   <div className="captionHeaderText  urbanist">
@@ -42,8 +41,6 @@ function Home() {
                    </div>
                 </div>            
               </div>
-
-              <div className="clear"> </div>
           </div>
 
 
@@ -52,7 +49,6 @@ function Home() {
 <div className="homeSection0">
        {/*  This is the first caption paragraph */}
           <p className="WelcomeParagraph">| Your perfect escape begins here. |</p>
-          <SearchBar className="searchBar"/>
 </div>
 
 {/* ..............................The WHY US section................................ */}

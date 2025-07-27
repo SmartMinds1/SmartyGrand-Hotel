@@ -44,10 +44,16 @@
     font-size: 1.5rem;
     cursor: pointer;
     transition: color 0.2s;
-    color: #6f7b8f;
+    color: #000000;
+    background-color:rgba(240, 248, 255, 0.74);
+    width: 2rem;
+    height: 2rem;
+    border-radius: 100%;
+    transition: all 0.3s;
+    transform: translate(3.5rem, -2rem);
   }
    .auth-close-btn:hover {
-    color: rgb(41, 39, 39);
+    filter: brightness(0.8);
   }
 
 

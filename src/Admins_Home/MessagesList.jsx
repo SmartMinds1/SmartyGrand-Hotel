@@ -50,7 +50,7 @@ const MessagesList = () => {
     return () => {
       window.removeEventListener("listChange", handleListChange);
     };
-  }, []);
+  }, [messages]);
 
    // Reusable search hook. Search messages
    const { query, setQuery, filteredData } = useSearch(messages, ["username", "email"]);

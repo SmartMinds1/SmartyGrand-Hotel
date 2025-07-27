@@ -9,7 +9,7 @@ html, body {
 :root {
   --color-background: #040b1d;
   --color-faded-background:#071025;
-  --color-text: #d3d3ff;
+  --color-text: aliceblue;
   --color-accent-primary: #c42e00;
   --color-faded-accent-primary: #ff450c;
   --color-accent-secondary: #ffc107;

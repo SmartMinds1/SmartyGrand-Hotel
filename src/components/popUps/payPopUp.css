@@ -33,19 +33,31 @@
    color: var(--color-faded-accent-primary);
   }
   
+
+
+
+
   .popup-close-btn {
     background: none;
     border: none;
+    position:absolute;
+    top:-1.5rem;
+    right: -2.5rem;
     font-size: 1.5rem;
     cursor: pointer;
     transition: color 0.2s;
-    color: #6f7b8f;
+    background-color:rgba(240, 248, 255, 0.74);
+    width: 2rem;
+    height: 2rem;
+    border-radius: 100%;
+    transition: all 0.3s;
   }
-  
   .popup-close-btn:hover {
-    color: rgb(41, 39, 39);
+    background-color: rgba(240, 248, 255, 0.548);
   }
-  
+
+
+ 
 /* PAYment details and amount */
 .payMentAmount{
     display: flex;
