@@ -206,7 +206,8 @@ const PayPopUp = ({Amount, title, onClose }) => {
                         setResponseMessage("");
                     }}
                     >
-                        <p className="responseMessage">{responseMessage}</p>
+                    <p className="responseMessage">{responseMessage}</p>
+                    
                     </Alert>
                 </Modal>
 

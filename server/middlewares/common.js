@@ -11,9 +11,11 @@ const commonMiddleware = (app) => {
   app.use(helmet());
 
   // Rate limiter
+  const isDev = process.env.NODE_ENV !== "production";
+
   const rateLimiter = rateLimit({
-    windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS, 10) || 15 * 60 * 1000, // Default: 15 minutes
-    max: parseInt(process.env.RATE_LIMIT_MAX, 10) || 100, // Default: 100 requests per window
+    windowMs: isDev ? 60 * 1000 : 15 * 60 * 1000, // 1 min in dev, 15 mins in prod
+    max: isDev ? 1000 : 100, // high limit in dev, strict in prod
     handler: (req, res) => {
       logger.warn(`⚠️ Rate limit exceeded for IP: ${req.ip}`);
       res.status(429).json({
@@ -23,20 +25,26 @@ const commonMiddleware = (app) => {
           "You have exceeded the maximum allowed requests. Please try again later.",
       });
     },
-    standardHeaders: true, // Return rate limit info in `RateLimit-*` headers
-    legacyHeaders: false, // Disable `X-RateLimit-*` headers
+    standardHeaders: true,
+    legacyHeaders: false,
   });
 
-  app.use(rateLimiter);
+  if (!isDev) {
+    app.use(rateLimiter);
+  }
 
   // Enable CORS with dynamic origin handling
   const allowedOrigins = process.env.ALLOWED_ORIGINS
     ? process.env.ALLOWED_ORIGINS.split(",")
-    : ["http://localhost:3000", "https://myproductionurl.com"];
+    : ["https://myproductionurl.com"];
 
   const corsOptions = {
     origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
+      if (
+        !origin ||
+        allowedOrigins.includes(origin) ||
+        (isDev && /^http:\/\/localhost:\d+$/.test(origin))
+      ) {
         callback(null, true);
       } else {
         logger.warn(`🚫 Blocked CORS request from origin: ${origin}`);
