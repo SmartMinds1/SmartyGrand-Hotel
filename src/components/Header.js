@@ -5,6 +5,8 @@ import Modal from "./popUps/Modal";
 import SignUp from "../pages/SignUp";
 import SignIn from "../pages/SignIn";
 import ForgotPassword from "../pages/ForgotPassword";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDown, faUser } from "@fortawesome/free-solid-svg-icons";
 
 //PROPS EXAMPLE
 const Header = () => {
@@ -164,24 +166,34 @@ const Header = () => {
                   Admin
                 </li>
               </ul>
-
-              <div className="introhr"></div>
             </div>
           }
 
-          {
-            <div className="navAcc">
-              <ul className="navListDesign">
-                <li onClick={() => setShowSignIn(true)}>Sign In</li>
-                <li>
-                  <span>|</span>
-                </li>
-                <li onClick={() => setShowSignUp(true)}>Sign Up</li>
-              </ul>
-
-              <div className="navProfile"></div>
+          <div className="authSection">
+            <div className="authIcons">
+              <FontAwesomeIcon icon={faUser} className="authIcon" />
+              <FontAwesomeIcon icon={faAngleDown} className="authDropIcon" />
             </div>
-          }
+
+            <ul className="auth-links">
+              <li
+                onClick={() => {
+                  setShowSignIn(true);
+                  setShowSignUp(false);
+                }}
+              >
+                Sign In
+              </li>
+              <li
+                onClick={() => {
+                  setShowSignUp(true);
+                  setShowSignIn(false);
+                }}
+              >
+                Sign Up
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 

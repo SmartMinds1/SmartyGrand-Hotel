@@ -7,7 +7,7 @@
   height:3rem;
   background-color: rgb(4, 11, 29, 0.5);
   transition: transform 0.3s ease-in-out; /* Smooth transition */
-  z-index: 1;
+  z-index: 100;
 
 }
 
@@ -30,9 +30,10 @@ font-size: 1.5rem;
 .headerTitle span{
   color: var(--color-accent-secondary);
   font-weight: 300;
+  
 }
 .navBar{
-height: 3rem;
+height: 4rem;
 display: flex;
 flex-direction: row;
 align-items: center;
@@ -78,49 +79,99 @@ align-items: center;
 justify-content: space-between;
 
 }
-.navAcc{
-width:13rem;
-height:fit-content;
-display: flex;
-flex-direction: row;
-justify-content: space-evenly;
-align-items: center;
+
+
+/*------------This is the auth section---------------*/
+.authSection{
+  width: 8rem;
+  text-align: center;
+  height:2rem;
+  transform: translateX(3rem);
+  display: block;
 
 }
-.navAcc ul{
-  width: 70%;
-}
-
-.navAcc li{
-  transition: all 200ms ease-in-out;
-}
-.navAcc li:hover, .navAcc li:focus{
-  color: var(--color-faded-accent-primary);
-}
-.navProfile{
-background-image: url(../assets/cover.jpg);
-background-size: cover;
-width: 2.5rem;
-height: 2.5rem;
-padding:1rem;
-border-radius: 50%;
+.authIcons{
+  width: 4rem;
+  height: 100%;
+  padding-top: 0.2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  color: var(--icon);
+  transition: all 300ms;
+  cursor: pointer;
 
 }
+.authIcons:hover{
+  filter: brightness(0.8);
+}
+.authIcon{
+  font-size: 1.3rem;
+  color:grey;
+
+}
+.authDropIcon{
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+/* Auth links */
+.auth-links {
+  color: aliceblue;
+  font-size: 1rem;
+  list-style-type: none;
+  text-align: left;
+  line-height: 1.8rem;
+  width: 140px;
+  position: absolute;
+  height: 0;
+  overflow-y: hidden;
+  z-index: 2000;
+  background-color: #c42e003b;
+}
+
+/* Hover triggers animation */
+.authSection:hover .auth-links {
+  animation: bounceOpen 1s forwards;
+}
+
+/* Bounce keyframes */
+@keyframes bounceOpen {
+  0% {
+    height: 0;
+  }
+  60% {
+    height: 12rem;
+  }
+  100% {
+    height: 10rem;
+  }
+}
+
+.auth-links li{
+  width: 95%;
+  margin: auto;
+  margin-top: 0.3rem;
+  padding-left: 0.5rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  box-shadow: var(--box-shadow);
+  transition: all 0.5s;
+}
+
+.auth-links li:hover{
+  background-color: #c42e0071;
+}
+
+
 
 h1{
   color:var(--color-text);
   font-size: 1.2rem;
 
-
 }
 
-.introhr{
-  width:80%;
-  height:1px;
-  background-image: linear-gradient(to right, transparent, #FF5722, transparent);
-  margin: auto;
-  transform: translateY(-6px);
-}
+
 
 
 /* Setting uP NAVBAR FOR MOBILE */
@@ -240,20 +291,9 @@ h1{
     display: none;
     
     }
-    .navAcc{
-    width:6rem;
-    height:fit-content;
-    display: none;
-    
+    .authSection{
+      display: none;
     }
-    .navAcc ul{
-      width: 70%;
-    }
-    
-    .navProfile{
-    display: none;
-    
-    } 
 
 }
 

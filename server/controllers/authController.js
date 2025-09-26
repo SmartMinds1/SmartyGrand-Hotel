@@ -7,7 +7,7 @@ const jwtHelper = require("../utils/jwtHelper");
 const { query } = require("../utils/pgHelper");
 const { sendResetEmail } = require("../utils/emailHelper");
 
-//import for resetting password
+//import crypto for resetting password
 const crypto = require("crypto");
 
 // User Registration <-----------------------------------------------

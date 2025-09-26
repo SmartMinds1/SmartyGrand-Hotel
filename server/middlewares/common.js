@@ -1,10 +1,10 @@
 //This file defines a function (commonMiddleware) that registers essential middlewares for: Security, Rate limiting, CORS and JSON request parsing
 
 const cors = require("cors");
+const express = require("express");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 const logger = require("../utils/logger");
-const express = require("express");
 
 const commonMiddleware = (app) => {
   // Security headers
@@ -17,7 +17,7 @@ const commonMiddleware = (app) => {
     windowMs: isDev ? 60 * 1000 : 15 * 60 * 1000, // 1 min in dev, 15 mins in prod
     max: isDev ? 1000 : 100, // high limit in dev, strict in prod
     handler: (req, res) => {
-      logger.warn(`⚠️ Rate limit exceeded for IP: ${req.ip}`);
+      logger.warn(` Rate limit exceeded for IP: ${req.ip}`);
       res.status(429).json({
         status: 429,
         error: "Too many requests",
@@ -36,7 +36,7 @@ const commonMiddleware = (app) => {
   // Enable CORS with dynamic origin handling
   const allowedOrigins = process.env.ALLOWED_ORIGINS
     ? process.env.ALLOWED_ORIGINS.split(",")
-    : ["https://myproductionurl.com"];
+    : ["https://smartygrandhotel.com"];
 
   const corsOptions = {
     origin: (origin, callback) => {
@@ -47,7 +47,7 @@ const commonMiddleware = (app) => {
       ) {
         callback(null, true);
       } else {
-        logger.warn(`🚫 Blocked CORS request from origin: ${origin}`);
+        logger.warn(`Blocked CORS request from origin: ${origin}`);
         callback(new Error("Blocked by CORS policy"), false);
       }
     },

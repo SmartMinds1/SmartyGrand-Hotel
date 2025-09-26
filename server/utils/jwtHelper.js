@@ -6,7 +6,7 @@ const logger = require("./logger");
 
 const JWT_SECRET = process.env.JWT_SECRET; //Used to sign and verify tokens
 const ACCESS_TOKEN_EXPIRY = "15m"; // Adjust as needed
-const REFRESH_TOKEN_EXPIRY = "7d"; // Adjust as needed
+const REFRESH_TOKEN_EXPIRY = "2d"; // Adjust as needed
 
 //Ensures your server won't run if the secret is missing—good for security.
 if (!JWT_SECRET) {

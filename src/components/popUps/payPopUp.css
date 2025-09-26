@@ -16,8 +16,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid rgb(64, 92, 133);
-    padding-bottom: 12px;
     color:var(--color-text);
     
   }

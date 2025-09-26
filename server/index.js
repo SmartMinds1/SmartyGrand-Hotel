@@ -2,14 +2,14 @@
 require("dotenv").config();
 const express = require("express");
 
-//routes
+//importing routes
 const authRoutes = require("./routes/authRoutes");
-const messageRoutes = require("./routes/messageRoutes"); //  Added Messages API
-const userRoutes = require("./routes/userRoutes"); //  importing userRoute ... step 1
-const bookingRoutes = require("./routes/bookingRoutes"); //adding booking API
-const testimonialRoutes = require("./routes/testimonialRoutes"); // adding testimonial api
-const paymentRoutes = require("./routes/paymentRoutes"); // adding payments api
-const mpesaRoutes = require("./routes/mpesaRoutes"); //adding MPESA api
+const messageRoutes = require("./routes/messageRoutes");
+const userRoutes = require("./routes/userRoutes");
+const bookingRoutes = require("./routes/bookingRoutes");
+const testimonialRoutes = require("./routes/testimonialRoutes");
+const paymentRoutes = require("./routes/paymentRoutes");
+const mpesaRoutes = require("./routes/mpesaRoutes");
 
 const logger = require("./utils/logger");
 const errorHandler = require("./middlewares/errorHandler");
@@ -40,14 +40,14 @@ if (process.env.NODE_ENV === "production") {
 // Parse incoming JSON but limit it to a small file to avoid server crash.
 app.use(express.json({ limit: "10kb" }));
 
-// Routes
+// Registering Routes
 app.use("/api/auth", authRoutes);
-app.use("/api/messages", messageRoutes); // Added Messages API
-app.use("/api/users", userRoutes); //Registering the user Route ... step 2
-app.use("/api/bookings", bookingRoutes); //registering bookings routes
-app.use("/api/testimonials", testimonialRoutes); //registering testimonial routes
-app.use("/api/payments", paymentRoutes); // registering payment routes
-app.use("/api/mpesa", mpesaRoutes); //registering the MPESA route
+app.use("/api/messages", messageRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/bookings", bookingRoutes);
+app.use("/api/testimonials", testimonialRoutes);
+app.use("/api/payments", paymentRoutes);
+app.use("/api/mpesa", mpesaRoutes);
 
 // Health Check Route
 app.get("/", (req, res) => {

@@ -20,30 +20,21 @@ function Home() {
 <div className="Home">
 {/* .................................This is the homepage Hero section................................. */}
 {/* These are the BG anim images */}
-      <div className="homeCaptionImage1"></div>
-      <div className="homeCaptionImage2"></div>
+       <div className="homeCaptionImage1"></div>
+       <div className="homeCaptionImage2"></div>
          
 {/* This is the intro shade and the catption text */}
-          <div className="captionShader">
-              <div className="captionFilter"></div>
-            
-              <div className="captionTextBox">
-                  <div className="captionHeaderText  urbanist">
-                      <h1>Your cozy home <br />away <span>from <br />home!</span></h1>
-                  </div>
-                <div className="captionMessage">
-                   <p>Book Your Stay Today!</p>
-                   <div class='pulse'>
-                
-                   <Link to="/reservations">
-                   <Button type="submit" btnLabel="Book Now"/>
-                   </Link>
-                   </div>
-                </div>            
-              </div>
-          </div>
-
-
+        <div className="captionShader">
+            <div className="captionHeaderText  urbanist">
+                <p>Your cozy place <span>away, <br />from </span>home!</p>
+            </div>
+            <div className="captionMessage">
+                <p>Book Your Stay Today!</p>
+                <div class='pulse'>
+                   <Link to="/reservations"> <Button type="submit" btnLabel="Book Now"/> </Link>
+                </div>
+            </div>           
+        </div>
 
 {/* ...........................Search bar section......................... */}
 <div className="homeSection0">
