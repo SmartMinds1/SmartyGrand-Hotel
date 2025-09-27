@@ -18,6 +18,7 @@ exports.register = async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
 
+  //get data from the body
   let { username, email, password } = req.body;
 
   // Normalize email (trim & lowercase)
@@ -27,11 +28,11 @@ exports.register = async (req, res) => {
     const saltRounds = process.env.NODE_ENV === "production" ? 12 : 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
+    //add user to db
     await query(
       "INSERT INTO smartygrand_users (username, email, password) VALUES ($1, $2, $3)",
       [username, email, hashedPassword]
     );
-
     logger.info(`User registered: ${username}`);
     res.status(201).json({ message: "Registration Successful!" });
   } catch (error) {
@@ -47,7 +48,7 @@ exports.register = async (req, res) => {
   }
 };
 
-// User Login <-----------------------------------------------
+// User Login <--------------------<---------------------------
 exports.login = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -71,15 +72,17 @@ exports.login = async (req, res) => {
     const user = result.rows[0];
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      logger.warn(`Login failed: Incorrect password (${username})`);
+      logger.warn(`Login failed: Incorrect password for (${username})`);
       return res.status(401).json({ message: "Invalid credentials." });
     }
 
+    //get access token from jwtHelper
     const accessToken = jwtHelper.generateAccessToken({
       id: user.id,
       username: user.username,
     });
 
+    //get refresh token from jwtHelper
     const refreshToken = jwtHelper.generateRefreshToken({
       id: user.id,
       username: user.username,
@@ -90,7 +93,6 @@ exports.login = async (req, res) => {
       "UPDATE smartygrand_users SET refresh_token = $1 WHERE id = $2",
       [refreshToken, user.id]
     );
-
     logger.info(`Login successful: ${username}`);
     res.json({ accessToken, refreshToken });
   } catch (error) {
@@ -99,7 +101,7 @@ exports.login = async (req, res) => {
   }
 };
 
-// Refresh Token <-----------------------------------------------
+//verify Refresh Token <------------------------<----------------------
 exports.refreshToken = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -130,6 +132,7 @@ exports.refreshToken = async (req, res) => {
       return res.status(403).json({ message: "Invalid refresh token." });
     }
 
+    //If mismatch, issue a new access token for that user
     const newAccessToken = jwtHelper.generateAccessToken({
       id: payload.id,
       username: payload.username,

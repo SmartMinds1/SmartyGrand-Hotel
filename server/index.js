@@ -1,16 +1,6 @@
 // Main entry point for the app
 require("dotenv").config();
 const express = require("express");
-
-//importing routes
-const authRoutes = require("./routes/authRoutes");
-const messageRoutes = require("./routes/messageRoutes");
-const userRoutes = require("./routes/userRoutes");
-const bookingRoutes = require("./routes/bookingRoutes");
-const testimonialRoutes = require("./routes/testimonialRoutes");
-const paymentRoutes = require("./routes/paymentRoutes");
-const mpesaRoutes = require("./routes/mpesaRoutes");
-
 const logger = require("./utils/logger");
 const errorHandler = require("./middlewares/errorHandler");
 const commonMiddleware = require("./middlewares/common");
@@ -40,14 +30,14 @@ if (process.env.NODE_ENV === "production") {
 // Parse incoming JSON but limit it to a small file to avoid server crash.
 app.use(express.json({ limit: "10kb" }));
 
-// Registering Routes
-app.use("/api/auth", authRoutes);
-app.use("/api/messages", messageRoutes);
-app.use("/api/users", userRoutes);
-app.use("/api/bookings", bookingRoutes);
-app.use("/api/testimonials", testimonialRoutes);
-app.use("/api/payments", paymentRoutes);
-app.use("/api/mpesa", mpesaRoutes);
+//importing & Registering my routes
+app.use("/api/auth", require("./routes/authRoutes"));
+app.use("/api/messages", require("./routes/messageRoutes"));
+app.use("/api/users", require("./routes/userRoutes"));
+app.use("/api/bookings", require("./routes/bookingRoutes"));
+app.use("/api/testimonials", require("./routes/testimonialRoutes"));
+app.use("/api/payments", require("./routes/paymentRoutes"));
+app.use("/api/mpesa", require("./routes/mpesaRoutes"));
 
 // Health Check Route
 app.get("/", (req, res) => {
