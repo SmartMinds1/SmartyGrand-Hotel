@@ -1,5 +1,6 @@
 const express = require("express");
 const authController = require("../controllers/authController");
+const { registerLimiter, loginLimiter } = require("../middlewares/limiter");
 const checkTokenBlacklist = require("../middlewares/checkTokenBlacklist");
 const {
   usernameValidation,
@@ -14,6 +15,7 @@ const router = express.Router();
 // User Registration
 router.post(
   "/register",
+  registerLimiter,
   [usernameValidation, emailValidation, passwordValidation],
   authController.register
 );
@@ -21,6 +23,7 @@ router.post(
 // User Login
 router.post(
   "/login",
+  loginLimiter,
   [usernameValidation, passwordValidation],
   authController.login
 );

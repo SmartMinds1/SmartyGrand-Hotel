@@ -21,9 +21,6 @@ exports.register = async (req, res) => {
   //get data from the body
   let { username, email, password } = req.body;
 
-  // Normalize email (trim & lowercase)
-  email = email.trim().toLowerCase();
-
   try {
     const saltRounds = process.env.NODE_ENV === "production" ? 12 : 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
