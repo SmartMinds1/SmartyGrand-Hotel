@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
-const pool = require("../db");
+const pool = require("../database/db");
 
 // Environment variables
 const {

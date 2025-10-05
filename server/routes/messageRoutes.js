@@ -1,3 +1,4 @@
+//Before sending anything to the controller, the route verifies everything and determines who in the controller should execute that request
 const express = require("express");
 const msgController = require("../controllers/msgController");
 const router = express.Router();

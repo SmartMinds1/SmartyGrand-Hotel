@@ -2,6 +2,7 @@
 const { query } = require("../utils/pgHelper");
 const logger = require("../utils/logger");
 const { validationResult } = require("express-validator");
+const MsgService = require("../services/msgService");
 
 // Add a new message
 exports.sendMessage = async (req, res) => {
@@ -15,14 +16,12 @@ exports.sendMessage = async (req, res) => {
 
   try {
     // Insert into the database
-    const result = await query(
-      "INSERT INTO smartygrand_messages (username, email, message) VALUES ($1, $2, $3) RETURNING *",
-      [username, email, message]
-    );
+    const data = await MsgService.sendMessage(username, email, message);
+
     logger.info(`Message sent by: ${username}`);
     res.status(201).json({
-      message: "Message sent SUCCESSFULLY! Kindly wait for our feedback.",
-      data: result.rows[0],
+      message: "SUCCESSFULL! Will get back to you soon...",
+      data,
     });
   } catch (err) {
     logger.error(`Error inserting message: ${err.message}`);
@@ -35,10 +34,8 @@ exports.sendMessage = async (req, res) => {
 // GET all messages
 exports.getAllMessages = async (req, res) => {
   try {
-    const result = await query(
-      "SELECT id, username, email, message, created_at FROM smartygrand_messages ORDER BY id DESC"
-    );
-    res.status(200).json(result.rows);
+    const data = await MsgService.getAllMessages();
+    res.status(200).json(data);
   } catch (err) {
     logger.error(`Error fetching messages: ${err.message}`);
     res.status(500).json({ error: "Failed to fetch messages" });
@@ -47,16 +44,13 @@ exports.getAllMessages = async (req, res) => {
 
 // DELETE a message by ID
 exports.deleteMessage = async (req, res) => {
-  const messageId = req.params.id;
   try {
-    const result = await query(
-      "DELETE FROM smartygrand_messages WHERE id = $1 RETURNING *",
-      [messageId]
-    );
+    const result = await MsgService.deleteMessage(req.params.id);
 
     if (result.rowCount === 0) {
       return res.status(404).json({ error: "Message not found" });
     }
+
     logger.info("Message deleted successfully");
     res.status(200).json({ message: "Message deleted successfully" });
   } catch (err) {

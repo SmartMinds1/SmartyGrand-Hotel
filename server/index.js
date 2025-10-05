@@ -1,6 +1,7 @@
-// Main entry point for the app
+// Main entry point
 require("dotenv").config();
 const express = require("express");
+const pool = require("./database/db");
 const logger = require("./utils/logger");
 const errorHandler = require("./middlewares/errorHandler");
 const commonMiddleware = require("./middlewares/common");
@@ -8,13 +9,13 @@ const commonMiddleware = require("./middlewares/common");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Trust the first proxy (e.g., Ngrok)
-app.set("trust proxy", 1);
+/* ------------------------------
+   1. SECURITY & MIDDLEWARE SETUP
+--------------------------------*/
+app.set("trust proxy", 1); // Required for HTTPS redirect behind proxies
+commonMiddleware(app); // Your custom common middleware
 
-// Apply common middleware
-commonMiddleware(app);
-
-// Redirect HTTP to HTTPS in production (but not for localhost)
+// Redirect HTTP to HTTPS in production (but not localhost)
 if (process.env.NODE_ENV === "production") {
   app.use((req, res, next) => {
     if (
@@ -27,9 +28,9 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-// Parse incoming JSON but limit it to a small file to avoid server crash.
-app.use(express.json({ limit: "10kb" }));
-
+/* ------------------------------
+   2. ROUTES
+--------------------------------*/
 //importing & Registering my routes
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/messages", require("./routes/messageRoutes"));
@@ -39,15 +40,34 @@ app.use("/api/testimonials", require("./routes/testimonialRoutes"));
 app.use("/api/payments", require("./routes/paymentRoutes"));
 app.use("/api/mpesa", require("./routes/mpesaRoutes"));
 
-// Health Check Route
-app.get("/", (req, res) => {
-  res.status(200).send("API is running.");
+// Health check route
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok", message: "API is running" });
 });
 
-// Global Error Handler
+/* ------------------------------
+   3. ERROR HANDLING
+--------------------------------*/
 app.use(errorHandler);
 
-// Start the Server
+/* ------------------------------
+   4. SERVER STARTUP
+--------------------------------*/
 app.listen(PORT, () => {
   logger.info(` Server is running on http://localhost:${PORT}`);
+});
+
+/* ------------------------------
+   5. GRACEFUL SHUTDOWN
+--------------------------------*/
+process.on("SIGINT", async () => {
+  try {
+    logger.info(" Shutting down server...");
+    await pool.end();
+    logger.info(" PostgreSQL pool closed.");
+    process.exit(0);
+  } catch (err) {
+    logger.error(` Error closing PostgreSQL pool: ${err.message}`);
+    process.exit(1);
+  }
 });

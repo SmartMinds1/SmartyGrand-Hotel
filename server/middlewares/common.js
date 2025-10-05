@@ -30,7 +30,7 @@ const commonMiddleware = (app) => {
   };
 
   app.use(cors(corsOptions));
-  app.use(express.json()); // Ensure JSON parsing is enabled
+  app.use(express.json({ limit: "10kb" })); // Limit large file to prevent DOS attacks
 };
 
 module.exports = commonMiddleware;

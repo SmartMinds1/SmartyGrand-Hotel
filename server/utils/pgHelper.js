@@ -1,21 +1,7 @@
-const { Pool } = require("pg");
-require("dotenv").config();
+//This file provides a simplified query for use within our models when sending queries
+const pool = require("../database/db");
 
-const pool = new Pool({
-  user: process.env.PG_USER,
-  host: process.env.PG_HOST,
-  database: process.env.PG_DATABASE,
-  password: process.env.PG_PASSWORD,
-  port: process.env.PG_PORT,
-});
-
-// Test the connection
-pool
-  .connect()
-  .then(() => console.log("PostgreSQL connected successfully!"))
-  .catch((err) => console.error("PostgreSQL connection error:", err));
-
-// Export the query function
+// Simple query wrapper
 const query = (text, params) => pool.query(text, params);
 
 module.exports = { query };
