@@ -30,7 +30,7 @@ const handleSubmit = async (e) => {
         setResponseMessage(response.data.message);
         setFormdata({username:"", comment:""});
       }catch(error){
-        setResponseMessage("ERROR submitting message. Try gain later");
+        setResponseMessage("Please Try gain later");
 
       }
 }

@@ -1,5 +1,4 @@
 //This file handles all ther messages LOGIC
-const { query } = require("../utils/pgHelper");
 const logger = require("../utils/logger");
 const { validationResult } = require("express-validator");
 const MsgService = require("../services/msgService");

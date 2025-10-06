@@ -37,6 +37,11 @@ exports.messageValidation = body("message")
   .escape()
   .withMessage("Message should not be empty");
 
+exports.commentValidation = body("comment")
+  .trim()
+  .notEmpty()
+  .withMessage("Comment must not be null");
+
 exports.refreshTokenValidation = body("refreshToken")
   .notEmpty()
   .withMessage("Refresh token is required.")

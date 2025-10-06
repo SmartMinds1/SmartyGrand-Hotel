@@ -13,7 +13,6 @@ const {
 router.post(
   "/",
   contactLimiter,
-  //validation section
   [usernameValidation, emailValidation, messageValidation],
   msgController.sendMessage
 );

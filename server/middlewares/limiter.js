@@ -55,4 +55,26 @@ const contactLimiter = isProduction
     })
   : noop;
 
-module.exports = { registerLimiter, loginLimiter, contactLimiter };
+//Lets Prevent spamming to our comments form
+const commentLimiter = isProduction
+  ? rateLimit({
+      windowMs: 60 * 60 * 1000,
+      max: 1,
+      handler: (req, res) => {
+        res.status(429).json({
+          status: 429,
+          error: "You can only have one comment per session",
+          message: "Wait and Try again later.",
+        });
+      },
+      standardHeaders: true,
+      legacyHeaders: false,
+    })
+  : noop;
+
+module.exports = {
+  registerLimiter,
+  loginLimiter,
+  contactLimiter,
+  commentLimiter,
+};
