@@ -1,5 +1,4 @@
 // This module handles everything related to JSON Web Tokens (JWTs): creating, verifying, decoding, and managing token blacklisting using Redis.
-
 const jwt = require("jsonwebtoken");
 const redisClient = require("./redisClient");
 const logger = require("./logger");

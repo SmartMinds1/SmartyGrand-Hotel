@@ -1,4 +1,4 @@
-//This file handles all ther messages LOGIC
+//This file handles all the messages LOGIC
 const logger = require("../utils/logger");
 const { validationResult } = require("express-validator");
 const MsgService = require("../services/msgService");
