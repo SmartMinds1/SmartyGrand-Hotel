@@ -2,7 +2,16 @@
 const { query } = require("../utils/pgHelper");
 
 //creating a new booking
-exports.createBooking = async () => {
+exports.createBooking = async (
+  username,
+  email,
+  phone,
+  payment_code,
+  checkin,
+  checkout,
+  guests,
+  room
+) => {
   result = await query(
     `INSERT INTO smartygrand_bookings 
     (username, email, phone, payment_code, checkin, checkout, guests, room) 

@@ -33,7 +33,7 @@ class bkngService {
   }
 
   //Deleting a booking
-  static async getAllBookings(bookingId) {
+  static async deleteBooking(bookingId) {
     const result = await bkngModel.deleteBooking(bookingId);
     return result;
   }
