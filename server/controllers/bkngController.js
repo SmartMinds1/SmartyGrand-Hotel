@@ -32,9 +32,9 @@ exports.createBooking = async (req, res) => {
       room
     );
 
-    logger.info(`${username} reserved successfully`);
+    logger.info(`${username} reserved ${room} successfully`);
     res.status(201).json({
-      message: "successful! Will get to you soon!",
+      message: `successful! Will get to you soon! ${username}`,
       data,
     });
   } catch (error) {
@@ -58,9 +58,8 @@ exports.getAllBookings = async (req, res) => {
 
 // DELETE a booking by ID
 exports.deleteBooking = async (req, res) => {
-  const bookingId = req.params.id;
   try {
-    const result = await bkngService.deleteBooking(bookingId);
+    const result = await bkngService.deleteBooking(req.params.id);
 
     if (result.rowCount === 0) {
       return res.status(404).json({ error: "Booking not found" });
