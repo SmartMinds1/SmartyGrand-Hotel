@@ -6,8 +6,8 @@ exports.usernameValidation = body("username")
   .notEmpty()
   .withMessage("Username is required.")
   .trim()
-  .replace(/[ \t]{3,}/g, "  ")
   .escape()
+  .replace(/[ \t]{3,}/g, "  ")
   .toLowerCase()
   .isLength({ min: 3, max: 20 })
   .withMessage("Username must be at least 3 - 20 characters long.");
@@ -15,32 +15,33 @@ exports.usernameValidation = body("username")
 exports.emailValidation = body("email")
   .notEmpty()
   .withMessage("Email is required.")
+  .trim()
+  .escape()
   .isEmail()
   .withMessage("Invalid email address.")
-  .trim()
   .replace(/[ \t]{3,}/g, "  ")
-  .toLowerCase()
-  .escape();
+  .toLowerCase();
 
 exports.passwordValidation = body("password")
   .notEmpty()
   .withMessage("Password is required.")
+  .trim()
+  .escape()
   .isLength({ min: 8 })
   .withMessage("Password must be at least 8 characters long.")
-  .trim()
   .replace(/[ \t]{3,}/g, "  ");
 
 exports.messageValidation = body("message")
   .notEmpty()
+  .withMessage("Message should not be empty")
   .trim()
-  .replace(/[ \t]{3,}/g, "  ")
   .escape()
-  .withMessage("Message should not be empty");
+  .replace(/[ \t]{3,}/g, "  ");
 
 exports.commentValidation = body("comment")
-  .trim()
   .notEmpty()
-  .withMessage("Comment must not be null");
+  .withMessage("Comment must not be null")
+  .trim();
 
 exports.refreshTokenValidation = body("refreshToken")
   .notEmpty()
@@ -55,18 +56,19 @@ exports.accessTokenValidation = body("accessToken")
   .withMessage("Access token must be a string.");
 
 exports.phoneValidation = body("phone")
+  .notEmpty()
+  .withMessage("Phone must not be empty")
   .isNumeric()
   .trim()
   .escape()
-  .withMessage("Phone must not be empty")
   .isLength({ max: 15 })
   .withMessage("Enter a valid phone length");
 
 exports.payment_codeValidation = body("payment_code")
   .notEmpty()
+  .withMessage("payment_code must not be empty")
   .trim()
   .escape()
-  .withMessage("payment_code must not be empty")
   .isLength({ max: 10 })
   .withMessage("Enter a valid Code length");
 
@@ -87,6 +89,6 @@ exports.questValidation = body("guests")
 
 exports.roomValidation = body("room")
   .notEmpty()
+  .withMessage("Room must not be empty")
   .trim()
-  .escape()
-  .withMessage("Room must not be empty");
+  .escape();
