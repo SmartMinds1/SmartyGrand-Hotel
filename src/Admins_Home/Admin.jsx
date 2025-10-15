@@ -19,6 +19,7 @@ import axios from 'axios';
 
 //for decoding the logged user/ADMIN
   import { jwtDecode } from "jwt-decode";
+import LogoutButton from './logoutButton';
 
 
 //The UI part
@@ -145,6 +146,7 @@ const Admin = () => {
                                             <li onClick={()=>{setActiveTab("payments"); fetchPayments();}}>Payments</li>
                                             <li onClick={()=>{setActiveTab("comments"); fetchComments();}}>Testimonials</li>
                                             <li>Admins</li>
+                                            <LogoutButton/>
                                         </ul>
                                 </div>
                         </div>

@@ -1,6 +1,5 @@
 //This middleware protects your routes by ensuring a user is not using a token that has already been blacklisted (e.g., after logout).
-
-const jwtHelper = require("../utils/jwtHelper"); // Import jwtHelper
+const jwtHelper = require("../utils/jwtHelper");
 
 const checkTokenBlacklist = async (req, res, next) => {
   const authHeader = req.headers.authorization;
@@ -11,7 +10,8 @@ const checkTokenBlacklist = async (req, res, next) => {
       .json({ message: "Authorization header is missing or invalid." });
   }
 
-  const token = authHeader.split(" ")[1]; // Extract token from "Bearer <token>"
+  // Extract token from "Bearer <token>"
+  const token = authHeader.split(" ")[1];
 
   try {
     // Check if the token is blacklisted using jwtHelper

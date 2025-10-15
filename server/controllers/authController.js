@@ -85,54 +85,81 @@ exports.login = async (req, res) => {
       username: user.username,
     });
 
+    // Hash the refresh token before saving
+    const hashedRefreshToken = crypto
+      .createHash("sha256")
+      .update(refreshToken)
+      .digest("hex");
     // Store the refresh token in DB
     await query(
       "UPDATE smartygrand_users SET refresh_token = $1 WHERE id = $2",
-      [refreshToken, user.id]
+      [hashedRefreshToken, user.id]
     );
     logger.info(`Login successful: ${username}`);
-    res.json({ accessToken, refreshToken });
+
+    //using a cookie to store refreshToken
+    res
+      .cookie("refreshToken", refreshToken, {
+        httpOnly: true, // prevent JS access
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict", // prevent CSRF
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+      })
+      .json({ accessToken });
   } catch (error) {
     logger.error(`Login error: ${error.message}`);
     res.status(500).json({ message: "Internal server error." });
   }
 };
 
-//verify Refresh Token <------------------------<----------------------
+//Login with EXISTING Refresh Token <------------------------<----------------------
 exports.refreshToken = async (req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    logger.warn(`Validation failed: ${JSON.stringify(errors.array())}`);
-    return res.status(400).json({ errors: errors.array() });
+  // Get refresh token from cookies
+  const refreshToken = req.cookies.refreshToken;
+  if (!refreshToken) {
+    return res.status(401).json({ message: "Refresh token missing" });
   }
 
-  const { refreshToken } = req.body;
-
   try {
+    // Verify refresh token
     const payload = jwtHelper.verifyToken(refreshToken);
     if (!payload) {
       logger.warn("Invalid refresh token.");
       return res.status(403).json({ message: "Invalid refresh token." });
     }
 
-    // Check if refresh token matches the one stored in DB
+    // Hash the incoming refresh token
+    const hashedIncoming = crypto
+      .createHash("sha256")
+      .update(refreshToken)
+      .digest("hex");
+
+    // Compare against stored hashed token
     const result = await query(
       "SELECT refresh_token FROM smartygrand_users WHERE id = $1",
       [payload.id]
     );
 
     if (
-      result.rows.length === 0 ||
-      result.rows[0].refresh_token !== refreshToken
+      !result.rows.length ||
+      result.rows[0].refresh_token !== hashedIncoming
     ) {
-      logger.warn("Refresh token mismatch or not found.");
+      logger.warn("Refresh token mismatch or not found in DB.");
       return res.status(403).json({ message: "Invalid refresh token." });
     }
 
-    //If mismatch, issue a new access token for that user
+    // Issue new access token
     const newAccessToken = jwtHelper.generateAccessToken({
       id: payload.id,
       username: payload.username,
+    });
+
+    // Re-set cookie expiry (to keep session alive)
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "Strict",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
     logger.info(`New access token issued for user: ${payload.username}`);
@@ -145,35 +172,72 @@ exports.refreshToken = async (req, res) => {
 
 // Logout <-----------------------------------------------
 exports.logout = async (req, res) => {
-  const { accessToken, refreshToken } = req.body;
-
   try {
+    // Extract access token from Authorization header
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return res
+        .status(401)
+        .json({ message: "Access token missing or invalid." });
+    }
+    const accessToken = authHeader.split(" ")[1];
+
+    // Get refresh token from cookies
+    const refreshToken = req.cookies.refreshToken;
+    if (!refreshToken) {
+      return res.status(401).json({ message: "Refresh token missing." });
+    }
+
+    // Verify access token
     const decoded = jwtHelper.verifyAccessToken(accessToken);
     if (!decoded) {
-      logger.warn("Invalid access token.");
+      logger.warn("Invalid access token during logout.");
       return res.status(403).json({ message: "Invalid access token." });
     }
 
     // Blacklist the access token in Redis
     const expiresIn = decoded.exp - Math.floor(Date.now() / 1000);
-    await redisClient.set(accessToken, "blacklisted", { EX: expiresIn });
+    await jwtHelper.blacklistToken(accessToken, expiresIn);
 
-    // Remove refresh token from DB
-    const result = await query(
-      "UPDATE smartygrand_users SET refresh_token = NULL WHERE refresh_token = $1",
-      [refreshToken]
-    );
-
-    if (result.rowCount === 0) {
-      logger.warn("Logout failed: Refresh token not found.");
+    // Verify and blacklist refresh token
+    const payload2 = jwtHelper.verifyToken(refreshToken);
+    if (!payload2) {
+      logger.warn("Invalid refresh token during logout.");
       return res.status(403).json({ message: "Invalid refresh token." });
     }
 
+    const refreshExpiresIn = payload2.exp - Math.floor(Date.now() / 1000);
+    await jwtHelper.blacklistToken(refreshToken, refreshExpiresIn);
+
+    // Hash the refresh token and remove from DB
+    const hashedIncoming = crypto
+      .createHash("sha256")
+      .update(refreshToken)
+      .digest("hex");
+
+    const result = await query(
+      "UPDATE smartygrand_users SET refresh_token = NULL WHERE refresh_token = $1",
+      [hashedIncoming]
+    );
+
+    if (result.rowCount === 0) {
+      logger.warn("Logout failed: Refresh token not found in DB.");
+      return res.status(403).json({ message: "Invalid refresh token." });
+    }
+
+    // Clear cookie securely
+    res.clearCookie("refreshToken", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "Strict",
+    });
+
+    // Send success response
     logger.info(`User logged out: ${decoded.username}`);
-    res.json({ message: "Logged out successfully." });
+    return res.status(200).json({ message: "Logged out successfully." });
   } catch (error) {
     logger.error(`Logout error: ${error.message}`);
-    res.status(500).json({ message: "Internal server error." });
+    return res.status(500).json({ message: "Internal server error." });
   }
 };
 

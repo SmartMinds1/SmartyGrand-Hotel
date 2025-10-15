@@ -1,13 +1,12 @@
 const express = require("express");
 const authController = require("../controllers/authController");
 const { registerLimiter, loginLimiter } = require("../middlewares/limiter");
-const checkTokenBlacklist = require("../middlewares/checkTokenBlacklist");
+const checkAccessBlacklist = require("../middlewares/checkAccessBlacklist");
+const checkRefreshBlacklist = require("../middlewares/chekRefreshBlacklist");
 const {
   usernameValidation,
   emailValidation,
   passwordValidation,
-  refreshTokenValidation,
-  accessTokenValidation,
 } = require("../middlewares/validators");
 
 const router = express.Router();
@@ -31,16 +30,12 @@ router.post(
 // Refresh Token
 router.post(
   "/refresh-token",
-  [checkTokenBlacklist, refreshTokenValidation],
+  [checkRefreshBlacklist],
   authController.refreshToken
 );
 
 // Logout
-router.post(
-  "/logout",
-  [checkTokenBlacklist, accessTokenValidation, refreshTokenValidation],
-  authController.logout
-);
+router.post("/logout", [checkAccessBlacklist], authController.logout);
 
 //forgot password
 router.post("/forgot-password", authController.forgotPassword);

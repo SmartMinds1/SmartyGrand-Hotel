@@ -43,12 +43,6 @@ exports.commentValidation = body("comment")
   .withMessage("Comment must not be null")
   .trim();
 
-exports.refreshTokenValidation = body("refreshToken")
-  .notEmpty()
-  .withMessage("Refresh token is required.")
-  .isString()
-  .withMessage("Refresh token must be a string.");
-
 exports.accessTokenValidation = body("accessToken")
   .notEmpty()
   .withMessage("Access token is required.")

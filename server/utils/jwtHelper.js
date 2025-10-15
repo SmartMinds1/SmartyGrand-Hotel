@@ -50,7 +50,7 @@ const generateRefreshToken = (payload) => {
   }
 };
 
-// Verify Token
+// Verify Refresh Token
 const verifyToken = (token) => {
   try {
     const decoded = jwt.verify(token, JWT_SECRET);
@@ -72,7 +72,7 @@ const decodeToken = (token) => {
   }
 };
 
-// Blacklist Token
+// Blacklist any given Token
 const blacklistToken = async (token, expiryTime) => {
   try {
     await redisClient.set(token, "blacklisted", { EX: expiryTime });
@@ -83,7 +83,7 @@ const blacklistToken = async (token, expiryTime) => {
   }
 };
 
-// Check if Token is Blacklisted
+// Check if a given Token is Blacklisted
 const isTokenBlacklisted = async (token) => {
   try {
     return (await redisClient.get(token)) === "blacklisted";

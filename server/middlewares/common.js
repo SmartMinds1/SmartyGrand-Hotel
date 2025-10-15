@@ -2,6 +2,7 @@
 const cors = require("cors");
 const express = require("express");
 const helmet = require("helmet");
+const cookieParser = require("cookie-parser");
 const logger = require("../utils/logger");
 
 const commonMiddleware = (app) => {
@@ -31,6 +32,7 @@ const commonMiddleware = (app) => {
 
   app.use(cors(corsOptions));
   app.use(express.json({ limit: "10kb" })); // Limit large file to prevent DOS attacks
+  app.use(cookieParser());
 };
 
 module.exports = commonMiddleware;
