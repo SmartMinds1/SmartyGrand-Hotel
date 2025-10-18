@@ -2,7 +2,8 @@
 const jwtHelper = require("../utils/jwtHelper");
 
 const checkRefreshBlacklist = async (req, res, next) => {
-  const { refreshToken } = req.body;
+  // ✅ Get refresh token from cookies instead of body
+  const refreshToken = req.cookies.refreshToken;
 
   if (!refreshToken) {
     return res.status(400).json({ message: "Refresh token is required." });

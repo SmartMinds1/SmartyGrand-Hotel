@@ -1,13 +1,13 @@
 //This file handles all the authentication logic
 const bcrypt = require("bcryptjs");
+const crypto = require("crypto"); // for resetting password
 const { validationResult } = require("express-validator");
 const logger = require("../utils/logger");
 const jwtHelper = require("../utils/jwtHelper");
 const { query } = require("../utils/pgHelper");
 const { sendResetEmail } = require("../utils/emailHelper");
 
-//import crypto for resetting password
-const crypto = require("crypto");
+const MAX_SESSIONS = process.env.MAX_SESSIONS;
 
 // User Registration <-----------------------------------------------
 exports.register = async (req, res) => {
@@ -56,7 +56,7 @@ exports.login = async (req, res) => {
 
   try {
     const result = await query(
-      "SELECT id, username, password FROM smartygrand_users WHERE username = $1",
+      "SELECT id, username, password, is_active FROM smartygrand_users WHERE username = $1",
       [username]
     );
 
@@ -66,10 +66,39 @@ exports.login = async (req, res) => {
     }
 
     const user = result.rows[0];
+
+    //check if user account is disabled
+    if (!user.is_active)
+      return res.status(403).json({ message: "Account disabled." });
+
+    //if Enabled, validate credentials
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       logger.warn(`Login failed: Incorrect password for (${username})`);
       return res.status(401).json({ message: "Invalid credentials." });
+    }
+
+    // -- LIMITING1 CONCURRENT SESSIONS ---
+    const activeSessions = await query(
+      `SELECT id, loggedin_at FROM smartygrand_user_sessions 
+       WHERE user_id = $1 AND is_active = true 
+       ORDER BY loggedin_at ASC`, // oldest first
+      [user.id]
+    );
+
+    if (activeSessions.rows.length >= MAX_SESSIONS) {
+      const oldestSession = activeSessions.rows[0]; // oldest active one
+
+      await query(
+        `UPDATE smartygrand_user_sessions 
+         SET is_active = false 
+         WHERE id = $1`,
+        [oldestSession.id]
+      );
+
+      logger.info(
+        `Oldest session disabled for user: ${username} to enforce limit of ${MAX_SESSIONS}`
+      );
     }
 
     //get access token from jwtHelper
@@ -85,28 +114,35 @@ exports.login = async (req, res) => {
     });
 
     // Hash the refresh token before saving
-    const hashedRefreshToken = crypto
-      .createHash("sha256")
-      .update(refreshToken)
-      .digest("hex");
-    // Store the refresh token in DB
+    const saltRounds = 12;
+    const refreshTokenHash = await bcrypt.hash(refreshToken, saltRounds);
+
+    // TRACK this session
+    // Capture device + IP info
+    const ipAddress = req.ip;
+    const deviceInfo = req.headers["user-agent"] || "Unknown device";
+
+    // Store new session in DB
     await query(
-      "UPDATE smartygrand_users SET refresh_token = $1 WHERE id = $2",
-      [hashedRefreshToken, user.id]
+      `INSERT INTO smartygrand_user_sessions 
+      (user_id, refresh_token_hash, ip_address, device_info, is_active, loggedin_at, last_activity_at)
+      VALUES ($1, $2, $3, $4, true, NOW(), NOW())`,
+      [user.id, refreshTokenHash, ipAddress, deviceInfo]
     );
-    logger.info(`Login successful: ${username}`);
+
+    console.log("Creating a new session for:", username);
 
     //using a cookie to store refreshToken
-    console.log("Setting cookie for:", username); // 👈 add this line
+    console.log("Setting cookie for:", username);
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
       secure: true,
       sameSite: "None",
-      domain: "localhost",
       path: "/",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
     res.json({ accessToken });
+    logger.info(`Login successful: ${username}`);
   } catch (error) {
     logger.error(`Login error: ${error.message}`);
     res.status(500).json({ message: "Internal server error." });
@@ -146,27 +182,72 @@ exports.refreshToken = async (req, res) => {
       return res.status(403).json({ message: "Invalid refresh token." });
     }
 
-    // Hash the incoming refresh token
-    const hashedIncoming = crypto
-      .createHash("sha256")
-      .update(refreshToken)
-      .digest("hex");
+    // Capture current device and IP information from this refresh request
+    const currentIp = req.ip;
+    const currentDevice = req.headers["user-agent"] || "Unknown device";
 
-    // Compare against stored hashed token
+    // Fetch all active sessions for this user
     const result = await query(
-      "SELECT refresh_token FROM smartygrand_users WHERE id = $1",
+      `SELECT id, refresh_token_hash, ip_address, device_info
+    FROM smartygrand_user_sessions
+    WHERE user_id = $1 AND is_active = true`,
       [payload.id]
     );
 
-    if (
-      !result.rows.length ||
-      result.rows[0].refresh_token !== hashedIncoming
-    ) {
-      logger.warn("Refresh token mismatch or not found in DB.");
+    let validSession = null;
+    for (const session of result.rows) {
+      const match = await bcrypt.compare(
+        refreshToken,
+        session.refresh_token_hash
+      );
+      if (match) {
+        validSession = session;
+        break;
+      }
+    }
+
+    if (!validSession) {
+      logger.warn("Refresh token mismatch or tampered.");
       return res.status(403).json({ message: "Invalid refresh token." });
     }
 
-    // Issue new access token
+    // ---STRICT MODE SECURITY CHECK---
+    // Ensure refresh request comes from same IP and device as the login session
+    const ipMismatch =
+      validSession.ip_address && validSession.ip_address !== currentIp;
+    const deviceMismatch =
+      validSession.device_info && validSession.device_info !== currentDevice;
+
+    if (ipMismatch || deviceMismatch) {
+      // Mark session as suspicious and deactivate immediately
+      await query(
+        `UPDATE smartygrand_user_sessions
+         SET is_active = false, logged_out_at = NOW()
+         WHERE id = $1`,
+        [validSession.id]
+      );
+
+      logger.warn(
+        `Suspicious refresh detected for user: ${payload.username}. 
+         IP/Device mismatch — Session deactivated.`
+      );
+
+      // Block the request and notify client
+      return res.status(403).json({
+        message:
+          "Suspicious activity detected. Session terminated for security reasons.",
+      });
+    }
+
+    //OTHERWISE, UPDATE last activity session
+    await query(
+      `UPDATE smartygrand_user_sessions
+       SET last_activity_at = NOW()
+       WHERE id = $1`,
+      [validSession.id]
+    );
+
+    // Token is valid — proceed to issue new access token
     const newAccessToken = jwtHelper.generateAccessToken({
       id: payload.id,
       username: payload.username,
@@ -177,6 +258,7 @@ exports.refreshToken = async (req, res) => {
       httpOnly: true,
       secure: true,
       sameSite: "none",
+      path: "/",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
@@ -227,27 +309,47 @@ exports.logout = async (req, res) => {
     const refreshExpiresIn = payload2.exp - Math.floor(Date.now() / 1000);
     await jwtHelper.blacklistToken(refreshToken, refreshExpiresIn);
 
-    // Hash the refresh token and remove from DB
-    const hashedIncoming = crypto
-      .createHash("sha256")
-      .update(refreshToken)
-      .digest("hex");
-
-    const result = await query(
-      "UPDATE smartygrand_users SET refresh_token = NULL WHERE refresh_token = $1",
-      [hashedIncoming]
+    // Fetch all sessions for this user
+    const sessions = await query(
+      `SELECT id, refresh_token_hash FROM smartygrand_user_sessions WHERE user_id = $1 AND is_active = true`,
+      [payload2.id]
     );
 
-    if (result.rowCount === 0) {
+    // Compare to find the matching session
+    let matchedSessionId = null;
+    for (const session of sessions.rows) {
+      const match = await bcrypt.compare(
+        refreshToken,
+        session.refresh_token_hash
+      );
+      if (match) {
+        matchedSessionId = session.id;
+        break;
+      }
+    }
+
+    if (!matchedSessionId) {
       logger.warn("Logout failed: Refresh token not found in DB.");
       return res.status(403).json({ message: "Invalid refresh token." });
     }
+
+    // Deactivate the correct session and update logout time
+    await query(
+      `UPDATE smartygrand_user_sessions
+       SET is_active = false,
+           logged_out_at = NOW()
+       WHERE id = $1`,
+      [matchedSessionId]
+    );
+
+    logger.info("Session DEACTIVATED successfully!");
 
     // Clear cookie securely
     res.clearCookie("refreshToken", {
       httpOnly: true,
       secure: true,
       sameSite: "none",
+      path: "/",
     });
 
     // Send success response
