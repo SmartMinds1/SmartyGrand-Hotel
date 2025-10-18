@@ -7,6 +7,9 @@ import SignIn from "../pages/SignIn";
 import ForgotPassword from "../pages/ForgotPassword";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faUser } from "@fortawesome/free-solid-svg-icons";
+import { verifyAccessToken } from "../utils/authHelper";
+
+import { useNavigate } from "react-router-dom";
 
 //PROPS EXAMPLE
 const Header = () => {
@@ -38,6 +41,20 @@ const Header = () => {
   const handleSwitchToForgotPassword = () => {
     setShowSignIn(false);
     setShowForgotPass(true);
+  };
+
+  const navigate = useNavigate();
+
+  const handleAdminAccess = async () => {
+    const isAuthenticated = await verifyAccessToken();
+
+    if (isAuthenticated) {
+      // ✅ Already logged in, go straight to dashboard
+      navigate("/dashboard");
+    } else {
+      // ❌ Not logged in, show Sign In modal
+      setShowSignIn(true);
+    }
   };
 
   //animating my header on scroll
@@ -127,7 +144,7 @@ const Header = () => {
                   <li
                     className="linkStyle"
                     onClick={() => {
-                      setShowSignIn(true);
+                      handleAdminAccess();
                       setShowContent(false);
                     }}
                   >
@@ -162,7 +179,7 @@ const Header = () => {
                   </Link>
                 </li>
 
-                <li className="linkStyle" onClick={() => setShowSignIn(true)}>
+                <li className="linkStyle" onClick={handleAdminAccess}>
                   Admin
                 </li>
               </ul>

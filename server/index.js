@@ -15,6 +15,12 @@ const PORT = process.env.PORT || 5000;
 app.set("trust proxy", 1); // Required for HTTPS redirect behind proxies
 commonMiddleware(app); // Your custom common middleware
 
+// ✅ Temporary cookie test route
+app.get("/api/test-cookie", (req, res) => {
+  console.log("Cookies received:", req.cookies);
+  res.json(req.cookies);
+});
+
 // Redirect HTTP to HTTPS in production (but not localhost)
 if (process.env.NODE_ENV === "production") {
   app.use((req, res, next) => {

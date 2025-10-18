@@ -3,6 +3,13 @@ import ReactDOM from "react-dom/client";
 import "./styles/index.css";
 import "./globalStyles.css";
 import App from "./App";
+import axios from "axios";
+
+// Ensure cookies are always sent
+axios.defaults.withCredentials = true;
+
+//Set your backend base URL globally
+axios.defaults.baseURL = "http://localhost:5000";
 
 // This is the resize observer
 if (process.env.NODE_ENV === "development") {

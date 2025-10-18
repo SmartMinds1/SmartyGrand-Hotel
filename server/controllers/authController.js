@@ -1,7 +1,6 @@
 //This file handles all the authentication logic
 const bcrypt = require("bcryptjs");
 const { validationResult } = require("express-validator");
-const redisClient = require("../utils/redisClient");
 const logger = require("../utils/logger");
 const jwtHelper = require("../utils/jwtHelper");
 const { query } = require("../utils/pgHelper");
@@ -98,17 +97,36 @@ exports.login = async (req, res) => {
     logger.info(`Login successful: ${username}`);
 
     //using a cookie to store refreshToken
-    res
-      .cookie("refreshToken", refreshToken, {
-        httpOnly: true, // prevent JS access
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "strict", // prevent CSRF
-        maxAge: 7 * 24 * 60 * 60 * 1000,
-      })
-      .json({ accessToken });
+    console.log("Setting cookie for:", username); // 👈 add this line
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+      domain: "localhost",
+      path: "/",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
+    res.json({ accessToken });
   } catch (error) {
     logger.error(`Login error: ${error.message}`);
     res.status(500).json({ message: "Internal server error." });
+  }
+};
+
+//AUTO login if already have an accessToken <------------------------------------------
+exports.accessTokenLogin = async (req, res) => {
+  try {
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return res.status(401).json({ message: "No token provided" });
+    }
+
+    const accessToken = authHeader.split(" ")[1];
+    const decoded = jwtHelper.verifyAccessToken(accessToken);
+
+    return res.json({ user: decoded });
+  } catch (error) {
+    return res.status(401).json({ message: "Invalid or expired token" });
   }
 };
 
@@ -157,8 +175,8 @@ exports.refreshToken = async (req, res) => {
     // Re-set cookie expiry (to keep session alive)
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "Strict",
+      secure: true,
+      sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
@@ -228,8 +246,8 @@ exports.logout = async (req, res) => {
     // Clear cookie securely
     res.clearCookie("refreshToken", {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "Strict",
+      secure: true,
+      sameSite: "none",
     });
 
     // Send success response

@@ -42,17 +42,17 @@ const SignIn = ({signUpResponse, closeSignIn, onDontHaveAccount, onForgotPass}) 
         };
 
         try{
-              const response = await axios.post("http://localhost:5000/api/auth/login", normalizedFormData)
+              const response = await axios.post("http://localhost:5000/api/auth/login", normalizedFormData,  { withCredentials: true })
               setResponseMessage(response.data.message);
               setFormData({
                 username:"",
                 password:"",
               });//resetting the input fields
 
-        const { accessToken, refreshToken } = response.data;
-          // Store the tokens securely (localStorage/sessionStorage)
+              //get the access token sent by backend response and store it in local storage
+              const { accessToken } = response.data;
               localStorage.setItem("accessToken", accessToken);
-              localStorage.setItem("refreshToken", refreshToken);
+              
 
         // Redirect to the protected route (e.g., dashboard)
            navigate("/dashboard");

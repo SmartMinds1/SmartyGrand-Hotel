@@ -7,37 +7,30 @@ const LogoutButton = () => {
 
   const handleLogout = async () => {
     try {
-      // Send logout request — backend will clear httpOnly cookies
-      const response = await axios.post(
+      await axios.post(
         "http://localhost:5000/api/auth/logout",
-        {},
+        {}, // no body needed — refresh token will come from cookie
         {
-          withCredentials: true, // ✅ include cookies
+          withCredentials: true, // ✅ send cookies along with request
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`, // still needed for access validation
+          },
         }
       );
 
-      console.log(response.data.message || "Logged out successfully");
-
-      // Remove any locally stored data (optional)
+      // Optional: clear any stored access token
       localStorage.removeItem("accessToken");
-      localStorage.removeItem("refreshToken");
 
-      // Redirect outside admin page
-      navigate("/"); // 👈 redirects to home page
+      navigate("/");
     } catch (error) {
-      console.error("Logout failed:", error.response?.data || error.message);
-      alert("Logout failed. Please try again.");
+      console.error(
+        "Logout failed:",
+        error.response?.data?.message || error.message
+      );
     }
   };
 
-  return (
-    <button
-      onClick={handleLogout}
-      className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
-    >
-      Logout
-    </button>
-  );
+  return <button onClick={handleLogout}>Logout</button>;
 };
 
 export default LogoutButton;

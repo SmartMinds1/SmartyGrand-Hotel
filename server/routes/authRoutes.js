@@ -34,6 +34,13 @@ router.post(
   authController.refreshToken
 );
 
+// Verify the accessToken to allow auto re_login
+router.post(
+  "/verify-access",
+  [checkAccessBlacklist],
+  authController.accessTokenLogin
+);
+
 // Logout
 router.post("/logout", [checkAccessBlacklist], authController.logout);
 
