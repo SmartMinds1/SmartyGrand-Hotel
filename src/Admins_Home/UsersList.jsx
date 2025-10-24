@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../api/axiosInstance";
 import Confirm from "../components/popUps/Confirm";
 import DeleteModal from "../components/popUps/DeleteModal";
 import useSearch from "../utils/useSearch";
@@ -18,7 +18,7 @@ const UsersList = () => {
   //fetching users
     const fetchUsers = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/users");
+        const res = await api.get("http://localhost:5000/api/users");
         setUsers(res.data);
         setLoading(false);
 
@@ -27,6 +27,26 @@ const UsersList = () => {
         setLoading(false);
       }
     };
+
+  //Making user an admin
+    const makeAdmin = async (id) => {
+      const token = localStorage.getItem("accessToken");
+    
+      try {
+        const res = await api.patch(
+          `http://localhost:5000/api/users/make-admin/${id}`,
+          {},
+          {
+            headers: { Authorization: `Bearer ${token}` },
+            withCredentials: true,
+          }
+        );
+        alert(res.data.message);
+      } catch (err) {
+        console.error(err.response?.data || err.message);
+        alert("Failed to promote user");
+      }
+  };  
 
 //handle confirm sets given ID to a state variable
     const handleConfirm=(userId)=>{
@@ -107,7 +127,13 @@ const UsersList = () => {
                   <ul className="actionList">
                    {/*  This opens the confirm popUp  */}
                     <li onClick={()=>{setShowModal(true); handleConfirm(user.id);}}>delete</li>
-                    <li>block</li>
+                    <li><button
+                          onClick={() => makeAdmin(user.id)}
+                          disabled={user.role === "admin"}
+                        >
+                          Make Admin
+                        </button>
+                      </li>
                   </ul>
               </td>
             </tr>

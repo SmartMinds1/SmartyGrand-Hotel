@@ -1,22 +1,38 @@
 import axios from "axios";
-import { refreshAccessToken } from "../utils/authHelpers";
+import { refreshAccessToken } from "../utils/authHelper";
 
-const api = axios.create({
+const axiosInstance = axios.create({
   baseURL: "http://localhost:5000/api",
+  withCredentials: true, // needed for refreshToken cookie
 });
 
-api.interceptors.response.use(
+// Automatically attach the access token to every request
+axiosInstance.interceptors.request.use((config) => {
+  const token = localStorage.getItem("accessToken");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
+// Intercept 401 errors and try to refresh access token
+axiosInstance.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config;
 
-    // Only refresh if it's a 401 Unauthorized and not already retried
+    // Protect against missing response (network errors)
+    if (!error.response) return Promise.reject(error);
+
+    // Only retry once for 401 Unauthorized
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
+
       const newAccessToken = await refreshAccessToken();
       if (newAccessToken) {
+        localStorage.setItem("accessToken", newAccessToken);
         originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
-        return api(originalRequest);
+        return axiosInstance(originalRequest);
       }
     }
 
@@ -24,4 +40,4 @@ api.interceptors.response.use(
   }
 );
 
-export default api;
+export default axiosInstance;

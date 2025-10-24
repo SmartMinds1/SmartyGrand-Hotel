@@ -1,112 +1,65 @@
-// Placeholder for future user-related logic (e.g., profile updates)
-const bcrypt = require("bcryptjs");
-const { validationResult } = require("express-validator");
 const { query } = require("../utils/pgHelper");
 const logger = require("../utils/logger");
+const UserService = require("../services/userService");
 
-// Get Current User
-exports.getCurrentUser = async (req, res) => {
+/* -------------The next route is for fetching users from the database------------------------- */
+// GET all users
+exports.getAllUsers = async (req, res) => {
   try {
-    const userId = req.user.id;
+    const data = await UserService.getAllUsers();
+    res.status(200).json(data);
+  } catch (err) {
+    logger.error(`Error fetching users: ${err.message}`);
+    res.status(500).json({ error: "Failed to fetch users" });
+  }
+};
 
-    const result = await query(
-      "SELECT id, username, email FROM smartydb_users WHERE id = $1",
-      [userId]
+//Promoting User to Admin
+exports.makeAdmin = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    // Ensure the target user exists
+    const userCheck = await query(
+      "SELECT * FROM smartygrand_users WHERE id = $1",
+      [id]
     );
-
-    if (result.rows.length === 0) {
+    if (userCheck.rows.length === 0) {
       return res.status(404).json({ message: "User not found." });
     }
 
-    res.json(result.rows[0]);
-  } catch (error) {
-    logger.error(`Get current user error: ${error.message}`);
-    res.status(500).json({ message: "Internal server error." });
-  }
-};
-
-// Update User Profile
-exports.updateProfile = async (req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    logger.warn(
-      `Profile update validation failed: ${JSON.stringify(errors.array())}`
-    );
-    return res.status(400).json({ errors: errors.array() });
-  }
-
-  const { username, email } = req.body;
-  const userId = req.user.id;
-
-  try {
-    await query(
-      "UPDATE smartydb_users SET username = $1, email = $2 WHERE id = $3",
-      [username, email, userId]
-    );
-
-    logger.info(`Profile updated for user: ${userId}`);
-    res.json({ message: "Profile updated successfully." });
-  } catch (error) {
-    if (error.code === "23505") {
-      return res
-        .status(409)
-        .json({ message: "Username or email already in use." });
-    }
-    logger.error(`Profile update error: ${error.message}`);
-    res.status(500).json({ message: "Internal server error." });
-  }
-};
-
-// Change Password
-exports.changePassword = async (req, res) => {
-  const { currentPassword, newPassword } = req.body;
-  const userId = req.user.id;
-
-  try {
+    // Update user role to admin
     const result = await query(
-      "SELECT password FROM smartydb_users WHERE id = $1",
-      [userId]
+      `UPDATE smartygrand_users 
+       SET role = 'admin', updated_at = NOW(), updated_by = $1
+       WHERE id = $2 RETURNING id, username, role`,
+      [req.user.username, id]
     );
 
-    if (result.rows.length === 0) {
-      return res.status(404).json({ message: "User not found." });
-    }
-
-    const user = result.rows[0];
-    const isMatch = await bcrypt.compare(currentPassword, user.password);
-    if (!isMatch) {
-      return res
-        .status(401)
-        .json({ message: "Current password is incorrect." });
-    }
-
-    const saltRounds = process.env.NODE_ENV === "production" ? 12 : 10;
-    const hashed = await bcrypt.hash(newPassword, saltRounds);
-
-    await query("UPDATE smartydb_users SET password = $1 WHERE id = $2", [
-      hashed,
-      userId,
-    ]);
-
-    logger.info(`Password changed for user: ${userId}`);
-    res.json({ message: "Password changed successfully." });
+    logger.info(`User ID ${id} promoted to admin by ${req.user.username}`);
+    return res.status(200).json({
+      message: "User promoted to admin successfully.",
+      user: result.rows[0],
+    });
   } catch (error) {
-    logger.error(`Password change error: ${error.message}`);
-    res.status(500).json({ message: "Internal server error." });
+    logger.error(`Error promoting user to admin: ${error.message}`);
+    return res.status(500).json({ message: "Internal server error." });
   }
 };
 
-// Delete Account
-exports.deleteAccount = async (req, res) => {
-  const userId = req.user.id;
-
+// DELETE a user by ID
+exports.deleteUser = async (req, res) => {
   try {
-    await query("DELETE FROM smartydb_users WHERE id = $1", [userId]);
+    const result = await UserService.deleteUser(req.params.id);
 
-    logger.info(`User account deleted: ${userId}`);
-    res.json({ message: "Account deleted successfully." });
-  } catch (error) {
-    logger.error(`Account deletion error: ${error.message}`);
-    res.status(500).json({ message: "Internal server error." });
+    if (result.rowCount === 0) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    logger.info("User deleted successfully");
+    res.status(200).json({ message: "User deleted successfully" });
+  } catch (err) {
+    logger.error(`Error deleting User: ${err.message}`);
+    res.status(500).json({ error: "Error deleting user. Try again later." });
   }
 };

@@ -17,19 +17,28 @@ exports.register = async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  //get data from the body
+  // Get data from request body
   let { username, email, password } = req.body;
 
   try {
     const saltRounds = process.env.NODE_ENV === "production" ? 12 : 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-    //add user to db
+    // Determine who is creating the user
+    // If an admin is logged in and adding users, use their email.
+    // Otherwise, assume self-registration and set created_by = email.
+    const createdBy = req.user?.email || email;
+    const updatedBy = req.user?.email || email;
+
+    // Add user to database with audit fields
     await query(
-      "INSERT INTO smartygrand_users (username, email, password) VALUES ($1, $2, $3)",
-      [username, email, hashedPassword]
+      `INSERT INTO smartygrand_users 
+        (username, email, password, created_by, updated_by, created_at, updated_at)
+       VALUES ($1, $2, $3, $4, $5, NOW(), NOW())`,
+      [username, email, hashedPassword, createdBy, updatedBy]
     );
-    logger.info(`User registered: ${username}`);
+
+    logger.info(`User registered: ${username} (created_by: ${createdBy})`);
     res.status(201).json({ message: "Registration Successful!" });
   } catch (error) {
     if (error.code === "23505") {
@@ -39,6 +48,7 @@ exports.register = async (req, res) => {
         .status(409)
         .json({ message: "Username or email already exists!" });
     }
+
     logger.error(`Registration error: ${error.message}`);
     res.status(500).json({ message: "Internal server error." });
   }
@@ -56,7 +66,7 @@ exports.login = async (req, res) => {
 
   try {
     const result = await query(
-      "SELECT id, username, password, is_active FROM smartygrand_users WHERE username = $1",
+      "SELECT id, username, password, role, is_active FROM smartygrand_users WHERE username = $1",
       [username]
     );
 
@@ -105,12 +115,14 @@ exports.login = async (req, res) => {
     const accessToken = jwtHelper.generateAccessToken({
       id: user.id,
       username: user.username,
+      role: user.role,
     });
 
     //get refresh token from jwtHelper
     const refreshToken = jwtHelper.generateRefreshToken({
       id: user.id,
       username: user.username,
+      role: user.role,
     });
 
     // Hash the refresh token before saving
@@ -141,7 +153,7 @@ exports.login = async (req, res) => {
       path: "/",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
-    res.json({ accessToken });
+    res.json({ accessToken, role: user.role, username: user.username });
     logger.info(`Login successful: ${username}`);
   } catch (error) {
     logger.error(`Login error: ${error.message}`);
@@ -251,6 +263,7 @@ exports.refreshToken = async (req, res) => {
     const newAccessToken = jwtHelper.generateAccessToken({
       id: payload.id,
       username: payload.username,
+      role: payload.role,
     });
 
     // Re-set cookie expiry (to keep session alive)
@@ -263,7 +276,11 @@ exports.refreshToken = async (req, res) => {
     });
 
     logger.info(`New access token issued for user: ${payload.username}`);
-    res.json({ accessToken: newAccessToken });
+    res.json({
+      accessToken: newAccessToken,
+      role: payload.role,
+      username: payload.username,
+    });
   } catch (error) {
     logger.error(`Refresh token error: ${error.message}`);
     res.status(500).json({ message: "Internal server error." });

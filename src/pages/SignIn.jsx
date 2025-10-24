@@ -43,19 +43,24 @@ const SignIn = ({signUpResponse, closeSignIn, onDontHaveAccount, onForgotPass}) 
 
         try{
               const response = await axios.post("http://localhost:5000/api/auth/login", normalizedFormData,  { withCredentials: true })
+              //set up this credentials in local storage
+              localStorage.setItem("accessToken", response.data.accessToken);
+              localStorage.setItem("userRole", response.data.role);
+              localStorage.setItem("username", response.data.username);
+
               setResponseMessage(response.data.message);
               setFormData({
                 username:"",
                 password:"",
               });//resetting the input fields
 
-              //get the access token sent by backend response and store it in local storage
-              const { accessToken } = response.data;
-              localStorage.setItem("accessToken", accessToken);
+         //Determine the role of the loged in user and direct them to the right dashboard     
+            const role = localStorage.getItem("userRole");
+            if (role === "admin") navigate("/admin-dashboard");
+            else if (role === "agent") navigate("/agent-dashboard");
+            else navigate("/user-dashboard");
               
 
-        // Redirect to the protected route (e.g., dashboard)
-           navigate("/dashboard");
 
               
         }catch(error){

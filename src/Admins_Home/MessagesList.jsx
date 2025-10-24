@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../api/axiosInstance";
 import DeleteModal from "../components/popUps/DeleteModal";
 import Confirm from "../components/popUps/Confirm";
 import useSearch from "../utils/useSearch";
@@ -18,7 +18,7 @@ const MessagesList = () => {
 //now fetching messages
     const fetchMessages = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/messages");
+        const res = await api.get("http://localhost:5000/api/messages");
         setMessages(res.data);
         setLoading(false);
       } catch (err) {

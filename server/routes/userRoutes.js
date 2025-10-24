@@ -1,42 +1,38 @@
+//Before sending anything to the controller, the route verifies everything and determines who in the controller should execute that request
 const express = require("express");
-const pool = require("../utils/pgHelper");
+const userController = require("../controllers/userController");
 const router = express.Router();
 
-/* -------------The next route is for fetching users from the database------------------------- */
-// GET all users
-router.get("/", async (req, res) => {
-  try {
-    const result = await pool.query(
-      "SELECT id, username, email FROM smartygrand_users ORDER BY id DESC"
-    );
-    res.status(200).json(result.rows);
-  } catch (err) {
-    console.error("Error fetching users:", err);
-    res.status(500).json({ error: "Failed to fetch users" });
-  }
-});
+//Authorization
+const { requireRole, requirePermission } = require("../middlewares/checkRoles");
+const { ROLES } = require("../utils/roles");
+const checkAccessBlacklist = require("../middlewares/checkAccessBlacklist");
 
-// DELETE a user by ID
+// getting all users
+router.get(
+  "/",
+  checkAccessBlacklist,
+  requireRole(ROLES.ADMIN, ROLES.STAFF),
+  requirePermission("users.read"),
+  userController.getAllUsers
+);
+
+//Promote User to Admin
+router.patch(
+  "/make-admin/:id",
+  checkAccessBlacklist,
+  requireRole(ROLES.ADMIN),
+  requirePermission("users.update"),
+  userController.makeAdmin
+);
+
+// DELETE a message by id
 router.delete(
   "/:id",
-
-  async (req, res) => {
-    const userId = req.params.id;
-    try {
-      const result = await pool.query(
-        "DELETE FROM smartygrand_users WHERE id = $1 RETURNING *",
-        [userId]
-      );
-
-      if (result.rowCount === 0) {
-        return res.status(404).json({ error: "User not found" });
-      }
-      res.status(200).json({ message: "User deleted successfully" });
-    } catch (err) {
-      console.error("Error deleting User", err);
-      res.status(500).json({ error: "Error deleting User. Try again later." });
-    }
-  }
+  checkAccessBlacklist,
+  requireRole(ROLES.ADMIN),
+  requirePermission("users.delete"),
+  userController.deleteUser
 );
 
 module.exports = router;

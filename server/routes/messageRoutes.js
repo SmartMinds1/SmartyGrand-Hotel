@@ -9,6 +9,11 @@ const {
   messageValidation,
 } = require("../middlewares/validators");
 
+//Authorization
+const { requireRole, requirePermission } = require("../middlewares/checkRoles");
+const { ROLES } = require("../utils/roles");
+const checkAccessBlacklist = require("../middlewares/checkAccessBlacklist");
+
 // Add a new message
 router.post(
   "/",
@@ -18,9 +23,21 @@ router.post(
 );
 
 // getting all messages
-router.get("/", msgController.getAllMessages);
+router.get(
+  "/",
+  checkAccessBlacklist,
+  requireRole(ROLES.ADMIN, ROLES.STAFF),
+  requirePermission("messages.read"),
+  msgController.getAllMessages
+);
 
 // DELETE a message by id
-router.delete("/:id", msgController.deleteMessage);
+router.delete(
+  "/:id",
+  checkAccessBlacklist,
+  requireRole(ROLES.ADMIN),
+  requirePermission("messages.delete"),
+  msgController.deleteMessage
+);
 
 module.exports = router;

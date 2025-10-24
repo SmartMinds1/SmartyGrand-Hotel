@@ -15,7 +15,7 @@ import {
   faCalendarCheck,
   faUserShield,
 } from "@fortawesome/free-solid-svg-icons";
-import axios from 'axios';
+import api from "../api/axiosInstance";
 
 //for decoding the logged user/ADMIN
   import { jwtDecode } from "jwt-decode";
@@ -54,7 +54,7 @@ const Admin = () => {
         //fetching user counts
             const fetchUsers = async () => {
             try {
-                const res = await axios.get("http://localhost:5000/api/users");
+                const res = await api.get("http://localhost:5000/api/users");
                 setUsersCount(res.data);
             } catch (err) {
                 console.error("Error fetching users count:", err);
@@ -63,7 +63,7 @@ const Admin = () => {
         //fetching Message counts
         const fetchMessages = async () => {
             try {
-              const res = await axios.get("http://localhost:5000/api/messages");
+              const res = await api.get("http://localhost:5000/api/messages");
               setMessagesCount(res.data);
             } catch (err) {
               console.error("Error fetching messages count:", err);
@@ -73,7 +73,7 @@ const Admin = () => {
         //fetching Booking counts
         const fetchBookings = async () => {
             try {
-              const res = await axios.get("http://localhost:5000/api/bookings");
+              const res = await api.get("http://localhost:5000/api/bookings");
               setBookingsCount(res.data);
             } catch (err) {
               console.error("Error fetching payments count", err);
@@ -83,7 +83,7 @@ const Admin = () => {
         //fetching Payment counts
         const fetchPayments = async () => {
             try {
-              const res = await axios.get("http://localhost:5000/api/payments");
+              const res = await api.get("http://localhost:5000/api/payments");
               setPaymentsCount(res.data);
             } catch (err) {
               console.error("Error fetching Counts!", err);
@@ -93,7 +93,7 @@ const Admin = () => {
         //fetching Comment counts
         const fetchComments = async () => {
         try {
-            const res = await axios.get("http://localhost:5000/api/testimonials");
+            const res = await api.get("http://localhost:5000/api/testimonials");
             setCommentsCount(res.data);
         } catch (err) {
             console.error("Error fetching Comments count", err);

@@ -15,7 +15,14 @@ export const verifyAccessToken = async () => {
         headers: { Authorization: `Bearer ${token}` },
       }
     );
-    return response.data?.user || false;
+
+    const user = response.data?.user;
+    if (user) {
+      // Save role if available
+      if (user.role) localStorage.setItem("userRole", user.role);
+      if (user.username) localStorage.setItem("username", user.username);
+    }
+    return user || false;
   } catch (error) {
     console.warn("Access token expired or invalid, trying refresh...");
     return await refreshAccessToken();
@@ -33,6 +40,13 @@ export const refreshAccessToken = async () => {
     const newToken = response.data.accessToken;
     if (newToken) {
       localStorage.setItem("accessToken", newToken);
+
+      // If the refresh endpoint also returns user data, store it
+      if (response.data.role)
+        localStorage.setItem("userRole", response.data.role);
+      if (response.data.username)
+        localStorage.setItem("username", response.data.username);
+
       return true;
     }
     return false;

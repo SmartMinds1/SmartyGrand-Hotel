@@ -49,10 +49,10 @@ const Header = () => {
     const isAuthenticated = await verifyAccessToken();
 
     if (isAuthenticated) {
-      // ✅ Already logged in, go straight to dashboard
-      navigate("/dashboard");
+      // Already logged in, go straight to dashboard
+      navigate("/admin-dashboard");
     } else {
-      // ❌ Not logged in, show Sign In modal
+      // Not logged in, show Sign In modal
       setShowSignIn(true);
     }
   };
